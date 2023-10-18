@@ -1,6 +1,7 @@
 const btnFiltroa = document.querySelector("#f-botoi");
 const btnGehitu = document.querySelector("#g-botoi");
 const btnerabiltzailea = document.querySelector(".header_img2");
+const divartikuluak = document.querySelector(".artikuluak");
 console.log(btnerabiltzailea);
 
 // Filtro botoia sakatzean filtroko menua ateratzea
@@ -88,6 +89,26 @@ function login() {
         }
         
         
+    });
+}
+
+window.addEventListener('load', artikuluak_bistaratu());
+
+function artikuluak_bistaratu() {
+    let options = {method: "GET", mode: 'cors'};
+    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    .then(data => {
+        return data.json();
+    })
+    .then(response => {
+        // console.log(response["ekipList"][0]["id"]);
+        for (let i = 0; i < array.length; i++) {
+            const element = array[i];
+            
+        }
+        <div id="response['ekip`List'][]">
+
+        </div>
     });
 }
 

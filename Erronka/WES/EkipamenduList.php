@@ -1,4 +1,7 @@
 <?php
+    include("Ekipamendua.php");
+    include("DB.php");
+    include("Listak.php");
     class EkipamenduList implements Listak
     {
         public $ekipList;
@@ -16,7 +19,13 @@
             $emaitza = $conn->select($sql);
             if ($emaitza->num_rows > 0) {
                 while ($row = $emaitza->fetch_assoc()) {
-                    $ekipamendua = new Ekipamendua($row["id"],$row["izena"],$row["deskribapena"],$row["marka"],$row["modelo"],$row["stock"],$row["idstock"]);
+                    $url = "";
+                    if (isset($row["img_url"])) {
+                        $url = $row["img_url"];
+                    }else{
+                        $url = "../img/img_art_defecto.png";
+                    }
+                    $ekipamendua = new Ekipamendua($row["id"],$row["izena"],$row["deskribapena"],$row["marka"],$row["modelo"],$row["stock"],$row["idKategoria"],$row["img_url"]);
                     $this->add_to_list($ekipamendua);
                 }
             }
