@@ -1,9 +1,11 @@
-const btnFiltroa1 = document.querySelector("#f-botoi");
-const btnFiltroa2 = document.querySelector("#g-botoi");
+const btnFiltroa = document.querySelector("#f-botoi");
+const btnGehitu = document.querySelector("#g-botoi");
 const btnerabiltzailea = document.querySelector(".header_img2");
 console.log(btnerabiltzailea);
-if (btnFiltroa1 != null) {
-    btnFiltroa1.addEventListener('click', function activatu() {
+
+// Filtro botoia sakatzean filtroko menua ateratzea
+if (btnFiltroa != null) {
+    btnFiltroa.addEventListener('click', function activatu() {
         document.getElementById('filtroa').classList.toggle('active');
         document.getElementById('filtroa').style.position = "relative";
         if (document.getElementById('gehitu').classList.contains('active')) {
@@ -22,8 +24,9 @@ if (btnFiltroa1 != null) {
     });
 }
 
-if (btnFiltroa2 != null) {
-    btnFiltroa2.addEventListener('click', function activatu() {
+// Gehitu botoia sakatzean gehitzeko menua ateratzea
+if (btnGehitu != null) {
+    btnGehitu.addEventListener('click', function activatu() {
         document.getElementById('gehitu').classList.toggle('active');
         document.getElementById('gehitu').style.position = "relative";
         if (document.getElementById('filtroa').classList.contains('active')) {
@@ -42,7 +45,7 @@ if (btnFiltroa2 != null) {
     });
 }
 
-
+// Erabiltzaile ikonoa sakatzean, erabiltzailearen menua ateratzea
 if (btnerabiltzailea != null) {
     btnerabiltzailea.addEventListener('click', function activatu() {
         document.getElementById('erabil-menu').classList.toggle('active');
@@ -50,6 +53,7 @@ if (btnerabiltzailea != null) {
 }
 
 // FUNCIONES LOGIN
+// Pasahitza bistaratzeko eta izkutatzeko funtzioa
 function ver_nover() {
     var image = document.getElementById("ver");
     var pass = document.getElementById("pasahitza");
@@ -62,6 +66,7 @@ function ver_nover() {
     }
 }
 
+// Login funtzioa da, erabiltzailearen informazioa hartzen du eta erabiltzailea existitzen bada eta pasahitza zuzena jarri badu komprobatzen du
 function login() {
     var erabil = document.getElementById("erabil").value;
     var pass = document.getElementById("pasahitza").value;
@@ -72,7 +77,16 @@ function login() {
         return data.json();
     })
     .then(response => {
-        console.log(response);
+        if (response === "Error") {
+            alert("Erabiltzailea ez da existitzen")
+        }else{
+            if (response["pasahitza"] == pass) {
+                window.location.href = "pages/home.html";
+            }else{
+                alert("Pasahitza okerra")
+            }
+        }
+        
         
     });
 }
