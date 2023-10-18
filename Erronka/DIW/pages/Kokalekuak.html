@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>ARTIKULUAK</title>
+        <title>KOKALEKUAK</title>
         <link rel="stylesheet" type="text/css" href="../css/style.css">
         <link rel="icon" href="../img/logo.png" type="image/x-icon">
     </head>
@@ -11,7 +11,7 @@
                 <a href="home.html">
                     <img class="header_img1" src="../img/logo.png" alt="logoa">
                 </a>
-                <h1><u>ARTIKULUAK</u></h1>
+                <h1><u>KOKALEKUAK</u></h1>
                 <div class="erabiltzaile-ikonoa">
                     <img class="header_img2" src="../img/usuario.png" alt="erabiltzailea">
                     <div id="erabil-menu">
@@ -34,6 +34,10 @@
                 </nav>
             </div>
         </header>
+        <div class="buscadorea">
+            <input id="search" type="search" value="enter">
+            <img src="../img/lupa.png">
+        </div>
         <div id="menu-mugikorra">
             <div id="f-botoi">Filtroa</div>
             <div id="g-botoi">Gehitu</div>
@@ -44,25 +48,12 @@
                         <input type="text" value="enter">
                     </div>
                     <div class="menu-input">
-                        <p>Deskribapena</p>
-                        <input type="text" value="enter">
+                        <p>Hasiera Data</p>
+                        <input type="date">
                     </div>
                     <div class="menu-input">
-                        <p>Stock</p>
-                        <input class="stck" type="number">
-                        <label>-</label>
-                        <input class="stck" type="number">
-                    </div>
-                    <div class="menu-input">
-                        <p>Marka</p>
-                        <div class="fmarkak">
-                            <input type="checkbox" id="marka1" value="marka1">
-                            <label for="marka1">Marka1</label>
-                            <input type="checkbox" id="marka2" value="marka2">
-                            <label for="marka2">Marka2</label>
-                            <input type="checkbox" id="marka3" value="marka3">
-                            <label for="marka3">Marka3</label>
-                        </div>
+                        <p>Amaiera Data</p>
+                        <input type="date">
                     </div>
                     <div class="menu-input">
                         <button id="save">Save</button>
@@ -71,32 +62,17 @@
                 </div>
                 <div class="info" id="gehitu">
                     <div class="menu-input">
-                        <p>Izena</p>
-                        <input type="text" value="enter">
-                    </div>
-                    <div class="menu-input">
-                        <p>Deskribapena</p>
-                        <input type="text" value="enter">
-                    </div>
-                    <div class="menu-input">
-                        <p>Marka</p>
-                        <input type="text" value="enter">
-                    </div>
-                    <div class="menu-input">
-                        <p>Modeloa</p>
-                        <input type="text" value="enter">
-                    </div>
-                    <div class="menu-input">
-                        <label for="kategoria">Kategoria</label>
-                        <select name="kategoria" id="kategoria">
-                            <option value="opcion1">opcion1</option>
-                            <option value="opcion2">opcion2</option>
-                            <option value="opcion3">opcion3</option>
-                            <option value="opcion4">opcion4</option>
+                        <label for="Artikulua">Artikulua</label>
+                        <select name="Artikulua" id="Artikulua">
+                            <option value="Artikulua1">Artikulua1</option>
+                            <option value="Artikulua2">Artikulua2</option>
+                            <option value="Artikulua3">Artikulua3</option>
+                            <option value="Artikulua4">Artikulua4</option>
                         </select>
                     </div>
                     <div class="menu-input">
-                        <button id="gorde">Gehitu Artikulua</button>
+                        <p>Kantitatea</p>
+                        <input type="number">
                     </div>
                 </div>
             </div>

@@ -336,14 +336,30 @@ footer {
     font-family: "Engravers MT";
 }
 
+.men{
+    margin: 70px;
+}
 .nabigazio-menua{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: flex;
     background-color: #A1EAFF;
     padding-top: 1%;
     padding-bottom: 1%;
+    justify-content: center;
     text-align: center;
+    align-items: center;
+ }
+.nabigazio-menua li{
+    float:left;
+    list-style: none;
+    overflow: hidden;
+    transition: background-color 0.3s, color 0.3s;
 }
+.nabigazio-menua li:hover{
+    background-color: #6da7ee;
+    border-radius: 15%;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid black;
+} 
 
 .fmarkak{
     display: grid;
@@ -356,6 +372,7 @@ footer .info{
     align-items:center;
     justify-content: center;
     padding-bottom: 2%;
+    color:aliceblue;
 /*     max-height:100%; */
     /* position: fixed; */
     
