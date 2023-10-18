@@ -20,12 +20,12 @@
             if ($emaitza->num_rows > 0) {
                 while ($row = $emaitza->fetch_assoc()) {
                     $url = "";
-                    if (isset($row["img_url"])) {
-                        $url = $row["img_url"];
-                    }else{
+                    if (empty($row["img_url"])) {
                         $url = "../img/img_art_defecto.png";
+                    }else{
+                        $url = $row["img_url"];
                     }
-                    $ekipamendua = new Ekipamendua($row["id"],$row["izena"],$row["deskribapena"],$row["marka"],$row["modelo"],$row["stock"],$row["idKategoria"],$row["img_url"]);
+                    $ekipamendua = new Ekipamendua($row["id"],$row["izena"],$row["deskribapena"],$row["marka"],$row["modelo"],$row["stock"],$row["idKategoria"],$url);
                     $this->add_to_list($ekipamendua);
                 }
             }

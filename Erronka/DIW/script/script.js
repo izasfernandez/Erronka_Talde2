@@ -1,8 +1,8 @@
+const webIzena = document.getElementById("title").innerHTML;
 const btnFiltroa = document.querySelector("#f-botoi");
 const btnGehitu = document.querySelector("#g-botoi");
 const btnerabiltzailea = document.querySelector(".header_img2");
 const divartikuluak = document.querySelector(".artikuluak");
-console.log(btnerabiltzailea);
 
 // Filtro botoia sakatzean filtroko menua ateratzea
 if (btnFiltroa != null) {
@@ -92,7 +92,9 @@ function login() {
     });
 }
 
-window.addEventListener('load', artikuluak_bistaratu());
+if (webIzena == "ARTIKULUAK") {
+    window.addEventListener('load', artikuluak_bistaratu());
+}
 
 function artikuluak_bistaratu() {
     let options = {method: "GET", mode: 'cors'};
@@ -101,14 +103,29 @@ function artikuluak_bistaratu() {
         return data.json();
     })
     .then(response => {
-        // console.log(response["ekipList"][0]["id"]);
-        for (let i = 0; i < array.length; i++) {
-            const element = array[i];
-            
-        }
-        <div id="response['ekip`List'][]">
+        for (let i = 0; i < response["ekipList"].length; i++) {
+            var img = document.createElement("img");
+            if(!response["ekipList"][i]["url"].match("img_art_defecto")){
+                img.href = response["ekipList"][i]["url"];
+            }else{
+                img.src = response["ekipList"][i]["url"];
 
-        </div>
+            }
+            img.src = response["ekipList"][i]["url"];
+            img.alt = response["ekipList"][i]["izena"]+" irudia";
+            img.class = "art_img";
+            var izena = document.createElement("h3");
+            izena.innerHTML = response["ekipList"][i]["izena"];
+            var deskribapena  = document.createElement("p");
+            deskribapena.innerHTML = response["ekipList"][i]["deskribapena"];
+            var artikulua  = document.createElement("div");
+            artikulua.id = response["ekipList"][i]["id"];
+            artikulua.appendChild(img);
+            artikulua.appendChild(izena);
+            artikulua.appendChild(deskribapena);
+            divartikuluak.appendChild(artikulua);   
+        }
+        
     });
 }
 
