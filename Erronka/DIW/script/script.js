@@ -105,24 +105,23 @@ function artikuluak_bistaratu() {
     .then(response => {
         for (let i = 0; i < response["ekipList"].length; i++) {
             var img = document.createElement("img");
-            if(!response["ekipList"][i]["url"].match("img_art_defecto")){
-                img.href = response["ekipList"][i]["url"];
-            }else{
-                img.src = response["ekipList"][i]["url"];
-
-            }
+            img.src = response["ekipList"][i]["url"];
             img.src = response["ekipList"][i]["url"];
             img.alt = response["ekipList"][i]["izena"]+" irudia";
-            img.class = "art_img";
+            img.classList.add("art_img");
             var izena = document.createElement("h3");
             izena.innerHTML = response["ekipList"][i]["izena"];
             var deskribapena  = document.createElement("p");
             deskribapena.innerHTML = response["ekipList"][i]["deskribapena"];
             var artikulua  = document.createElement("div");
+            var artikulu_esteka = document.createElement("a");
+            artikulu_esteka.href = "#";
             artikulua.id = response["ekipList"][i]["id"];
-            artikulua.appendChild(img);
-            artikulua.appendChild(izena);
-            artikulua.appendChild(deskribapena);
+            artikulua.classList.add("art_info");
+            artikulu_esteka.appendChild(img);
+            artikulu_esteka.appendChild(izena);
+            artikulu_esteka.appendChild(deskribapena);
+            artikulua.appendChild(artikulu_esteka);
             divartikuluak.appendChild(artikulua);   
         }
         
