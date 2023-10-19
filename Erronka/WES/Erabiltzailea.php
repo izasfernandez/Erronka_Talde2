@@ -28,8 +28,8 @@
         public function erabiltzailea_kargatu($erabiltzailea)
         {
             $sql = "SELECT * FROM 3wag2e1.erabiltzailea WHERE 3wag2e1.erabiltzailea.erabiltzailea = '".$erabiltzailea."'";
-            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
-            // $conn = new DB("localhost","root","","3wag2e1");
+            // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
+            $conn = new DB("localhost","root","","3wag2e1");
             $emaitza = $conn->select($sql);
             if ($emaitza->num_rows > 0) {
                 while ($row = $emaitza->fetch_assoc()) {

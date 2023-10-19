@@ -11,9 +11,9 @@
             $this->ekipList = [];
         }
 
-        function informazioa_karga()
+        function informazioa_karga($queryFiltroa)
         {
-            $sql = "SELECT * FROM 3wag2e1.ekipamendua";
+            $sql = "SELECT * FROM 3wag2e1.ekipamendua".$queryFiltroa;
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $conn = new DB("localhost","root","","3wag2e1");
             $emaitza = $conn->select($sql);

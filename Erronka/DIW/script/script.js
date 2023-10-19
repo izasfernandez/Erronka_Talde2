@@ -97,7 +97,7 @@ if (webIzena == "ARTIKULUAK") {
 }
 
 function artikuluak_bistaratu() {
-    let options = {method: "GET", mode: 'cors'};
+    let options = {method: "POST", mode: 'cors'};
     fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
     .then(data => {
         return data.json();
@@ -124,7 +124,18 @@ function artikuluak_bistaratu() {
             artikulua.appendChild(artikulu_esteka);
             divartikuluak.appendChild(artikulua);   
         }
-        
     });
 }
 
+function artikuluak_filtratu() {
+    var art_izena = document.getElementById("art_izena").value;
+    var art_deskribapena = document.getElementById("art_deskribapena").value;
+    var art_stck_min = document.getElementById("art_stck_min").value;
+    var art_stck_max = document.getElementById("art_stck_max").value;
+    var array_filtroa = {"art_izena":art_izena,"art_deskribapena":art_deskribapena,"art_stck_min":art_stck_min,"art_stck_max":art_stck_max};
+    let filtroJson = JSON.stringify(array_filtroa);
+    console.log(filtroJson)
+    let options = {method: "POST", mode: 'cors', body:filtroJson, header:"Content-Type: application/json; charset=UTF-8"};
+    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options);
+    window.location.href = "Artikuluak.html";
+}

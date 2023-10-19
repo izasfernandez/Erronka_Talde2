@@ -1,5 +1,5 @@
 <?php
     interface Listak{
-        public function informazioa_karga(); 
+        public function informazioa_karga($queryFiltroa); 
     }
 ?>
