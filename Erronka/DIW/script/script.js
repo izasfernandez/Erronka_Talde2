@@ -53,7 +53,7 @@ if (btnerabiltzailea != null) {
     });
 }
 
-// FUNCIONES LOGIN
+// LOGIN FUNTZIOAK
 // Pasahitza bistaratzeko eta izkutatzeko funtzioa
 function ver_nover() {
     var image = document.getElementById("ver");
@@ -73,7 +73,7 @@ function login() {
     var pass = document.getElementById("pasahitza").value;
     let options = {method: "GET", mode: 'cors'};
     console.log(erabil);
-    fetch('http://localhost/WES/Erronka%201/Erronka/WES/Erabiltzaile_controller.php?erabil='+erabil,options)
+    fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
     .then(data => {
         return data.json();
     })
@@ -98,7 +98,7 @@ if (webIzena == "ARTIKULUAK") {
 
 function artikuluak_bistaratu() {
     let options = {method: "GET", mode: 'cors'};
-    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    fetch('../WES/Ekipamendu_controller.php',options)
     .then(data => {
         return data.json();
     })
