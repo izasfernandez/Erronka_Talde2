@@ -4,19 +4,26 @@
 
     include("EkipamenduList.php");
 
+    if($_SERVER["REQUEST_METHOD"]=="GET"){
+        $artikuluak = new EkipamenduList();
+        $artikuluak->artikuluak_kargatu();
+        $json = json_encode($artikuluak);
+        echo ($json);
+    }
+
     if($_SERVER["REQUEST_METHOD"]=="POST"){
-        $queryFiltroa = "";
+        $queryfiltroa = "";
         $json_data = file_get_contents("php://input");
         if (isset($json_data)) {
             $data = json_decode($json_data,true);
             if(!empty($data["art_izena"])){
-                $query_filtroa = " WHERE 3wag2e1.ekipamendua.izena = '".$data["art_izena"]."'";
+                $query_filtroa = " WHERE LOWER(3wag2e1.ekipamendua.izena) LIKE LOWER('%".$data["art_izena"]."%')";
             }
             if(!empty($data["art_deskribapena"])){
                 if (empty($query_filtroa)) {
-                    $query_filtroa = " WHERE 3wag2e1.ekipamendua.izena = '".$data["art_deskribapena"]."'";
+                    $query_filtroa = " WHERE LOWER(3wag2e1.ekipamendua.deskribapena) LIKE LOWER('%".$data["art_deskribapena"]."%')";
                 }else{
-                    $query_filtroa = $query_filtroa." AND 3wag2e1.ekipamendua.deskribapena = '".$data["art_deskribapena"]."'";
+                    $query_filtroa = $query_filtroa." AND 3wag2e1.ekipamendua.deskribapena LIKE LOWER('%".$data["art_deskribapena"]."%')";
                 }
             }
             if(!empty($data["art_stck_min"])){
@@ -35,7 +42,7 @@
             }
         }
         $artikuluak = new EkipamenduList();
-        $artikuluak->informazioa_karga($queryFiltroa);
+        $artikuluak->artikuluak_filtratu($query_filtroa);
         $json = json_encode($artikuluak);
         echo ($json);
     }
