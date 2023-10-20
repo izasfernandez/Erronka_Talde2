@@ -11,9 +11,8 @@
             $this->ekipList = [];
         }
 
-        function informazioa_karga()
+        function informazioa_karga($sql)
         {
-            $sql = "SELECT * FROM 3wag2e1.ekipamendua";
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $conn = new DB("localhost","root","","3wag2e1");
             $emaitza = $conn->select($sql);
@@ -30,6 +29,18 @@
                 }
             }
             $conn->die();
+        }
+
+        function artikuluak_kargatu()
+        {
+            $sql = "SELECT * FROM 3wag2e1.ekipamendua";
+            $this->informazioa_karga($sql);
+        }
+
+        function artikuluak_filtratu($queryFiltroa)
+        {
+            $sql = "SELECT * FROM 3wag2e1.ekipamendua".$queryFiltroa;
+            $this->informazioa_karga($sql);
         }
 
         function add_to_list($ekipamendua)

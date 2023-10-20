@@ -34,7 +34,7 @@
                 </nav>
             </div>
         </header>
-        <div class="artikuluak"></div>
+        <div id="artikuluak"></div>
         <div id="menu-mugikorra">
             <div id="f-botoi">Filtroa</div>
             <div id="g-botoi">Gehitu</div>
@@ -42,17 +42,17 @@
                 <div class="info" id="filtroa">
                     <div class="menu-input">
                         <p>Artikuluaren Izena</p>
-                        <input type="text" value="enter">
+                        <input type="text" id = "art_izena">
                     </div>
                     <div class="menu-input">
                         <p>Deskribapena</p>
-                        <input type="text" value="enter">
+                        <input type="text" id = "art_deskribapena">
                     </div>
                     <div class="menu-input">
                         <p>Stock</p>
-                        <input class="stck" type="number">
+                        <input class="stck" type="number" id="art_stck_min">
                         <label>-</label>
-                        <input class="stck" type="number">
+                        <input class="stck" type="number" id="art_stck_max">
                     </div>
                     <div class="menu-input">
                         <p>Marka</p>
@@ -66,8 +66,8 @@
                         </div>
                     </div>
                     <div class="menu-input">
-                        <button id="save">Save</button>
-                        <button id="cancel">Cancel</button>
+                        <button id="save" onclick="artikuluak_filtratu()">Save</button>
+                        <button id="cancel" onclick="artikuluak_bistaratu()">Cancel</button>
                     </div>
                 </div>
                 <div class="info" id="gehitu">

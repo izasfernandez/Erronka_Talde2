@@ -2,7 +2,7 @@ const webIzena = document.getElementById("title").innerHTML;
 const btnFiltroa = document.querySelector("#f-botoi");
 const btnGehitu = document.querySelector("#g-botoi");
 const btnerabiltzailea = document.querySelector(".header_img2");
-const divartikuluak = document.querySelector(".artikuluak");
+const divartikuluak = document.querySelector("#artikuluak");
 
 // Filtro botoia sakatzean filtroko menua ateratzea
 if (btnFiltroa != null) {
@@ -72,9 +72,14 @@ function login() {
     var erabil = document.getElementById("erabil").value;
     var pass = document.getElementById("pasahitza").value;
     let options = {method: "GET", mode: 'cors'};
-    console.log(erabil);
-    // fetch('http://localhost/WES/Erronka%201/Erronka/WES/Erabiltzaile_controller.php?erabil='+erabil,options)
-    fetch('/WES/Erabiltzaile_controller.php?erabil=' + erabil, options)
+    // Ruta local sergio
+    //fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Erabiltzaile_controller.php?erabil='+erabil,options)
+    // Ruta local Izaskun
+    // fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
+    // Ruta local Erik
+    // fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
+    // Ruta local Imanol
+    fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
     .then(data => {
         return data.json();
     })
@@ -98,9 +103,16 @@ if (webIzena == "ARTIKULUAK") {
 }
 
 function artikuluak_bistaratu() {
+    // document.getElementById("artikuluak").innerHTML = "";
     let options = {method: "GET", mode: 'cors'};
-    // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
-    fetch('/WES/Erabiltzaile_controller.php?erabil=' + erabil, options)
+    // Ruta local sergio
+    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    // Ruta local Izaskun
+    // fetch('../WES/Ekipamendu_controller.php',options)
+    // Ruta local Erik
+    // fetch('../WES/Ekipamendu_controller.php',options)
+    // Ruta local Imanol
+    // fetch('../WES/Ekipamendu_controller.php',options)
     .then(data => {
         return data.json();
     })
@@ -126,7 +138,44 @@ function artikuluak_bistaratu() {
             artikulua.appendChild(artikulu_esteka);
             divartikuluak.appendChild(artikulua);   
         }
-        
     });
 }
 
+function artikuluak_filtratu() {
+    document.getElementById("artikuluak").innerHTML = "";
+    var art_izena = document.getElementById("art_izena").value;
+    var art_deskribapena = document.getElementById("art_deskribapena").value;
+    var art_stck_min = document.getElementById("art_stck_min").value;
+    var art_stck_max = document.getElementById("art_stck_max").value;
+    var array_filtroa = {"art_izena":art_izena,"art_deskribapena":art_deskribapena,"art_stck_min":art_stck_min,"art_stck_max":art_stck_max};
+    let filtroJson = JSON.stringify(array_filtroa);
+    console.log(filtroJson)
+    let options = {method: "POST", mode: 'cors', body:filtroJson, header:"Content-Type: application/json; charset=UTF-8"};
+    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    .then(data => {
+        return data.json();
+    })
+    .then(response => {
+        for (let i = 0; i < response["ekipList"].length; i++) {
+            var img = document.createElement("img");
+            img.src = response["ekipList"][i]["url"];
+            img.src = response["ekipList"][i]["url"];
+            img.alt = response["ekipList"][i]["izena"]+" irudia";
+            img.classList.add("art_img");
+            var izena = document.createElement("h3");
+            izena.innerHTML = response["ekipList"][i]["izena"];
+            var deskribapena  = document.createElement("p");
+            deskribapena.innerHTML = response["ekipList"][i]["deskribapena"];
+            var artikulua  = document.createElement("div");
+            var artikulu_esteka = document.createElement("a");
+            artikulu_esteka.href = "#";
+            artikulua.id = response["ekipList"][i]["id"];
+            artikulua.classList.add("art_info");
+            artikulu_esteka.appendChild(img);
+            artikulu_esteka.appendChild(izena);
+            artikulu_esteka.appendChild(deskribapena);
+            artikulua.appendChild(artikulu_esteka);
+            divartikuluak.appendChild(artikulua);   
+        }
+    });
+}
