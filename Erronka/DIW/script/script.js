@@ -76,11 +76,11 @@ function login() {
     // Ruta local sergio
     //fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Erabiltzaile_controller.php?erabil='+erabil,options)
     // Ruta local Izaskun
-    // fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
+    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php?erabil='+erabil,options)
     // Ruta local Erik
     // fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
     // Ruta local Imanol
-    fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
+    //fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
     .then(data => {
         return data.json();
     })
@@ -111,9 +111,9 @@ function artikuluak_bistaratu() {
     document.getElementById("artikuluak").innerHTML = "";
     let options = {method: "GET", mode: 'cors'};
     // Ruta local sergio
-    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    //fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
     // Ruta local Izaskun
-    // fetch('../WES/Ekipamendu_controller.php',options)
+    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
     // Ruta local Erik
     // fetch('../WES/Ekipamendu_controller.php',options)
     // Ruta local Imanol
@@ -156,7 +156,10 @@ function artikuluak_filtratu() {
     var array_filtroa = {"art_izena":art_izena,"art_deskribapena":art_deskribapena,"art_stck_min":art_stck_min,"art_stck_max":art_stck_max,"markak":art_markak};
     let filtroJson = JSON.stringify(array_filtroa);
     let options = {method: "POST", mode: 'cors', body:filtroJson, header:"Content-Type: application/json; charset=UTF-8"};
-    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    // Sergio
+    // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    // Izaskun
+    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
     .then(data => {
         return data.json();
     })
