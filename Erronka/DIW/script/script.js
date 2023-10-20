@@ -79,11 +79,11 @@ function login() {
     // Ruta local sergio
     //fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Erabiltzaile_controller.php?erabil='+erabil,options)
     // Ruta local Izaskun
-    // fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
+    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php?erabil='+erabil,options)
     // Ruta local Erik
     // fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
     // Ruta local Imanol
-    fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
+    //fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
     .then(data => {
         return data.json();
     })
@@ -113,6 +113,44 @@ if (divart_markak != null) {
 if (divart_kategoriak != null) {
     window.addEventListener('load', kategoriak_kargatu());
 }
+function artikuluak_bistaratu() {
+    document.getElementById("artikuluak").innerHTML = "";
+    let options = {method: "GET", mode: 'cors'};
+    // Ruta local sergio
+    //fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    // Ruta local Izaskun
+    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
+    // Ruta local Erik
+    // fetch('../WES/Ekipamendu_controller.php',options)
+    // Ruta local Imanol
+    // fetch('../WES/Ekipamendu_controller.php',options)
+    .then(data => {
+        return data.json();
+    })
+    .then(response => {
+        for (let i = 0; i < response["artikuluak"]["ekipList"].length; i++) {
+            var img = document.createElement("img");
+            img.src = response["artikuluak"]["ekipList"][i]["url"];
+            img.src = response["artikuluak"]["ekipList"][i]["url"];
+            img.alt = response["artikuluak"]["ekipList"][i]["izena"]+" irudia";
+            img.classList.add("art_img");
+            var izena = document.createElement("h3");
+            izena.innerHTML = response["artikuluak"]["ekipList"][i]["izena"];
+            var deskribapena  = document.createElement("p");
+            deskribapena.innerHTML = response["artikuluak"]["ekipList"][i]["deskribapena"];
+            var artikulua  = document.createElement("div");
+            var artikulu_esteka = document.createElement("a");
+            artikulu_esteka.href = "#";
+            artikulua.id = response["artikuluak"]["ekipList"][i]["id"];
+            artikulua.classList.add("art_info");
+            artikulu_esteka.appendChild(img);
+            artikulu_esteka.appendChild(izena);
+            artikulu_esteka.appendChild(deskribapena);
+            artikulua.appendChild(artikulu_esteka);
+            divartikuluak.appendChild(artikulua);   
+        }
+    });
+}
 
 
 
@@ -126,7 +164,10 @@ function artikuluak_filtratu() {
     var array_filtroa = {"art_izena":art_izena,"art_deskribapena":art_deskribapena,"art_stck_min":art_stck_min,"art_stck_max":art_stck_max,"markak":art_markak, "kategoria":kategoria};
     let filtroJson = JSON.stringify(array_filtroa);
     let options = {method: "POST", mode: 'cors', body:filtroJson, header:"Content-Type: application/json; charset=UTF-8"};
-    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    // Sergio
+    // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    // Izaskun
+    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
     .then(data => {
         return data.json();
     })
