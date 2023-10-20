@@ -73,7 +73,8 @@ function login() {
     var pass = document.getElementById("pasahitza").value;
     let options = {method: "GET", mode: 'cors'};
     console.log(erabil);
-    fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
+    // fetch('http://localhost/WES/Erronka%201/Erronka/WES/Erabiltzaile_controller.php?erabil='+erabil,options)
+    fetch('/WES/Erabiltzaile_controller.php?erabil=' + erabil, options)
     .then(data => {
         return data.json();
     })
@@ -98,7 +99,8 @@ if (webIzena == "ARTIKULUAK") {
 
 function artikuluak_bistaratu() {
     let options = {method: "GET", mode: 'cors'};
-    fetch('../WES/Ekipamendu_controller.php',options)
+    // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    fetch('/WES/Erabiltzaile_controller.php?erabil=' + erabil, options)
     .then(data => {
         return data.json();
     })
