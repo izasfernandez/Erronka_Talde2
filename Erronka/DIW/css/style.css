@@ -134,18 +134,17 @@ a{
 
 .header_img2,
 .header_img1{
-    max-width: 30%;
-    max-height: 15%;
     flex: 1;
 }
 
 .header_img1 {
     padding-left: 3%;
+    max-width: 25%;
 }
 
 .header_img2 {
     padding-right: 3%;
-    max-width: 15%;
+    max-width: 18%;
 }
 
 .header_general h1{
@@ -213,21 +212,22 @@ nav ul li:hover {
 /* HOME */
 
 .home {
+    height: 65vh;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 3%;
-    padding-left: 3%;
-    padding-right: 4%;
+    padding-bottom: 3%;
 }
 
-.artikulu-home img,
-.erosketa-home img,
+.artikulu-home img{
+    width: 60%;
+}
+.erosketa-home img{
+    width: 60%;
+}
 .kokaleku-home img {
-    width: 600px;
-    height: 300px;
-    
+    width: 43%;
 }
 
 footer {
@@ -235,13 +235,20 @@ footer {
     color: white;
     grid-template-columns: 1fr 1fr 1fr;
     background-color: #2A2D34;
+    position: fixed;
     bottom: 0;
     width: 100%;
-    position: absolute;
+    /* position: absolute; */
     height: 10%;
-    align-content: end;
+    align-content: center;
 }
 
+@media screen and (max-width: 992px) {
+    .home {
+        flex-direction: column;
+        text-align: center;
+    }
+}
 
 /* ARTIKULUAK */
 
@@ -371,7 +378,6 @@ footer .info{
     flex-direction: row;
     align-items:center;
     justify-content: center;
-    padding-bottom: 2%;
     color:aliceblue;
 /*     max-height:100%; */
     /* position: fixed; */
@@ -383,6 +389,8 @@ iframe{
     max-height: 100%;
     max-width: 25%;
     position: absolute;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 
 #save{
@@ -496,14 +504,14 @@ hr{
     border-radius: 60px;
 }
 
-.artikuluak{
+#artikuluak{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin-left: 2%;
     margin-right: 2%;
 }
 
-.artikuluak .art_img{
+#artikuluak .art_img{
     width: 50%;
     height: 50%;
 }
