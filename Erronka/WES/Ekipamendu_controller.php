@@ -58,6 +58,13 @@
                     }
                 }
             }
+            if($data["kategoria"] <> 0){
+                if (empty($query_filtroa)) {
+                    $query_filtroa = " WHERE 3wag2e1.ekipamendua.idKategoria = ".$data["kategoria"];
+                }else{
+                    $query_filtroa = $query_filtroa." AND 3wag2e1.ekipamendua.idKategoria = ".$data["kategoria"];
+                }
+            }
         }
         $artikuluak = new EkipamenduList();
         $artikuluak->artikuluak_filtratu($query_filtroa);

@@ -34,6 +34,10 @@
                 </nav>
             </div>
         </header>
+        <div class="kategoriak">
+            <p id="0" class="kategoria_filtro active">All</p>
+            <hr>
+        </div>
         <div id="artikuluak"></div>
         <div id="menu-mugikorra">
             <div id="f-botoi">Filtroa</div>
@@ -60,7 +64,7 @@
                     </div>
                     <div class="menu-input">
                         <button id="save" onclick="artikuluak_filtratu()">Save</button>
-                        <button id="cancel" onclick="artikuluak_bistaratu()">Cancel</button>
+                        <button id="cancel" onclick="filtroa_kendu()">Cancel</button>
                     </div>
                 </div>
                 <div class="info" id="gehitu">
@@ -82,12 +86,7 @@
                     </div>
                     <div class="menu-input">
                         <label for="kategoria">Kategoria</label>
-                        <select name="kategoria" id="kategoria">
-                            <option value="opcion1">opcion1</option>
-                            <option value="opcion2">opcion2</option>
-                            <option value="opcion3">opcion3</option>
-                            <option value="opcion4">opcion4</option>
-                        </select>
+                        <select name="kategoria" id="kategoria"></select>
                     </div>
                     <div class="menu-input">
                         <button id="gorde">Gehitu Artikulua</button>

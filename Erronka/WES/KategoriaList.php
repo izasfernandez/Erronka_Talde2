@@ -1,4 +1,18 @@
 <?php
+    include("DB.php");
+    include("Listak.php");
+
+    class Kategoria
+    {
+        public $id;
+        public $izena;
+
+        function __construct($id,$izena){
+            $this->id = $id;
+            $this->izena = $izena;
+        }
+    }
+    
     class kategoriaList implements Listak
     {
         public $katList;
@@ -8,9 +22,8 @@
             $this->katList = [];
         }
 
-        function informazioa_karga()
+        function informazioa_karga($sql)
         {
-            $sql = "SELECT * FROM 3wag2e1.kategoria";
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $conn = new DB("localhost","root","","3wag2e1");
             $emaitza = $conn->select($sql);
@@ -21,6 +34,12 @@
                 }
             }
             $conn->die();
+        }
+
+        function kategoria_kargatu()
+        {
+            $sql = "SELECT * FROM 3wag2e1.kategoria";
+            $this->informazioa_karga($sql);
         }
 
         function add_to_list($kategoria)
