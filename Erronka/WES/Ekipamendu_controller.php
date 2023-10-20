@@ -30,16 +30,16 @@
             }
             if(!empty($data["art_stck_min"])){
                 if (empty($query_filtroa)) {
-                    $query_filtroa = " WHERE 3wag2e1.ekipamendua.stock > '".$data["art_stck_min"]."'";
+                    $query_filtroa = " WHERE 3wag2e1.ekipamendua.stock >= '".$data["art_stck_min"]."'";
                 }else{
-                    $query_filtroa = $query_filtroa." AND 3wag2e1.ekipamendua.stock > '".$data["art_stck_min"]."'";
+                    $query_filtroa = $query_filtroa." AND 3wag2e1.ekipamendua.stock >= '".$data["art_stck_min"]."'";
                 }
             }
             if(!empty($data["art_stck_max"])){
                 if (empty($query_filtroa)) {
-                    $query_filtroa = " WHERE 3wag2e1.ekipamendua.stock < ".$data["art_stck_max"];
+                    $query_filtroa = " WHERE 3wag2e1.ekipamendua.stock <= ".$data["art_stck_max"];
                 }else{
-                    $query_filtroa = $query_filtroa." AND 3wag2e1.ekipamendua.stock < ".$data["art_stck_max"];
+                    $query_filtroa = $query_filtroa." AND 3wag2e1.ekipamendua.stock <= ".$data["art_stck_max"];
                 }
             }
             if(!empty($data["markak"])){

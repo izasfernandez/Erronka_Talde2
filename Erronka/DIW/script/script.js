@@ -77,9 +77,9 @@ function login() {
     var pass = document.getElementById("pasahitza").value;
     let options = {method: "GET", mode: 'cors'};
     // Ruta local sergio
-    //fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Erabiltzaile_controller.php?erabil='+erabil,options)
+    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Erabiltzaile_controller.php?erabil='+erabil,options)
     // Ruta local Izaskun
-    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php?erabil='+erabil,options)
+    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php?erabil='+erabil,options)
     // Ruta local Erik
     // fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
     // Ruta local Imanol
@@ -117,9 +117,9 @@ function artikuluak_bistaratu() {
     document.getElementById("artikuluak").innerHTML = "";
     let options = {method: "GET", mode: 'cors'};
     // Ruta local sergio
-    //fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
     // Ruta local Izaskun
-    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
+    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
     // Ruta local Erik
     // fetch('../WES/Ekipamendu_controller.php',options)
     // Ruta local Imanol
@@ -161,13 +161,14 @@ function artikuluak_filtratu() {
     var art_stck_min = document.getElementById("art_stck_min").value;
     var art_stck_max = document.getElementById("art_stck_max").value;
     var art_markak = markak_filtratu()
+    console.log(art_markak);
     var array_filtroa = {"art_izena":art_izena,"art_deskribapena":art_deskribapena,"art_stck_min":art_stck_min,"art_stck_max":art_stck_max,"markak":art_markak, "kategoria":kategoria};
     let filtroJson = JSON.stringify(array_filtroa);
     let options = {method: "POST", mode: 'cors', body:filtroJson, header:"Content-Type: application/json; charset=UTF-8"};
     // Sergio
-    // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
     // Izaskun
-    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
+    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
     .then(data => {
         return data.json();
     })
