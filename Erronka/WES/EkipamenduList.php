@@ -43,6 +43,16 @@
             $this->informazioa_karga($sql);
         }
 
+        function markak_kargatu()
+        {
+            $sql = "SELECT DISTINCT(3wag2e1.ekipamendua.marka) FROM 3wag2e1.ekipamendua;";
+            $conn = new DB("localhost","root","","3wag2e1");
+            $kontsulta = $conn->select($sql);
+            $markak = $kontsulta->fetch_all(MYSQLI_ASSOC);
+            $conn->die();
+            return $markak;
+        }
+
         function add_to_list($ekipamendua)
         {
             $this->ekipList[count($this->ekipList)] = $ekipamendua;

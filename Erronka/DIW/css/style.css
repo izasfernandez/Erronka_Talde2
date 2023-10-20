@@ -364,6 +364,12 @@ footer {
 .fmarkak{
     display: grid;
     grid-template-columns: 1fr 5fr;
+    height: 5em;
+    line-height: 1em;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 85%;
+    border: 1px solid;
 }
 
 footer .info{

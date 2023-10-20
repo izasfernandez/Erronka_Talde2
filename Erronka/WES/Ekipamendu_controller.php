@@ -7,12 +7,14 @@
     if($_SERVER["REQUEST_METHOD"]=="GET"){
         $artikuluak = new EkipamenduList();
         $artikuluak->artikuluak_kargatu();
-        $json = json_encode($artikuluak);
+        $markak = $artikuluak->markak_kargatu();
+        $jsonData = ["artikuluak"=>$artikuluak,"markak"=>$markak];
+        $json = json_encode($jsonData);
         echo ($json);
     }
 
     if($_SERVER["REQUEST_METHOD"]=="POST"){
-        $queryfiltroa = "";
+        $query_filtroa = "";
         $json_data = file_get_contents("php://input");
         if (isset($json_data)) {
             $data = json_decode($json_data,true);
@@ -38,6 +40,22 @@
                     $query_filtroa = " WHERE 3wag2e1.ekipamendua.stock < ".$data["art_stck_max"];
                 }else{
                     $query_filtroa = $query_filtroa." AND 3wag2e1.ekipamendua.stock < ".$data["art_stck_max"];
+                }
+            }
+            if(!empty($data["markak"])){
+                for ($i=0; $i < count($data["markak"]); $i++) { 
+                    if ($i == 0) {
+                        if (empty($query_filtroa)) {
+                            $query_filtroa = " WHERE (3wag2e1.ekipamendua.marka = '".$data["markak"][$i]."' ";
+                        }else{
+                            $query_filtroa = $query_filtroa." AND (3wag2e1.ekipamendua.marka = '".$data["markak"][$i]."' ";
+                        }
+                    }else{
+                        $query_filtroa = $query_filtroa." OR 3wag2e1.ekipamendua.marka = '".$data["markak"][$i]."' ";
+                    }
+                    if ($i == count($data["markak"])-1) {
+                        $query_filtroa = $query_filtroa.")";
+                    }
                 }
             }
         }

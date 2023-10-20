@@ -3,6 +3,7 @@ const btnFiltroa = document.querySelector("#f-botoi");
 const btnGehitu = document.querySelector("#g-botoi");
 const btnerabiltzailea = document.querySelector(".header_img2");
 const divartikuluak = document.querySelector("#artikuluak");
+const divart_markak = document.querySelector(".fmarkak");
 
 // Filtro botoia sakatzean filtroko menua ateratzea
 if (btnFiltroa != null) {
@@ -102,8 +103,12 @@ if (webIzena == "ARTIKULUAK") {
     window.addEventListener('load', artikuluak_bistaratu());
 }
 
+if (divart_markak != null) {
+    window.addEventListener('load', markak_kargatu());
+}
+
 function artikuluak_bistaratu() {
-    // document.getElementById("artikuluak").innerHTML = "";
+    document.getElementById("artikuluak").innerHTML = "";
     let options = {method: "GET", mode: 'cors'};
     // Ruta local sergio
     fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
@@ -117,20 +122,20 @@ function artikuluak_bistaratu() {
         return data.json();
     })
     .then(response => {
-        for (let i = 0; i < response["ekipList"].length; i++) {
+        for (let i = 0; i < response["artikuluak"]["ekipList"].length; i++) {
             var img = document.createElement("img");
-            img.src = response["ekipList"][i]["url"];
-            img.src = response["ekipList"][i]["url"];
-            img.alt = response["ekipList"][i]["izena"]+" irudia";
+            img.src = response["artikuluak"]["ekipList"][i]["url"];
+            img.src = response["artikuluak"]["ekipList"][i]["url"];
+            img.alt = response["artikuluak"]["ekipList"][i]["izena"]+" irudia";
             img.classList.add("art_img");
             var izena = document.createElement("h3");
-            izena.innerHTML = response["ekipList"][i]["izena"];
+            izena.innerHTML = response["artikuluak"]["ekipList"][i]["izena"];
             var deskribapena  = document.createElement("p");
-            deskribapena.innerHTML = response["ekipList"][i]["deskribapena"];
+            deskribapena.innerHTML = response["artikuluak"]["ekipList"][i]["deskribapena"];
             var artikulua  = document.createElement("div");
             var artikulu_esteka = document.createElement("a");
             artikulu_esteka.href = "#";
-            artikulua.id = response["ekipList"][i]["id"];
+            artikulua.id = response["artikuluak"]["ekipList"][i]["id"];
             artikulua.classList.add("art_info");
             artikulu_esteka.appendChild(img);
             artikulu_esteka.appendChild(izena);
@@ -147,9 +152,9 @@ function artikuluak_filtratu() {
     var art_deskribapena = document.getElementById("art_deskribapena").value;
     var art_stck_min = document.getElementById("art_stck_min").value;
     var art_stck_max = document.getElementById("art_stck_max").value;
-    var array_filtroa = {"art_izena":art_izena,"art_deskribapena":art_deskribapena,"art_stck_min":art_stck_min,"art_stck_max":art_stck_max};
+    var art_markak = markak_filtratu()
+    var array_filtroa = {"art_izena":art_izena,"art_deskribapena":art_deskribapena,"art_stck_min":art_stck_min,"art_stck_max":art_stck_max,"markak":art_markak};
     let filtroJson = JSON.stringify(array_filtroa);
-    console.log(filtroJson)
     let options = {method: "POST", mode: 'cors', body:filtroJson, header:"Content-Type: application/json; charset=UTF-8"};
     fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
     .then(data => {
@@ -178,4 +183,39 @@ function artikuluak_filtratu() {
             divartikuluak.appendChild(artikulua);   
         }
     });
+
+    
+}
+
+function markak_kargatu()
+{
+    let options = {method: "GET", mode: 'cors'};
+    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    .then(data => {
+        return data.json();
+    })
+    .then(response => {
+            response["markak"].forEach(value => {
+                var checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.id = value["marka"];
+                checkbox.value = value["marka"];
+                checkbox.classList.add("marka_checkbox");
+                var marka = document.createElement("label");
+                marka.innerHTML = value["marka"];
+                divart_markak.appendChild(checkbox);
+                divart_markak.appendChild(marka);
+            });
+    });
+}
+
+function markak_filtratu() {
+    var art_markak = document.querySelectorAll(".marka_checkbox");
+    var markak_aukeratuta = [];
+    art_markak.forEach(check => {
+        if (check.checked == true) {
+            markak_aukeratuta[markak_aukeratuta.length] = check.value;
+        }
+    });
+    return(markak_aukeratuta);
 }
