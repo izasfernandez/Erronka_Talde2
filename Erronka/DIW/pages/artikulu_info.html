@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title id="title">EROSKETAK</title>
+        <title id="title">ARTIKULUAREN INFORMAZIOA</title>
         <link rel="stylesheet" type="text/css" href="../css/style.css">
         <link rel="icon" href="../img/logo.png" type="image/x-icon">
     </head>
@@ -11,7 +11,7 @@
                 <a href="home.html">
                     <img class="header_img1" src="../img/logo.png" alt="logoa">
                 </a>
-                <h1><u>EROSKETAK</u></h1>
+                <h1><u>ARTIKULUAREN INFORMAZIOA</u></h1>
                 <div class="erabiltzaile-ikonoa">
                     <img class="header_img2" src="../img/usuario.png" alt="erabiltzailea">
                     <div id="erabil-menu">
@@ -34,47 +34,19 @@
                 </nav>
             </div>
         </header>
-        <div class="buscadorea">
-            <input id="search" type="search" value="enter">
-            <img src="../img/lupa.png">
-        </div>
-        <div id="menu-mugikorra">
-            <div id="f-botoi">Filtroa</div>
-            <div id="g-botoi">Gehitu</div>
-            <div class="menua">
-                <div class="info" id="filtroa">
-                    <div class="menu-input">
-                        <p>Artikuluaren Izena</p>
-                        <input type="text" value="enter">
-                    </div>
-                    <div class="menu-input">
-                        <p>Hasiera Data</p>
-                        <input type="date">
-                    </div>
-                    <div class="menu-input">
-                        <p>Amaiera Data</p>
-                        <input type="date">
-                    </div>
-                    <div class="menu-input">
-                        <button id="save">Save</button>
-                        <button id="cancel">Cancel</button>
-                    </div>
-                </div>
-                <div class="info" id="gehitu">
-                    <div class="menu-input">
-                        <label for="Artikulua">Artikulua</label>
-                        <select name="Artikulua" id="Artikulua">
-                            <option value="Artikulua1">Artikulua1</option>
-                            <option value="Artikulua2">Artikulua2</option>
-                            <option value="Artikulua3">Artikulua3</option>
-                            <option value="Artikulua4">Artikulua4</option>
-                        </select>
-                    </div>
-                    <div class="menu-input">
-                        <p>Kantitatea</p>
-                        <input type="number">
-                    </div>
-                </div>
+        <div id="artikulu_info">
+            <div id="art_url">
+                <img id="img_art" src="#">
+                <input type="text" id="img_url">
+            </div>
+            <div id="art_info_inputs">
+                <p id="t_izena">Izena</p><input type="text" id="a_izena">
+                <p id="t_desk">Deskribapena</p><input type="text" id="a_deskribapena">
+                <p id="t_mark">Marka</p><input type="text" id="a_marka">
+                <p id="t_model">Modeloa</p><input type="text" id="a_modeloa">
+                <p id="t_kat">Kategoria</p><p id="a_kategoria"></p>
+                <p id="t_stock">Stock</p><p id="a_stock"></p>
+                <button class="gorde" onclick="artikuluak_eguneratu()">Gorde</button>
             </div>
         </div>
         <footer>
