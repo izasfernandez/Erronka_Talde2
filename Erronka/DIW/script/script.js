@@ -109,11 +109,16 @@ function login() {
 
 if (webIzena == "ARTIKULUAK") {
     window.addEventListener('load', artikuluak_bistaratu());
+    // window.addEventListener('afterload', artikulu_img_error());
 }
 
 if (webIzena == "ARTIKULUAREN INFORMAZIOA") {
     window.addEventListener('load', artikulu_informazioa());
 }
+
+// if (webIzena.match("ARTIKULU")) {
+//     window.addEventListener('load', artikulu_img_error());
+// }
 
 if (divart_markak != null) {
     window.addEventListener('load', markak_kargatu());
@@ -127,6 +132,16 @@ function get_id() {
     var paramstr = window.location.search.substr(1);
     var tmparr = paramstr.split("=");
     return (tmparr[1]);
+}
+
+function artikulu_img_error(id) {
+    const imgs = document.querySelectorAll(id);
+    console.log(imgs)
+    imgs.forEach(element => {
+        element.addEventListener("error",function art_error(){
+            element.src = "../img/img_art_defecto.png";        
+        })
+    });
 }
 
 /**
@@ -149,7 +164,6 @@ function artikulu_informazioa()
         return data.json();
     })
     .then(response => {
-        console.log(response)
         document.getElementById("a_izena").value = response["ekipList"][0]["izena"];
         document.getElementById("a_deskribapena").value = response["ekipList"][0]["deskribapena"];
         document.getElementById("a_marka").value = response["ekipList"][0]["marka"];
@@ -171,13 +185,13 @@ function artikulu_informazioa()
         .then(response => {
             document.getElementById("a_kategoria").innerHTML = response["katList"][0]["izena"];
         }); 
+        artikulu_img_error("#img_art");
     });
-
     
 }
 
 /**
- * 
+ * Artikuluei formatua ematen dion funtzioa get bidez bidaltzean
  * @param response
  */
 function artikulu_formatua_get(response)
@@ -203,10 +217,11 @@ function artikulu_formatua_get(response)
         artikulua.appendChild(artikulu_esteka);
         divartikuluak.appendChild(artikulua);   
     }
+    artikulu_img_error(".art_img")
 }
 
 /**
- * 
+ * Artikuluei formatua ematen dion funtzioa post bidez bidaltzean
  * @param response
  */
 function artikulu_formatua_post(response)
@@ -232,6 +247,7 @@ function artikulu_formatua_post(response)
         artikulua.appendChild(artikulu_esteka);
         divartikuluak.appendChild(artikulua);   
     }
+    artikulu_img_error(".art_img");
 }
 
 /**
@@ -266,7 +282,6 @@ function artikuluak_filtratu() {
     var art_stck_min = document.getElementById("art_stck_min").value;
     var art_stck_max = document.getElementById("art_stck_max").value;
     var art_markak = markak_filtratu()
-    console.log(art_markak);
     var array_filtroa = {"art_izena":art_izena,"art_deskribapena":art_deskribapena,"art_stck_min":art_stck_min,"art_stck_max":art_stck_max,"markak":art_markak, "kategoria":kategoria};
     let filtroJson = JSON.stringify(array_filtroa);
     let options = {method: "POST", mode: 'cors', body:filtroJson, header:"Content-Type: application/json; charset=UTF-8"};
@@ -280,8 +295,6 @@ function artikuluak_filtratu() {
     .then(response => {
         artikulu_formatua_post(response);
     });
-
-    
 }
 
 /**
@@ -310,7 +323,7 @@ function markak_kargatu()
 }
 
 /**
- * Markak filtratzen duen funtzioa
+ * Filtratuko diren markak bueltatzen duen funtzioa
  * @returns {array} markak_aukeratuta - aukeratzen dituzun markak
  */
 function markak_filtratu() {
@@ -325,7 +338,7 @@ function markak_filtratu() {
 }
 
 /**
- *  
+ *  Kategoria filtroari filtratzeko eventua ematen dion funtzioa da
  */
 function kategoria_event() {
     const filtro_kategoria = document.querySelectorAll(".kategoria_filtro");
@@ -419,6 +432,9 @@ function kategoriaz_filtratu(id) {
     });
 }
 
+/**
+ * Artikuluak eguneratzen duen funtzioa da
+ */
 function artikuluak_eguneratu() {
     var id_art = get_id();
     var art_izena = document.getElementById("a_izena").value;
@@ -428,7 +444,6 @@ function artikuluak_eguneratu() {
     var art_url = document.getElementById("img_url").value;
     var jsonData = {"filtro":false,"id":id_art,"izena":art_izena,"desk":art_desk,"modeloa":art_mark,"marka":art_model, "url":art_url};
     let DataJson = JSON.stringify(jsonData);
-    console.log(DataJson)
     let options = {method: "POST", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
     // Sergio
     fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)

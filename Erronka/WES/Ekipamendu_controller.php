@@ -3,6 +3,7 @@
     header("Content-Type: application/json; charset=UTF-8");
 
     include("EkipamenduList.php");
+    
     $artikuluak = new EkipamenduList();
     if($_SERVER["REQUEST_METHOD"]=="GET"){
         if (isset($_GET["id_art"])) {

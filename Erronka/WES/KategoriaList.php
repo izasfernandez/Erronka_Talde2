@@ -1,6 +1,6 @@
 <?php
     include("DB.php");
-    include("Listak.php");
+    include("Listak_Inter.php");
 
     class Kategoria
     {

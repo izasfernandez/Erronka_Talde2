@@ -558,8 +558,8 @@ hr{
 }
 
 #artikulu_info #img_art{
-    max-height: 85%;
-    max-width: 65%;
+    height: 85%;
+    width: 65%;
 }
 
 #art_url{
