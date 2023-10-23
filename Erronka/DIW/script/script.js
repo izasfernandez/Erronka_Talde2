@@ -106,6 +106,10 @@ if (webIzena == "ARTIKULUAK") {
     window.addEventListener('load', artikuluak_bistaratu());
 }
 
+if (webIzena == "ARTIKULUAREN INFORMAZIOA") {
+    window.addEventListener('load', artikulu_informazioa());
+}
+
 if (divart_markak != null) {
     window.addEventListener('load', markak_kargatu());
 }
@@ -113,6 +117,78 @@ if (divart_markak != null) {
 if (divart_kategoriak != null) {
     window.addEventListener('load', kategoriak_kargatu());
 }
+
+function artikulu_informazioa()
+{
+    var paramstr = window.location.search.substr(1);
+    var tmparr = paramstr.split("=");
+    let options = {method: "GET", mode: 'cors'};
+    // ruta sergio
+    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php?id_art='+tmparr[1],options)
+    // Ruta local Izaskun
+    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
+    // Ruta local Erik
+    // fetch('../WES/Ekipamendu_controller.php',options)
+    // Ruta local Imanol
+    // fetch('../WES/Ekipamendu_controller.php',options)
+    .then(data => {
+        return data.json();
+    })
+    .then(response => {
+
+    }); 
+}
+
+function artikulu_formatua_get(response)
+{
+    for (let i = 0; i < response["artikuluak"]["ekipList"].length; i++) {
+        var img = document.createElement("img");
+        img.src = response["artikuluak"]["ekipList"][i]["url"];
+        img.src = response["artikuluak"]["ekipList"][i]["url"];
+        img.alt = response["artikuluak"]["ekipList"][i]["izena"]+" irudia";
+        img.classList.add("art_img");
+        var izena = document.createElement("h3");
+        izena.innerHTML = response["artikuluak"]["ekipList"][i]["izena"];
+        var deskribapena  = document.createElement("p");
+        deskribapena.innerHTML = response["artikuluak"]["ekipList"][i]["deskribapena"];
+        var artikulua  = document.createElement("div");
+        var artikulu_esteka = document.createElement("a");
+        artikulu_esteka.href = "artikulu_info.html?id="+response["artikuluak"]["ekipList"][i]["id"];
+        artikulua.id = response["artikuluak"]["ekipList"][i]["id"];
+        artikulua.classList.add("art_info");
+        artikulu_esteka.appendChild(img);
+        artikulu_esteka.appendChild(izena);
+        artikulu_esteka.appendChild(deskribapena);
+        artikulua.appendChild(artikulu_esteka);
+        divartikuluak.appendChild(artikulua);   
+    }
+}
+function artikulu_formatua_post(response)
+{
+    for (let i = 0; i < response["ekipList"].length; i++) {
+        var img = document.createElement("img");
+        img.src = response["ekipList"][i]["url"];
+        img.src = response["ekipList"][i]["url"];
+        img.alt = response["ekipList"][i]["izena"]+" irudia";
+        img.classList.add("art_img");
+        var izena = document.createElement("h3");
+        izena.innerHTML = response["ekipList"][i]["izena"];
+        var deskribapena  = document.createElement("p");
+        deskribapena.innerHTML = response["ekipList"][i]["deskribapena"];
+        var artikulua  = document.createElement("div");
+        var artikulu_esteka = document.createElement("a");
+        artikulu_esteka.href = "artikulu_info.html?id="+response["ekipList"][i]["id"];
+        artikulua.id = response["ekipList"][i]["id"];
+        artikulua.classList.add("art_info");
+        artikulu_esteka.appendChild(img);
+        artikulu_esteka.appendChild(izena);
+        artikulu_esteka.appendChild(deskribapena);
+        artikulua.appendChild(artikulu_esteka);
+        divartikuluak.appendChild(artikulua);   
+    }
+}
+
+
 function artikuluak_bistaratu() {
     document.getElementById("artikuluak").innerHTML = "";
     let options = {method: "GET", mode: 'cors'};
@@ -128,27 +204,28 @@ function artikuluak_bistaratu() {
         return data.json();
     })
     .then(response => {
-        for (let i = 0; i < response["artikuluak"]["ekipList"].length; i++) {
-            var img = document.createElement("img");
-            img.src = response["artikuluak"]["ekipList"][i]["url"];
-            img.src = response["artikuluak"]["ekipList"][i]["url"];
-            img.alt = response["artikuluak"]["ekipList"][i]["izena"]+" irudia";
-            img.classList.add("art_img");
-            var izena = document.createElement("h3");
-            izena.innerHTML = response["artikuluak"]["ekipList"][i]["izena"];
-            var deskribapena  = document.createElement("p");
-            deskribapena.innerHTML = response["artikuluak"]["ekipList"][i]["deskribapena"];
-            var artikulua  = document.createElement("div");
-            var artikulu_esteka = document.createElement("a");
-            artikulu_esteka.href = "#";
-            artikulua.id = response["artikuluak"]["ekipList"][i]["id"];
-            artikulua.classList.add("art_info");
-            artikulu_esteka.appendChild(img);
-            artikulu_esteka.appendChild(izena);
-            artikulu_esteka.appendChild(deskribapena);
-            artikulua.appendChild(artikulu_esteka);
-            divartikuluak.appendChild(artikulua);   
-        }
+        artikulu_formatua_get(response);
+        // for (let i = 0; i < response["artikuluak"]["ekipList"].length; i++) {
+        //     var img = document.createElement("img");
+        //     img.src = response["artikuluak"]["ekipList"][i]["url"];
+        //     img.src = response["artikuluak"]["ekipList"][i]["url"];
+        //     img.alt = response["artikuluak"]["ekipList"][i]["izena"]+" irudia";
+        //     img.classList.add("art_img");
+        //     var izena = document.createElement("h3");
+        //     izena.innerHTML = response["artikuluak"]["ekipList"][i]["izena"];
+        //     var deskribapena  = document.createElement("p");
+        //     deskribapena.innerHTML = response["artikuluak"]["ekipList"][i]["deskribapena"];
+        //     var artikulua  = document.createElement("div");
+        //     var artikulu_esteka = document.createElement("a");
+        //     artikulu_esteka.href = "#";
+        //     artikulua.id = response["artikuluak"]["ekipList"][i]["id"];
+        //     artikulua.classList.add("art_info");
+        //     artikulu_esteka.appendChild(img);
+        //     artikulu_esteka.appendChild(izena);
+        //     artikulu_esteka.appendChild(deskribapena);
+        //     artikulua.appendChild(artikulu_esteka);
+        //     divartikuluak.appendChild(artikulua);   
+        // }
     });
 }
 
@@ -173,27 +250,28 @@ function artikuluak_filtratu() {
         return data.json();
     })
     .then(response => {
-        for (let i = 0; i < response["ekipList"].length; i++) {
-            var img = document.createElement("img");
-            img.src = response["ekipList"][i]["url"];
-            img.src = response["ekipList"][i]["url"];
-            img.alt = response["ekipList"][i]["izena"]+" irudia";
-            img.classList.add("art_img");
-            var izena = document.createElement("h3");
-            izena.innerHTML = response["ekipList"][i]["izena"];
-            var deskribapena  = document.createElement("p");
-            deskribapena.innerHTML = response["ekipList"][i]["deskribapena"];
-            var artikulua  = document.createElement("div");
-            var artikulu_esteka = document.createElement("a");
-            artikulu_esteka.href = "#";
-            artikulua.id = response["ekipList"][i]["id"];
-            artikulua.classList.add("art_info");
-            artikulu_esteka.appendChild(img);
-            artikulu_esteka.appendChild(izena);
-            artikulu_esteka.appendChild(deskribapena);
-            artikulua.appendChild(artikulu_esteka);
-            divartikuluak.appendChild(artikulua);   
-        }
+        artikulu_formatua_post(response);
+        // for (let i = 0; i < response["ekipList"].length; i++) {
+        //     var img = document.createElement("img");
+        //     img.src = response["ekipList"][i]["url"];
+        //     img.src = response["ekipList"][i]["url"];
+        //     img.alt = response["ekipList"][i]["izena"]+" irudia";
+        //     img.classList.add("art_img");
+        //     var izena = document.createElement("h3");
+        //     izena.innerHTML = response["ekipList"][i]["izena"];
+        //     var deskribapena  = document.createElement("p");
+        //     deskribapena.innerHTML = response["ekipList"][i]["deskribapena"];
+        //     var artikulua  = document.createElement("div");
+        //     var artikulu_esteka = document.createElement("a");
+        //     artikulu_esteka.href = "#";
+        //     artikulua.id = response["ekipList"][i]["id"];
+        //     artikulua.classList.add("art_info");
+        //     artikulu_esteka.appendChild(img);
+        //     artikulu_esteka.appendChild(izena);
+        //     artikulu_esteka.appendChild(deskribapena);
+        //     artikulua.appendChild(artikulu_esteka);
+        //     divartikuluak.appendChild(artikulua);   
+        // }
     });
 
     
@@ -247,27 +325,28 @@ function artikuluak_bistaratu() {
         return data.json();
     })
     .then(response => {
-        for (let i = 0; i < response["artikuluak"]["ekipList"].length; i++) {
-            var img = document.createElement("img");
-            img.src = response["artikuluak"]["ekipList"][i]["url"];
-            img.src = response["artikuluak"]["ekipList"][i]["url"];
-            img.alt = response["artikuluak"]["ekipList"][i]["izena"]+" irudia";
-            img.classList.add("art_img");
-            var izena = document.createElement("h3");
-            izena.innerHTML = response["artikuluak"]["ekipList"][i]["izena"];
-            var deskribapena  = document.createElement("p");
-            deskribapena.innerHTML = response["artikuluak"]["ekipList"][i]["deskribapena"];
-            var artikulua  = document.createElement("div");
-            var artikulu_esteka = document.createElement("a");
-            artikulu_esteka.href = "#";
-            artikulua.id = response["artikuluak"]["ekipList"][i]["id"];
-            artikulua.classList.add("art_info");
-            artikulu_esteka.appendChild(img);
-            artikulu_esteka.appendChild(izena);
-            artikulu_esteka.appendChild(deskribapena);
-            artikulua.appendChild(artikulu_esteka);
-            divartikuluak.appendChild(artikulua);   
-        }
+        artikulu_formatua_get(response);
+        // for (let i = 0; i < response["artikuluak"]["ekipList"].length; i++) {
+        //     var img = document.createElement("img");
+        //     img.src = response["artikuluak"]["ekipList"][i]["url"];
+        //     img.src = response["artikuluak"]["ekipList"][i]["url"];
+        //     img.alt = response["artikuluak"]["ekipList"][i]["izena"]+" irudia";
+        //     img.classList.add("art_img");
+        //     var izena = document.createElement("h3");
+        //     izena.innerHTML = response["artikuluak"]["ekipList"][i]["izena"];
+        //     var deskribapena  = document.createElement("p");
+        //     deskribapena.innerHTML = response["artikuluak"]["ekipList"][i]["deskribapena"];
+        //     var artikulua  = document.createElement("div");
+        //     var artikulu_esteka = document.createElement("a");
+        //     artikulu_esteka.href = "#";
+        //     artikulua.id = response["artikuluak"]["ekipList"][i]["id"];
+        //     artikulua.classList.add("art_info");
+        //     artikulu_esteka.appendChild(img);
+        //     artikulu_esteka.appendChild(izena);
+        //     artikulu_esteka.appendChild(deskribapena);
+        //     artikulua.appendChild(artikulu_esteka);
+        //     divartikuluak.appendChild(artikulua);   
+        // }
     });
 }
 
@@ -349,26 +428,27 @@ function kategoriaz_filtratu(id) {
         return data.json();
     })
     .then(response => {
-        for (let i = 0; i < response["ekipList"].length; i++) {
-            var img = document.createElement("img");
-            img.src = response["ekipList"][i]["url"];
-            img.src = response["ekipList"][i]["url"];
-            img.alt = response["ekipList"][i]["izena"]+" irudia";
-            img.classList.add("art_img");
-            var izena = document.createElement("h3");
-            izena.innerHTML = response["ekipList"][i]["izena"];
-            var deskribapena  = document.createElement("p");
-            deskribapena.innerHTML = response["ekipList"][i]["deskribapena"];
-            var artikulua  = document.createElement("div");
-            var artikulu_esteka = document.createElement("a");
-            artikulu_esteka.href = "#";
-            artikulua.id = response["ekipList"][i]["id"];
-            artikulua.classList.add("art_info");
-            artikulu_esteka.appendChild(img);
-            artikulu_esteka.appendChild(izena);
-            artikulu_esteka.appendChild(deskribapena);
-            artikulua.appendChild(artikulu_esteka);
-            divartikuluak.appendChild(artikulua);   
-        }
+        artikulu_formatua_post(response);
+        // for (let i = 0; i < response["ekipList"].length; i++) {
+        //     var img = document.createElement("img");
+        //     img.src = response["ekipList"][i]["url"];
+        //     img.src = response["ekipList"][i]["url"];
+        //     img.alt = response["ekipList"][i]["izena"]+" irudia";
+        //     img.classList.add("art_img");
+        //     var izena = document.createElement("h3");
+        //     izena.innerHTML = response["ekipList"][i]["izena"];
+        //     var deskribapena  = document.createElement("p");
+        //     deskribapena.innerHTML = response["ekipList"][i]["deskribapena"];
+        //     var artikulua  = document.createElement("div");
+        //     var artikulu_esteka = document.createElement("a");
+        //     artikulu_esteka.href = "#";
+        //     artikulua.id = response["ekipList"][i]["id"];
+        //     artikulua.classList.add("art_info");
+        //     artikulu_esteka.appendChild(img);
+        //     artikulu_esteka.appendChild(izena);
+        //     artikulu_esteka.appendChild(deskribapena);
+        //     artikulua.appendChild(artikulu_esteka);
+        //     divartikuluak.appendChild(artikulua);   
+        // }
     });
 }
