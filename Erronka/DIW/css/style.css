@@ -554,11 +554,16 @@ hr{
     margin-left: 15%;
     margin-top: 3% 15%;
     margin-right: 15%;
-    margin-bottom: 3% 15%;
+    margin-bottom: 7%;
 }
 
 #artikulu_info #img_art{
-    width: 75%;
+    max-height: 85%;
+    max-width: 65%;
+}
+
+#art_url{
+    text-align: center;
 }
 
 #art_info_inputs{
@@ -609,6 +614,11 @@ hr{
 }
 #a_stock{
     grid-area: a_stock;
+}
+
+#img_url{
+    width: 65%;
+    padding: 1%;
 }
 
 .gorde{

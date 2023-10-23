@@ -27,6 +27,12 @@
         public function query($sql)
         {
             $this->conn->query($sql);
+            if ($this->conn->query($sql) === TRUE) {
+                return "Artikulua eguneratu da";
+            } else {
+                return "Error updating record: " . $this->conn->error;
+            }
+              
         }
 
         // public function multy_query($sql)

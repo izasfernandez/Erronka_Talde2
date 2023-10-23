@@ -72,6 +72,14 @@
             $this->informazioa_karga($sql);
         }
 
+        function artikulua_eguneratu($sql)
+        {
+            $conn = new DB("localhost","root","","3wag2e1");
+            $error = $conn->query($sql);
+            $conn->die();
+            return $error;
+        }
+
         function markak_kargatu()
         {
             $sql = "SELECT DISTINCT(3wag2e1.ekipamendua.marka) FROM 3wag2e1.ekipamendua;";

@@ -123,17 +123,22 @@ if (divart_kategoriak != null) {
     window.addEventListener('load', kategoriak_kargatu());
 }
 
+function get_id() {
+    var paramstr = window.location.search.substr(1);
+    var tmparr = paramstr.split("=");
+    return (tmparr[1]);
+}
+
 /**
  * Artikuluen informazioa itzultzen du
  */
 function artikulu_informazioa()
 {
-    var paramstr = window.location.search.substr(1);
-    var tmparr = paramstr.split("=");
+    var id_art = get_id();
     let options = {method: "GET", mode: 'cors'};
     var id_kat;
     // ruta sergio
-    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php?id_art='+tmparr[1],options)
+    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php?id_art='+id_art,options)
     // Ruta local Izaskun
     // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
     // Ruta local Erik
@@ -144,14 +149,15 @@ function artikulu_informazioa()
         return data.json();
     })
     .then(response => {
+        console.log(response)
         document.getElementById("a_izena").value = response["ekipList"][0]["izena"];
         document.getElementById("a_deskribapena").value = response["ekipList"][0]["deskribapena"];
         document.getElementById("a_marka").value = response["ekipList"][0]["marka"];
         document.getElementById("a_modeloa").value = response["ekipList"][0]["modeloa"];
         document.getElementById("a_stock").innerHTML = response["ekipList"][0]["stock"];
         document.getElementById("img_art").src = response["ekipList"][0]["url"];
+        document.getElementById("img_url").value = response["ekipList"][0]["url"];
         id_kat = response["ekipList"][0]["idKategoria"];
-
         fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/kategoria_controller.php?id_kat='+id_kat,options)
         // Ruta local Izaskun
         // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
@@ -247,27 +253,6 @@ function artikuluak_bistaratu() {
     })
     .then(response => {
         artikulu_formatua_get(response);
-        // for (let i = 0; i < response["artikuluak"]["ekipList"].length; i++) {
-        //     var img = document.createElement("img");
-        //     img.src = response["artikuluak"]["ekipList"][i]["url"];
-        //     img.src = response["artikuluak"]["ekipList"][i]["url"];
-        //     img.alt = response["artikuluak"]["ekipList"][i]["izena"]+" irudia";
-        //     img.classList.add("art_img");
-        //     var izena = document.createElement("h3");
-        //     izena.innerHTML = response["artikuluak"]["ekipList"][i]["izena"];
-        //     var deskribapena  = document.createElement("p");
-        //     deskribapena.innerHTML = response["artikuluak"]["ekipList"][i]["deskribapena"];
-        //     var artikulua  = document.createElement("div");
-        //     var artikulu_esteka = document.createElement("a");
-        //     artikulu_esteka.href = "#";
-        //     artikulua.id = response["artikuluak"]["ekipList"][i]["id"];
-        //     artikulua.classList.add("art_info");
-        //     artikulu_esteka.appendChild(img);
-        //     artikulu_esteka.appendChild(izena);
-        //     artikulu_esteka.appendChild(deskribapena);
-        //     artikulua.appendChild(artikulu_esteka);
-        //     divartikuluak.appendChild(artikulua);   
-        // }
     });
 }
 
@@ -294,27 +279,6 @@ function artikuluak_filtratu() {
     })
     .then(response => {
         artikulu_formatua_post(response);
-        // for (let i = 0; i < response["ekipList"].length; i++) {
-        //     var img = document.createElement("img");
-        //     img.src = response["ekipList"][i]["url"];
-        //     img.src = response["ekipList"][i]["url"];
-        //     img.alt = response["ekipList"][i]["izena"]+" irudia";
-        //     img.classList.add("art_img");
-        //     var izena = document.createElement("h3");
-        //     izena.innerHTML = response["ekipList"][i]["izena"];
-        //     var deskribapena  = document.createElement("p");
-        //     deskribapena.innerHTML = response["ekipList"][i]["deskribapena"];
-        //     var artikulua  = document.createElement("div");
-        //     var artikulu_esteka = document.createElement("a");
-        //     artikulu_esteka.href = "#";
-        //     artikulua.id = response["ekipList"][i]["id"];
-        //     artikulua.classList.add("art_info");
-        //     artikulu_esteka.appendChild(img);
-        //     artikulu_esteka.appendChild(izena);
-        //     artikulu_esteka.appendChild(deskribapena);
-        //     artikulua.appendChild(artikulu_esteka);
-        //     divartikuluak.appendChild(artikulua);   
-        // }
     });
 
     
@@ -452,26 +416,33 @@ function kategoriaz_filtratu(id) {
     })
     .then(response => {
         artikulu_formatua_post(response);
-        // for (let i = 0; i < response["ekipList"].length; i++) {
-        //     var img = document.createElement("img");
-        //     img.src = response["ekipList"][i]["url"];
-        //     img.src = response["ekipList"][i]["url"];
-        //     img.alt = response["ekipList"][i]["izena"]+" irudia";
-        //     img.classList.add("art_img");
-        //     var izena = document.createElement("h3");
-        //     izena.innerHTML = response["ekipList"][i]["izena"];
-        //     var deskribapena  = document.createElement("p");
-        //     deskribapena.innerHTML = response["ekipList"][i]["deskribapena"];
-        //     var artikulua  = document.createElement("div");
-        //     var artikulu_esteka = document.createElement("a");
-        //     artikulu_esteka.href = "#";
-        //     artikulua.id = response["ekipList"][i]["id"];
-        //     artikulua.classList.add("art_info");
-        //     artikulu_esteka.appendChild(img);
-        //     artikulu_esteka.appendChild(izena);
-        //     artikulu_esteka.appendChild(deskribapena);
-        //     artikulua.appendChild(artikulu_esteka);
-        //     divartikuluak.appendChild(artikulua);   
-        // }
+    });
+}
+
+function artikuluak_eguneratu() {
+    var id_art = get_id();
+    var art_izena = document.getElementById("a_izena").value;
+    var art_desk = document.getElementById("a_deskribapena").value;
+    var art_mark = document.getElementById("a_marka").value;
+    var art_model = document.getElementById("a_modeloa").value;
+    var art_url = document.getElementById("img_url").value;
+    var jsonData = {"filtro":false,"id":id_art,"izena":art_izena,"desk":art_desk,"modeloa":art_mark,"marka":art_model, "url":art_url};
+    let DataJson = JSON.stringify(jsonData);
+    console.log(DataJson)
+    let options = {method: "POST", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
+    // Sergio
+    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    // Izaskun
+    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options);
+    .then(data => {
+        return data.json();
+    })
+    .then(response => {
+        window.location.href = window.location.href;
+        if (response.match('Error')) {
+            alert("Errorea egon da :".response);
+        }else{
+            alert(response)
+        }
     });
 }
