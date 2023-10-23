@@ -8,6 +8,7 @@ const divart_kategoriak = document.querySelector(".kategoriak");
 const combobox_art_kategoriak = document.querySelector("#kategoria");
 var kategoria = 0;
 
+
 // Filtro botoia sakatzean filtroko menua ateratzea
 if (btnFiltroa != null) {
     btnFiltroa.addEventListener('click', function activatu() {
@@ -58,7 +59,9 @@ if (btnerabiltzailea != null) {
 }
 
 // LOGIN FUNTZIOAK
-// Pasahitza bistaratzeko eta izkutatzeko funtzioa
+/**
+ * Pasahitza bistaratzeko eta izkutatzeko funtzioa
+ */
 function ver_nover() {
     var image = document.getElementById("ver");
     var pass = document.getElementById("pasahitza");
@@ -71,7 +74,9 @@ function ver_nover() {
     }
 }
 
-// Login funtzioa da, erabiltzailearen informazioa hartzen du eta erabiltzailea existitzen bada eta pasahitza zuzena jarri badu komprobatzen du
+/**
+ * Login funtzioa da, informazioa hartzen du eta erabiltzailea eta pasahitza komprobatzen du
+ */
 function login() {
     var erabil = document.getElementById("erabil").value;
     var pass = document.getElementById("pasahitza").value;
@@ -118,6 +123,9 @@ if (divart_kategoriak != null) {
     window.addEventListener('load', kategoriak_kargatu());
 }
 
+/**
+ * Artikuluen informazioa itzultzen du
+ */
 function artikulu_informazioa()
 {
     var paramstr = window.location.search.substr(1);
@@ -139,6 +147,10 @@ function artikulu_informazioa()
     }); 
 }
 
+/**
+ * 
+ * @param response
+ */
 function artikulu_formatua_get(response)
 {
     for (let i = 0; i < response["artikuluak"]["ekipList"].length; i++) {
@@ -163,6 +175,11 @@ function artikulu_formatua_get(response)
         divartikuluak.appendChild(artikulua);   
     }
 }
+
+/**
+ * 
+ * @param response
+ */
 function artikulu_formatua_post(response)
 {
     for (let i = 0; i < response["ekipList"].length; i++) {
@@ -188,7 +205,9 @@ function artikulu_formatua_post(response)
     }
 }
 
-
+/**
+ * Artikuluak bistaratzen duen funtzioa
+ */
 function artikuluak_bistaratu() {
     document.getElementById("artikuluak").innerHTML = "";
     let options = {method: "GET", mode: 'cors'};
@@ -229,8 +248,9 @@ function artikuluak_bistaratu() {
     });
 }
 
-
-
+/**
+ * Artikuluak filtratzen duen funtzioa
+ */
 function artikuluak_filtratu() {
     document.getElementById("artikuluak").innerHTML = "";
     var art_izena = document.getElementById("art_izena").value;
@@ -277,6 +297,9 @@ function artikuluak_filtratu() {
     
 }
 
+/**
+ * Markak kargatzen dituen funtzioa
+ */
 function markak_kargatu()
 {
     let options = {method: "GET", mode: 'cors'};
@@ -299,6 +322,10 @@ function markak_kargatu()
     });
 }
 
+/**
+ * Markak filtratzen duen funtzioa
+ * @returns {array} markak_aukeratuta - aukeratzen dituzun markak
+ */
 function markak_filtratu() {
     var art_markak = document.querySelectorAll(".marka_checkbox");
     var markak_aukeratuta = [];
@@ -310,46 +337,9 @@ function markak_filtratu() {
     return(markak_aukeratuta);
 }
 
-function artikuluak_bistaratu() {
-    document.getElementById("artikuluak").innerHTML = "";
-    let options = {method: "GET", mode: 'cors'};
-    // Ruta local sergio
-    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
-    // Ruta local Izaskun
-    // fetch('../WES/Ekipamendu_controller.php',options)
-    // Ruta local Erik
-    // fetch('../WES/Ekipamendu_controller.php',options)
-    // Ruta local Imanol
-    // fetch('../WES/Ekipamendu_controller.php',options)
-    .then(data => {
-        return data.json();
-    })
-    .then(response => {
-        artikulu_formatua_get(response);
-        // for (let i = 0; i < response["artikuluak"]["ekipList"].length; i++) {
-        //     var img = document.createElement("img");
-        //     img.src = response["artikuluak"]["ekipList"][i]["url"];
-        //     img.src = response["artikuluak"]["ekipList"][i]["url"];
-        //     img.alt = response["artikuluak"]["ekipList"][i]["izena"]+" irudia";
-        //     img.classList.add("art_img");
-        //     var izena = document.createElement("h3");
-        //     izena.innerHTML = response["artikuluak"]["ekipList"][i]["izena"];
-        //     var deskribapena  = document.createElement("p");
-        //     deskribapena.innerHTML = response["artikuluak"]["ekipList"][i]["deskribapena"];
-        //     var artikulua  = document.createElement("div");
-        //     var artikulu_esteka = document.createElement("a");
-        //     artikulu_esteka.href = "#";
-        //     artikulua.id = response["artikuluak"]["ekipList"][i]["id"];
-        //     artikulua.classList.add("art_info");
-        //     artikulu_esteka.appendChild(img);
-        //     artikulu_esteka.appendChild(izena);
-        //     artikulu_esteka.appendChild(deskribapena);
-        //     artikulua.appendChild(artikulu_esteka);
-        //     divartikuluak.appendChild(artikulua);   
-        // }
-    });
-}
-
+/**
+ *  
+ */
 function kategoria_event() {
     const filtro_kategoria = document.querySelectorAll(".kategoria_filtro");
     if (filtro_kategoria != null) {
@@ -362,6 +352,9 @@ function kategoria_event() {
     
 }
 
+/**
+ * Kategoriak kargatzen duen funtzioa
+ */
 function kategoriak_kargatu() {
     let options = {method: "GET", mode: 'cors'};
     // Ruta local sergio
@@ -395,6 +388,9 @@ function kategoriak_kargatu() {
     });
 }
 
+/**
+ * Filtroak kentzen dituen funtzioa
+ */
 function filtroa_kendu() {
     const filtro_kategoria = document.querySelectorAll(".kategoria_filtro");
     filtro_kategoria.forEach(element => {
@@ -405,6 +401,10 @@ function filtroa_kendu() {
     kategoriaz_filtratu(kategoria);
 }
 
+/**
+ * Kategoria filtroa kontrolatzen duen funtzioa   
+ * @param id
+ */
 function kategoriaz_filtratu(id) {
     kategoria = id;
     const filtro_kategoria = document.querySelectorAll(".kategoria_filtro");
