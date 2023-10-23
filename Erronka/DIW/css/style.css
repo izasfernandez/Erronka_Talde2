@@ -453,7 +453,7 @@ input{
     background-color: #2A2D34;
     display: flex;
     flex-direction: column;
-    position: fixed;
+    position: relative;
     visibility: hidden;
     top: 16%;
     align-items: center;
@@ -545,5 +545,79 @@ hr{
 
 .kategoria_filtro.active
 {
-    color: rgb(32, 124, 177);
+    color: #377CF3;
+}
+
+#artikulu_info{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: 15%;
+    margin-top: 3% 15%;
+    margin-right: 15%;
+    margin-bottom: 3% 15%;
+}
+
+#artikulu_info #img_art{
+    width: 75%;
+}
+
+#art_info_inputs{
+    display: grid;
+    grid-template-areas: 
+    "t_izena a_izena"
+    "t_desk a_deskribapena"
+    "t_mark a_marka"
+    "t_model a_modeloa"
+    "t_kat a_kategoria"
+    "t_stock a_stock"
+    "gorde gorde";
+    align-items: center;
+}
+
+#t_izena{
+    grid-area: t_izena;
+}
+#t_desk{
+    grid-area: t_desk;
+}
+#t_mark{
+    grid-area: t_mark;
+}
+#t_model{
+    grid-area: t_model;
+}
+#t_kat{
+    grid-area: t_kat;
+}
+#t_stock{
+    grid-area: t_stock;
+}
+#a_izena{
+    grid-area: a_izena;
+}
+#a_deskribapena{
+    grid-area: a_deskribapena;
+}
+#a_marka{
+    grid-area: a_marka;
+}
+#a_modeloa{
+    grid-area: a_modeloa;
+}
+#a_kategoria{
+    grid-area: a_kategoria;
+}
+#a_stock{
+    grid-area: a_stock;
+}
+
+.gorde{
+    grid-area: gorde;
+    border-radius: 40px;
+    border: 0;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    background-color: #377CF3;
 }

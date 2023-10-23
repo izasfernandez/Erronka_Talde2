@@ -131,6 +131,7 @@ function artikulu_informazioa()
     var paramstr = window.location.search.substr(1);
     var tmparr = paramstr.split("=");
     let options = {method: "GET", mode: 'cors'};
+    var id_kat;
     // ruta sergio
     fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php?id_art='+tmparr[1],options)
     // Ruta local Izaskun
@@ -143,8 +144,30 @@ function artikulu_informazioa()
         return data.json();
     })
     .then(response => {
+        document.getElementById("a_izena").value = response["ekipList"][0]["izena"];
+        document.getElementById("a_deskribapena").value = response["ekipList"][0]["deskribapena"];
+        document.getElementById("a_marka").value = response["ekipList"][0]["marka"];
+        document.getElementById("a_modeloa").value = response["ekipList"][0]["modeloa"];
+        document.getElementById("a_stock").innerHTML = response["ekipList"][0]["stock"];
+        document.getElementById("img_art").src = response["ekipList"][0]["url"];
+        id_kat = response["ekipList"][0]["idKategoria"];
 
-    }); 
+        fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/kategoria_controller.php?id_kat='+id_kat,options)
+        // Ruta local Izaskun
+        // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
+        // Ruta local Erik
+        // fetch('../WES/Ekipamendu_controller.php',options)
+        // Ruta local Imanol
+        // fetch('../WES/Ekipamendu_controller.php',options)
+        .then(data => {
+            return data.json();
+        })
+        .then(response => {
+            document.getElementById("a_kategoria").innerHTML = response["katList"][0]["izena"];
+        }); 
+    });
+
+    
 }
 
 /**

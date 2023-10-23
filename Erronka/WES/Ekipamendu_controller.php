@@ -5,11 +5,17 @@
     include("EkipamenduList.php");
 
     if($_SERVER["REQUEST_METHOD"]=="GET"){
-        $artikuluak = new EkipamenduList();
-        $artikuluak->artikuluak_kargatu();
-        $markak = $artikuluak->markak_kargatu();
-        $jsonData = ["artikuluak"=>$artikuluak,"markak"=>$markak];
-        $json = json_encode($jsonData);
+        if (isset($_GET["id_art"])) {
+            $artikuluak = new EkipamenduList();
+            $artikuluak->artikulu_info_kargatu($_GET["id_art"]);
+            $json = json_encode($artikuluak);
+        } else {
+            $artikuluak = new EkipamenduList();
+            $artikuluak->artikuluak_kargatu();
+            $markak = $artikuluak->markak_kargatu();
+            $jsonData = ["artikuluak"=>$artikuluak,"markak"=>$markak];
+            $json = json_encode($jsonData);
+        }
         echo ($json);
     }
 

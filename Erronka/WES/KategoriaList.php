@@ -42,6 +42,12 @@
             $this->informazioa_karga($sql);
         }
 
+        function kategoria_izena_kargatu($id)
+        {
+            $sql = "SELECT * FROM 3wag2e1.kategoria WHERE 3wag2e1.kategoria.id = ".$id;
+            $this->informazioa_karga($sql);
+        }
+
         function add_to_list($kategoria)
         {
             $this->katList[count($this->katList)] = $kategoria;

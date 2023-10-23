@@ -54,6 +54,12 @@
             $conn->die();
         }
 
+        function artikulu_info_kargatu($id)
+        {
+            $sql = "SELECT * FROM 3wag2e1.ekipamendua WHERE 3wag2e1.ekipamendua.id = ".$id;
+            $this->informazioa_karga($sql);
+        }
+
         function artikuluak_kargatu()
         {
             $sql = "SELECT * FROM 3wag2e1.ekipamendua";
