@@ -21,7 +21,7 @@
     //     }
 
         function __construct($erabiltzailea)
-       {
+        {
             $this->erabiltzailea_kargatu($erabiltzailea);
         }
 
