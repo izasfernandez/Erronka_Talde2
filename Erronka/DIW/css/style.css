@@ -630,6 +630,7 @@ hr{
     padding-top: 3%;
     padding-bottom: 3%;
     background-color: #377CF3;
+    cursor: pointer;
 }
 
 .ezabatu{
@@ -639,4 +640,5 @@ hr{
     border: 0;
     border-radius: 40px;
     padding: 0.5%;
+    cursor: pointer;
 }

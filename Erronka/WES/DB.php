@@ -26,13 +26,11 @@
 
         public function query($sql)
         {
-            $this->conn->query($sql);
             if ($this->conn->query($sql) === TRUE) {
                 return "Query succesfull";
             } else {
                 return "ERROR: " . $this->conn->error;
             }
-              
         }
 
         // public function multy_query($sql)
