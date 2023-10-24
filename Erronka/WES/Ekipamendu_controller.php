@@ -21,10 +21,21 @@
     if($_SERVER["REQUEST_METHOD"]=="DELETE"){
         $json_data = file_get_contents("php://input");
         $data = json_decode($json_data,true);
+        $error = "";
         if (isset($data["id"])) {
             $error = $artikuluak->artikulua_ezabatu($data["id"]);
         }
         $json = json_encode($error);
+        echo ($json);
+    }
+
+    if($_SERVER["REQUEST_METHOD"]=="PUT"){
+        $json_data = file_get_contents("php://input");
+        $data = json_decode($json_data,true);
+        if (isset($data["izena"])&&isset($data["desk"])&&isset($data["marka"])&&isset($data["model"])&&isset($data["url"])&&isset($data["kat"])) {
+            $ekipo = $artikuluak->add_artikulua($data["izena"],$data["desk"],$data["marka"],$data["model"],$data["url"],$data["kat"]);
+        }
+        $json = json_encode($ekipo);
         echo ($json);
     }
 

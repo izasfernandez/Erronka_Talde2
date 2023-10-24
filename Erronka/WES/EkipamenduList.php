@@ -48,7 +48,7 @@
                     //     $url = $row["img_url"];
                     // }
                     $ekipamendua = new Ekipamendua($row["id"],$row["izena"],$row["deskribapena"],$row["marka"],$row["modelo"],$row["stock"],$row["idKategoria"],$row["img_url"]);
-                    $this->add_to_list($ekipamendua);
+                    $this->ekipList[count($this->ekipList)] = $ekipamendua;
                 }
             }
             $conn->die();
@@ -99,9 +99,22 @@
             return $error;
         }
 
-        function add_to_list($ekipamendua)
+        function add_artikulua($izena,$desk,$marka,$model,$url,$kat)
         {
-            $this->ekipList[count($this->ekipList)] = $ekipamendua;
+            $id = 0;
+            $sql = "SELECT MAX(3wag2e1.ekipamendua.id) AS id FROM 3wag2e1.ekipamendua;";
+            $conn = new DB("localhost","root","","3wag2e1");
+            $kontsulta = $conn->select($sql);
+            if ($kontsulta->num_rows > 0) {
+                while ($row = $kontsulta->fetch_assoc()) {
+                    $id = $row["id"] + 1;
+                }
+            }
+            $sql = "INSERT INTO 3wag2e1.ekipamendua VALUES($id,'$izena','$desk','$marka','$model',0,$kat,'$url');";
+            $ekipamendua = new Ekipamendua($id,$izena,$desk,$marka,$model,0,$kat,$url);
+            $error = $conn->query($sql);
+            $conn->die();
+            return $ekipamendua;
         }
     }
 

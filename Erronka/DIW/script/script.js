@@ -482,3 +482,45 @@ function artikuluak_ezabatu() {
         }
     });
 }
+
+function artikuluak_gehitu() {
+    var izena = document.getElementById("i_izena").value;
+    var desk = document.getElementById("i_desk").value;
+    var marka = document.getElementById("i_marka").value;
+    var model = document.getElementById("i_model").value;
+    var url = document.getElementById("i_url").value;
+    var kat = document.getElementById("kategoria").value;
+    var jsonData = {"izena":izena,"desk":desk,"marka":marka,"model":model,"url":url,"kat":kat};
+    let DataJson = JSON.stringify(jsonData);
+    console.log(DataJson)
+    let options = {method: "PUT", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
+    // Sergio
+    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    // Izaskun
+    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options);
+    .then(data => {
+        return data.json();
+    })
+    .then(response => {
+        var img = document.createElement("img");
+        img.src = response["url"];
+        img.src = response["url"];
+        img.alt = response["izena"]+" irudia";
+        img.classList.add("art_img");
+        var izena = document.createElement("h3");
+        izena.innerHTML = response["izena"];
+        var deskribapena  = document.createElement("p");
+        deskribapena.innerHTML = response["deskribapena"];
+        var artikulua  = document.createElement("div");
+        var artikulu_esteka = document.createElement("a");
+        artikulu_esteka.href = "artikulu_info.html?id="+response["id"];
+        artikulua.id = response["id"];
+        artikulua.classList.add("art_info");
+        artikulu_esteka.appendChild(img);
+        artikulu_esteka.appendChild(izena);
+        artikulu_esteka.appendChild(deskribapena);
+        artikulua.appendChild(artikulu_esteka);
+        divartikuluak.appendChild(artikulua);   
+        artikulu_img_error(".art_img")
+    });
+}
