@@ -90,6 +90,15 @@
             return $markak;
         }
 
+        function artikulua_ezabatu($id)
+        {
+            $sql = "DELETE FROM 3wag2e1.ekipamendua WHERE 3wag2e1.ekipamendua.id = ".$id;
+            $conn = new DB("localhost","root","","3wag2e1");
+            $error = $conn->query($sql);
+            $conn->die();
+            return $error;
+        }
+
         function add_to_list($ekipamendua)
         {
             $this->ekipList[count($this->ekipList)] = $ekipamendua;

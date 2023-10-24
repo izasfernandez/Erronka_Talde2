@@ -28,9 +28,9 @@
         {
             $this->conn->query($sql);
             if ($this->conn->query($sql) === TRUE) {
-                return "Artikulua eguneratu da";
+                return "Query succesfull";
             } else {
-                return "Error updating record: " . $this->conn->error;
+                return "ERROR: " . $this->conn->error;
             }
               
         }

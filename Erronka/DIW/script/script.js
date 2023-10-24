@@ -136,7 +136,6 @@ function get_id() {
 
 function artikulu_img_error(id) {
     const imgs = document.querySelectorAll(id);
-    console.log(imgs)
     imgs.forEach(element => {
         element.addEventListener("error",function art_error(){
             element.src = "../img/img_art_defecto.png";        
@@ -282,7 +281,7 @@ function artikuluak_filtratu() {
     var art_stck_min = document.getElementById("art_stck_min").value;
     var art_stck_max = document.getElementById("art_stck_max").value;
     var art_markak = markak_filtratu()
-    var array_filtroa = {"art_izena":art_izena,"art_deskribapena":art_deskribapena,"art_stck_min":art_stck_min,"art_stck_max":art_stck_max,"markak":art_markak, "kategoria":kategoria};
+    var array_filtroa = {"filtro":true,"art_izena":art_izena,"art_deskribapena":art_deskribapena,"art_stck_min":art_stck_min,"art_stck_max":art_stck_max,"markak":art_markak, "kategoria":kategoria};
     let filtroJson = JSON.stringify(array_filtroa);
     let options = {method: "POST", mode: 'cors', body:filtroJson, header:"Content-Type: application/json; charset=UTF-8"};
     // Sergio
@@ -419,7 +418,7 @@ function kategoriaz_filtratu(id) {
     // Ruta local Imanol
     // fetch('../WES/Ekipamendu_controller.php',options)
     document.getElementById("artikuluak").innerHTML = "";
-    var array_filtroa = {"kategoria":id};
+    var array_filtroa = {"filtro":true,"kategoria":id};
     let filtroJson = JSON.stringify(array_filtroa);
     let options = {method: "POST", mode: 'cors', body:filtroJson, header:"Content-Type: application/json; charset=UTF-8"};
     // Ruta local sergio
@@ -457,7 +456,29 @@ function artikuluak_eguneratu() {
         if (response.match('Error')) {
             alert("Errorea egon da :".response);
         }else{
-            alert(response)
+            alert("Artikulua eguneratu da")
+        }
+    });
+}
+
+function artikuluak_ezabatu() {
+    var id_art = get_id();
+    var jsonData = {"id":id_art};
+    let DataJson = JSON.stringify(jsonData);
+    let options = {method: "DELETE", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
+    // Sergio
+    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    // Izaskun
+    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options);
+    .then(data => {
+        return data.json();
+    })
+    .then(response => {
+        window.location.href = window.location.href;
+        if (response.match('Error')) {
+            alert("Errorea egon da :".response);
+        }else{
+            alert("Artikulua ezabatu da")
         }
     });
 }
