@@ -474,7 +474,7 @@ function artikuluak_ezabatu() {
         return data.json();
     })
     .then(response => {
-        window.location.href = window.location.href;
+        window.location.href = "Artikuluak.html";
         if (response.match('Error')) {
             alert("Errorea egon da :".response);
         }else{
