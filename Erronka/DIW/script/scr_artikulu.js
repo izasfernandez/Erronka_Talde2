@@ -328,7 +328,7 @@ function kategoriaz_filtratu(id) {
 }
 
 /**
- * Artikuluak eguneratzen duen funtzioa da
+ * Artikuluak eguneratzen duen funtzioa da (update)
  */
 function artikuluak_eguneratu() {
     var id_art = get_id();
@@ -357,6 +357,9 @@ function artikuluak_eguneratu() {
     });
 }
 
+/**
+ * Artikuluak ezabatzen duen funtzioa da (delete)
+ */
 function artikuluak_ezabatu() {
     var id_art = get_id();
     var jsonData = {"id":id_art};
@@ -379,6 +382,9 @@ function artikuluak_ezabatu() {
     });
 }
 
+/**
+ * Artikuluak gehitzen duen funtzioa da (put)
+ */
 function artikuluak_gehitu() {
     var izena = document.getElementById("i_izena").value;
     var desk = document.getElementById("i_desk").value;

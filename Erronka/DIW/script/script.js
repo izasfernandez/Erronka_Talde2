@@ -2,7 +2,9 @@ const btnFiltroa = document.querySelector("#f-botoi");
 const btnGehitu = document.querySelector("#g-botoi");
 const btnerabiltzailea = document.querySelector(".header_img2");
 
-// Filtro botoia sakatzean filtroko menua ateratzea
+/**
+ * Filtro botoia sakatzean filtroko menua ateratzea
+ */ 
 if (btnFiltroa != null) {
     btnFiltroa.addEventListener('click', function activatu() {
         document.getElementById('filtroa').classList.toggle('active');
@@ -23,7 +25,9 @@ if (btnFiltroa != null) {
     });
 }
 
-// Gehitu botoia sakatzean gehitzeko menua ateratzea
+/**
+ * Gehitu botoia sakatzean gehitzeko menua ateratzea
+ */ 
 if (btnGehitu != null) {
     btnGehitu.addEventListener('click', function activatu() {
         document.getElementById('gehitu').classList.toggle('active');
@@ -44,7 +48,9 @@ if (btnGehitu != null) {
     });
 }
 
-// Erabiltzaile ikonoa sakatzean, erabiltzailearen menua ateratzea
+/**
+ * Erabiltzaile ikonoa sakatzean, erabiltzailearen menua ateratzea
+ */
 if (btnerabiltzailea != null) {
     btnerabiltzailea.addEventListener('click', function activatu() {
         document.getElementById('erabil-menu').classList.toggle('active');
