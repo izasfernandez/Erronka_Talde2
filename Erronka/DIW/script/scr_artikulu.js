@@ -253,9 +253,9 @@ function kategoria_event() {
 function kategoriak_kargatu() {
     let options = {method: "GET", mode: 'cors'};
     // Ruta local sergio
-    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/kategoria_controller.php',options)
+    // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/kategoria_controller.php',options)
     // Ruta local Izaskun
-    // fetch('../WES/Ekipamendu_controller.php',options)
+     fetch('../WES/Ekipamendu_controller.php',options)
     // Ruta local Erik
     // fetch('../WES/Ekipamendu_controller.php',options)
     // Ruta local Imanol

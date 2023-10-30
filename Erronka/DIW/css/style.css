@@ -183,7 +183,6 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    /* position: absolute; */
     height: 10%;
     align-content: center;
 }
@@ -202,7 +201,6 @@ footer {
     background-color: #03254E;
     color: white;
     width: 14%;
-    /* height: 37%; */
     padding-left: 1%;
     padding-right: 1%;
     padding-bottom: 1%;
@@ -211,8 +209,6 @@ footer {
     top: 32%;
     border-top-left-radius: 14px;
     border-bottom-left-radius: 14px;
-    /* padding-top: 1%;
-    padding-bottom: 1%; */
 }
 
 #menu-mugikorra.active{
@@ -330,10 +326,6 @@ footer .info{
     align-items:center;
     justify-content: center;
     color:aliceblue;
-/*     max-height:100%; */
-    /* position: fixed; */
-    
-
 }
 
 iframe{
@@ -435,23 +427,28 @@ hr{
 }
 
 #search{
-    width: 85%;
-    padding: 0;
-    padding-top: 0.5%;
-    padding-bottom: 0.5%;
+    width: 20%;
+    height: 10%;
+    padding: 0.5% 1%; 
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: #c4c4c4de;
+    color: #000000;
 }
 
 .buscadorea{
     display: flex;
+    justify-content: center;
     flex-direction: row;
     margin-top: 1%;
-    margin-left: 1%;
+    margin-left: 1%; 
 }
 
 .buscadorea img{
-    width: 2%;
+    width: 1%;
     background-color: #377CF3 ;
-    padding: 0.25%;
+    padding: 0.5%;
+    margin-left: 0.5%;
     border-radius: 60px;
 }
 
@@ -514,13 +511,13 @@ hr{
 #art_info_inputs{
     display: grid;
     grid-template-areas: 
-    "t_izena a_izena"
-    "t_desk a_deskribapena"
-    "t_mark a_marka"
-    "t_model a_modeloa"
-    "t_kat a_kategoria"
-    "t_stock a_stock"
-    "gorde gorde";
+        "t_izena a_izena"
+        "t_desk a_deskribapena"
+        "t_mark a_marka"
+        "t_model a_modeloa"
+        "t_kat a_kategoria"
+        "t_stock a_stock"
+        "gorde gorde";
     align-items: center;
 }
 
@@ -587,3 +584,55 @@ hr{
     padding: 0.5%;
     cursor: pointer;
 }
+
+
+
+/* TAULA */
+
+table {
+    border-collapse: collapse;
+    width: 50%;
+    margin: 0 auto;
+}
+
+th, td {
+    padding: 2%;
+    text-align: center;
+    transition: background-color 0.3s; 
+    min-width: 10%;
+    width: 10%;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+th {
+    background-color: #4169eb; 
+    color: #fff; 
+}
+
+td {
+    color: #000000; 
+    background-color: #A1EAFF;
+}
+td:hover {
+    background-color: #e9697a; 
+}
+td:hover::before {
+    content: attr(data-text);
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    white-space: pre-wrap;
+    z-index: 1;
+}
+
+.taula{
+    padding-top: 3%;
+}
+
+ 
