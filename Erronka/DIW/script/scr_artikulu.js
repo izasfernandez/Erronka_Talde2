@@ -48,7 +48,7 @@ function artikulu_informazioa()
     // ruta sergio
     // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php?id_art='+id_art,options)
     // Ruta local Izaskun
-    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
+    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php?id_art='+id_art,options)
     // Ruta local Erik
     // fetch('../WES/Ekipamendu_controller.php',options)
     // Ruta local Imanol
@@ -57,6 +57,7 @@ function artikulu_informazioa()
         return data.json();
     })
     .then(response => {
+        console.log(response);
         document.getElementById("a_izena").value = response["ekipList"][0]["izena"];
         document.getElementById("a_deskribapena").value = response["ekipList"][0]["deskribapena"];
         document.getElementById("a_marka").value = response["ekipList"][0]["marka"];
@@ -68,7 +69,7 @@ function artikulu_informazioa()
         // Sergio
         // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/kategoria_controller.php?id_kat='+id_kat,options)
         // Ruta local Izaskun
-        fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
+        fetch('http://localhost/DWES/ERRONKA/Erronka/WES/kategoria_controller.php?id_kat='+id_kat,options)
         // Ruta local Erik
         // fetch('../WES/Ekipamendu_controller.php',options)
         // Ruta local Imanol
@@ -77,6 +78,7 @@ function artikulu_informazioa()
             return data.json();
         })
         .then(response => {
+            console.log(response);
             document.getElementById("a_kategoria").innerHTML = response["katList"][0]["izena"];
         }); 
         artikulu_img_error("#img_art");
@@ -259,7 +261,7 @@ function kategoriak_kargatu() {
     // Ruta local sergio
     // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/kategoria_controller.php',options)
     // Ruta local Izaskun
-     fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
+    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/kategoria_controller.php',options)
     // Ruta local Erik
     // fetch('../WES/Ekipamendu_controller.php',options)
     // Ruta local Imanol

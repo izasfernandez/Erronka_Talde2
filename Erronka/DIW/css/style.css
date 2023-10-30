@@ -571,11 +571,12 @@ hr{
     padding-top: 3%;
     padding-bottom: 3%;
     background-color: #377CF3;
+    font-size: 100%;
     cursor: pointer;
 }
 
 .ezabatu{
-    background-color: red;
+    background-color: #f33c3c;
     margin-left: 2%;
     margin-top: 2%;
     border: 0;
