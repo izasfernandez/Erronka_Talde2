@@ -97,7 +97,7 @@ function login() {
             alert("Erabiltzailea ez da existitzen")
         }else{
             if (response["pasahitza"] == pass) {
-                window.location.href = "pages/home.html";
+                window.location.href = "pages/Home.html";
             }else{
                 alert("Pasahitza okerra")
             }

@@ -102,7 +102,7 @@ function artikulu_formatua_get(response)
         deskribapena.innerHTML = response["artikuluak"]["ekipList"][i]["deskribapena"];
         var artikulua  = document.createElement("div");
         var artikulu_esteka = document.createElement("a");
-        artikulu_esteka.href = "artikulu_info.html?id="+response["artikuluak"]["ekipList"][i]["id"];
+        artikulu_esteka.href = "Artikulu_info.html?id="+response["artikuluak"]["ekipList"][i]["id"];
         artikulua.id = response["artikuluak"]["ekipList"][i]["id"];
         artikulua.classList.add("art_info");
         artikulu_esteka.appendChild(img);
@@ -132,7 +132,7 @@ function artikulu_formatua_post(response)
         deskribapena.innerHTML = response["ekipList"][i]["deskribapena"];
         var artikulua  = document.createElement("div");
         var artikulu_esteka = document.createElement("a");
-        artikulu_esteka.href = "artikulu_info.html?id="+response["ekipList"][i]["id"];
+        artikulu_esteka.href = "Artikulu_info.html?id="+response["ekipList"][i]["id"];
         artikulua.id = response["ekipList"][i]["id"];
         artikulua.classList.add("art_info");
         artikulu_esteka.appendChild(img);
@@ -415,7 +415,7 @@ function artikuluak_gehitu() {
         deskribapena.innerHTML = response["deskribapena"];
         var artikulua  = document.createElement("div");
         var artikulu_esteka = document.createElement("a");
-        artikulu_esteka.href = "artikulu_info.html?id="+response["id"];
+        artikulu_esteka.href = "Artikulu_info.html?id="+response["id"];
         artikulua.id = response["id"];
         artikulua.classList.add("art_info");
         artikulu_esteka.appendChild(img);
