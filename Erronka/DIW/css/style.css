@@ -6,39 +6,39 @@ a{
     color: black;
 }
 
-.login_grid {
+.login_grid{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     height: 100%;
 }
     
-.margen_izq { 
+.margen_izq{ 
     flex: 0 0 25%;
     height: 100vh;
     width: 100%;
     background-color: #2C889F; 
 }
-.margen_der { 
+.margen_der{ 
     flex: 0 0 75%;
     text-align: center;
 }
 
-.margen_der h1 {
+.margen_der h1{
     text-align: center;
     padding-top: 15%;
     font-size: 70px;
     font-family: "Engravers MT";
 }
 
-.login_logo {
+.login_logo{
     width: 100%;
     padding-top: 59%;
     margin-right: -50%;
     float: right;
 }
 
-.login_input {
+.login_input{
     display: grid;
     grid-template-areas: 
         "terabil terabil erabil erabil ."
@@ -104,7 +104,7 @@ a{
     justify-content: flex-end; 
     align-items: center;
 }
-#gogoratu input[type="checkbox"] {
+#gogoratu input[type="checkbox"]{
     margin-right: 3px; 
 }
 
@@ -123,7 +123,7 @@ a{
 
 /* HEADER */
 
-.header_general {
+.header_general{
     background-color: #2C889F;
     text-align: center;
     display: flex;
@@ -142,7 +142,7 @@ a{
     max-width: 25%;
 }
 
-.header_img2 {
+.header_img2{
     padding-right: 3%;
     max-width: 18%;
 }
@@ -156,7 +156,7 @@ a{
 
 /* HOME */
 
-.home {
+.home{
     height: 65vh;
     text-align: center;
     display: flex;
@@ -171,11 +171,11 @@ a{
 .erosketa-home img{
     width: 60%;
 }
-.kokaleku-home img {
+.kokaleku-home img{
     width: 43%;
 }
 
-footer {
+footer{
     display: grid;
     color: white;
     grid-template-columns: 1fr 1fr 1fr;
@@ -187,7 +187,7 @@ footer {
     align-content: center;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 992px){
     .home {
         flex-direction: column;
         text-align: center;
@@ -295,7 +295,7 @@ footer {
     justify-content: center;
     text-align: center;
     align-items: center;
- }
+}
 .nabigazio-menua li{
     float:left;
     list-style: none;
@@ -446,7 +446,7 @@ hr{
 
 .buscadorea img{
     width: 1%;
-    background-color: #377CF3 ;
+    background-color: #377CF3;
     padding: 0.5%;
     margin-left: 0.5%;
     border-radius: 60px;
@@ -485,8 +485,7 @@ hr{
     cursor: pointer;
 }
 
-.kategoria_filtro.active
-{
+.kategoria_filtro.active{
     color: #377CF3;
 }
 
@@ -589,13 +588,13 @@ hr{
 
 /* TAULA */
 
-table {
+table{
     border-collapse: collapse;
     width: 50%;
     margin: 0 auto;
 }
 
-th, td {
+th, td{
     padding: 2%;
     text-align: center;
     transition: background-color 0.3s; 
@@ -605,19 +604,19 @@ th, td {
     word-wrap: break-word;
 }
 
-th {
+th{
     background-color: #4169eb; 
     color: #fff; 
 }
 
-td {
+td{
     color: #000000; 
     background-color: #A1EAFF;
 }
-td:hover {
+td:hover{
     background-color: #e9697a; 
 }
-td:hover::before {
+td:hover::before{
     content: attr(data-text);
     position: absolute;
     background: rgba(0, 0, 0, 0.8);
