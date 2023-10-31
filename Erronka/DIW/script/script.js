@@ -2,7 +2,9 @@ const btnFiltroa = document.querySelector("#f-botoi");
 const btnGehitu = document.querySelector("#g-botoi");
 const btnerabiltzailea = document.querySelector(".header_img2");
 
-// Filtro botoia sakatzean filtroko menua ateratzea
+/**
+ * Filtro botoia sakatzean filtroko menua ateratzea
+ */ 
 if (btnFiltroa != null) {
     btnFiltroa.addEventListener('click', function activatu() {
         document.getElementById('filtroa').classList.toggle('active');
@@ -23,7 +25,9 @@ if (btnFiltroa != null) {
     });
 }
 
-// Gehitu botoia sakatzean gehitzeko menua ateratzea
+/**
+ * Gehitu botoia sakatzean gehitzeko menua ateratzea
+ */ 
 if (btnGehitu != null) {
     btnGehitu.addEventListener('click', function activatu() {
         document.getElementById('gehitu').classList.toggle('active');
@@ -44,7 +48,9 @@ if (btnGehitu != null) {
     });
 }
 
-// Erabiltzaile ikonoa sakatzean, erabiltzailearen menua ateratzea
+/**
+ * Erabiltzaile ikonoa sakatzean, erabiltzailearen menua ateratzea
+ */
 if (btnerabiltzailea != null) {
     btnerabiltzailea.addEventListener('click', function activatu() {
         document.getElementById('erabil-menu').classList.toggle('active');
@@ -98,9 +104,10 @@ function login() {
     var pass = document.getElementById("pasahitza").value;
     let options = {method: "GET", mode: 'cors'};
     // Ruta local sergio
-    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Erabiltzaile_controller.php?erabil='+erabil,options)
+    // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Erabiltzaile_controller.php?erabil='+erabil,options)
     // Ruta local Izaskun
-    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php?erabil='+erabil,options)
+    console.log(erabil);
+    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php?erabil='+erabil,options)
     // Ruta local Erik
     // fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
     // Ruta local Imanol
@@ -113,7 +120,7 @@ function login() {
             alert("Erabiltzailea ez da existitzen")
         }else{
             if (response["pasahitza"] == pass) {
-                window.location.href = "pages/home.html";
+                window.location.href = "pages/Home.html";
             }else{
                 alert("Pasahitza okerra")
             }
