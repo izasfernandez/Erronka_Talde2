@@ -49,6 +49,29 @@ if (btnerabiltzailea != null) {
     btnerabiltzailea.addEventListener('click', function activatu() {
         document.getElementById('erabil-menu').classList.toggle('active');
     });
+    btnerabiltzailea.addEventListener('load', function admin(){
+        let options = {method: "GET", mode: 'cors'};
+        // Ruta local sergio
+        fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Erabiltzaile_controller.php',options)
+        // Ruta local Izaskun
+        // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php?erabil='+erabil,options)
+        // Ruta local Erik
+        // fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
+        // Ruta local Imanol
+        //fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
+        .then(data => {
+            return data.json();
+        })
+        .then(response => {
+            if (response["rola"] == "A") {
+                document.getElementById("erab_gehitu").hidden = false;
+                document.getElementById("hr_erab_gehitu").hidden = false;
+            }else{
+                document.getElementById("erab_gehitu").hidden = true;
+                document.getElementById("hr_erab_gehitu").hidden = true;
+            }
+        }); 
+    });
 }
 
 // LOGIN FUNTZIOAK
@@ -95,7 +118,5 @@ function login() {
                 alert("Pasahitza okerra")
             }
         }
-        
-        
     });
 }

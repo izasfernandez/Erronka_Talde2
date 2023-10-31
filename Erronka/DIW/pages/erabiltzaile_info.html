@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title id="title">ARTIKULUAREN INFORMAZIOA</title>
+        <title id="title">ERABILTZAILEAREN INFORMAZIOA</title>
         <link rel="stylesheet" type="text/css" href="../css/style.css">
         <link rel="icon" href="../img/logo.png" type="image/x-icon">
     </head>
@@ -11,11 +11,11 @@
                 <a href="home.html">
                     <img class="header_img1" src="../img/logo.png" alt="logoa">
                 </a>
-                <h1><u>ARTIKULUAREN INFORMAZIOA</u></h1>
+                <h1><u>ERABILTZAILEAREN INFORMAZIOA</u></h1>
                 <div class="erabiltzaile-ikonoa">
                     <img class="header_img2" src="../img/usuario.png" alt="erabiltzailea">
                     <div id="erabil-menu">
-                        <div class="aukerak">Erabiltzaile informazioa</div>
+                        <div class="aukerak"><a href="erabiltzaile_info.html">Erabiltzaile informazioa</a></div>
                         <hr>
                         <div class="aukerak" id="erab_gehitu">Erabiltzailea Gehitu</div>
                         <hr id="hr_erab_gehitu">
@@ -34,20 +34,21 @@
                 </nav>
             </div>
         </header>
-        <button class="ezabatu" onclick="artikuluak_ezabatu()">Ezabatu</button>
-        <div id="artikulu_info">
-            <div id="art_url">
-                <img id="img_art" src="#">
-                <input type="text" id="img_url">
+        <button class="ezabatu" id="ezabatu" onclick="">Ezabatu</button>
+        <div id="erabiltzaile_inf">
+            <div id="erab_url">
+                <img id="img_erab" src="../img/usuario.png">
+                <!-- <input type="text" id="img_url"> -->
             </div>
-            <div id="art_info_inputs">
-                <p id="t_izena">Izena</p><input type="text" id="a_izena">
-                <p id="t_desk">Deskribapena</p><input type="text" id="a_deskribapena">
-                <p id="t_mark">Marka</p><input type="text" id="a_marka">
-                <p id="t_model">Modeloa</p><input type="text" id="a_modeloa">
-                <p id="t_kat">Kategoria</p><p id="a_kategoria"></p>
-                <p id="t_stock">Stock</p><p id="a_stock"></p>
-                <button class="gorde" onclick="artikuluak_eguneratu()">Gorde</button>
+            <div id="erabil_info">
+                <p id="te_nan">NAN</p><p id="e_nan"></p>
+                <p id="te_izena">Izena</p><input class="input" type="text" onblur="izena_konprobatu()" id="e_izena">
+                <p id="te_abizena">Abizena</p><input class="input" type="text" onblur="abizena_konprobatu()" id="e_abizena">
+                <p id="te_erabil">Erabiltzailea</p><input class="input" type="text" onblur="erabil_konprobatu()" id="e_erabil">
+                <p id="te_rola">Rola</p><p id="e_rol"></p>
+                <p id="te_pasa">Pasahitza zaharra</p><input class="input" type="text" onblur="pasahitza_zaharra_konprobatu()" id="e_pasa">
+                <p id="te_pasa_new">Pasahitza berria</p><input  class="input" type="text" onblur="pasahitza_berria_konprobatu()" id="e_pasa_new">
+                <button class="gorde" id="guardar" onclick="gorde()">Gorde</button>
             </div>
         </div>
         <footer>
@@ -65,6 +66,6 @@
             </div>
         </footer>
         <script src="../script/script.js"></script>
-        <script src="../script/scr_artikulu.js"></script>
+        <script src="../script/scr_erabil.js"></script>
     </body>
 </html>
