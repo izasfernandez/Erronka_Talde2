@@ -12,7 +12,7 @@ function erabil() {
     // Ruta local sergio
     // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Erabiltzaile_controller.php',options)
     // Ruta local Izaskun
-    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php',options)
+    fetch('http://localhost/ERRONKA1/WES/Erabiltzaile_controller.php',options)
     // Ruta local Erik
     // fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
     // Ruta local Imanol
@@ -69,7 +69,7 @@ function erabil_konprobatu() {
         // Ruta local sergio
         // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Erabiltzaile_controller.php',options)
         // Ruta local Izaskun
-        fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php',options)
+        fetch('http://localhost/ERRONKA1/WES/Erabiltzaile_controller.php',options)
         // Ruta local Erik
         // fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
         // Ruta local Imanol
@@ -143,7 +143,7 @@ function gorde() {
         // Sergio
         // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Erabiltzaile_controller.php',options)
         // Izaskun
-        fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php',options)
+        fetch('http://localhost/ERRONKA1/WES/Erabiltzaile_controller.php',options)
         .then(data => {
             return data.json();
         })
@@ -171,7 +171,7 @@ function erabiltzaileak_kargatu() {
     // Ruta local sergio
     // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Erabiltzaile_controller.php',options)
     // Ruta local Izaskun
-    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php',options)
+    fetch('http://localhost/ERRONKA1/WES/Erabiltzaile_controller.php',options)
     // Ruta local Erik
     // fetch('../WES/Ekipamendu_controller.php',options)
     // Ruta local Imanol
@@ -198,7 +198,7 @@ function erabiltzailea_ezabatu() {
     // Sergio
     // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Erabiltzaile_controller.php',options)
     // Izaskun
-    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php',options)
+    fetch('http://localhost/ERRONKA1/WES/Erabiltzaile_controller.php',options)
     .then(data => {
         return data.json();
     })
@@ -244,9 +244,9 @@ function nan_existitu(nan) {
     let DataJson = JSON.stringify(kontsulta,true);
     let options = {method: "POST", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
     // Ruta local sergio
-    // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Erabiltzaile_controller.php',options)
+    fetch('http://localhost/ERRONKA1/WES/Erabiltzaile_controller.php',options)
     // Ruta local Izaskun
-    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php',options)
+    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php',options)
     // Ruta local Erik
     // fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
     // Ruta local Imanol
@@ -326,9 +326,9 @@ function erabil_konp() {
         let DataJson = JSON.stringify(erabiltzailea,true);
         let options = {method: "POST", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
         // Ruta local sergio
-        // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Erabiltzaile_controller.php',options)
+        fetch('http://localhost/ERRONKA1/WES/Erabiltzaile_controller.php',options)
         // Ruta local Izaskun
-        fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php',options)
+        // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php',options)
         // Ruta local Erik
         // fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
         // Ruta local Imanol
@@ -411,9 +411,9 @@ function erabiltzailea_sortu() {
         console.log(DataJson)
         let options = {method: "POST", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
         // Ruta local sergio
-        // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Erabiltzaile_controller.php',options)
+        fetch('http://localhost/ERRONKA1/WES/Erabiltzaile_controller.php',options)
         // Ruta local Izaskun
-        fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php',options)
+        // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php',options)
         // Ruta local Erik
         // fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
         // Ruta local Imanol
