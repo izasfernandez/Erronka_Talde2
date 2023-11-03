@@ -46,9 +46,9 @@ function artikulu_informazioa()
     let options = {method: "GET", mode: 'cors'};
     var id_kat;
     // ruta sergio
-    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php?id_art='+id_art,options)
+    // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php?id_art='+id_art,options)
     // Ruta local Izaskun
-    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php?id_art='+id_art,options)
+    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php?id_art='+id_art,options)
     // Ruta local Erik
     // fetch('../WES/Ekipamendu_controller.php',options)
     // Ruta local Imanol
@@ -67,9 +67,9 @@ function artikulu_informazioa()
         document.getElementById("img_url").value = response["ekipList"][0]["url"];
         id_kat = response["ekipList"][0]["idKategoria"];
         // Sergio
-        fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/kategoria_controller.php?id_kat='+id_kat,options)
+        // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/kategoria_controller.php?id_kat='+id_kat,options)
         // Ruta local Izaskun
-        // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/kategoria_controller.php?id_kat='+id_kat,options)
+        fetch('http://localhost/DWES/ERRONKA/Erronka/WES/kategoria_controller.php?id_kat='+id_kat,options)
         // Ruta local Erik
         // fetch('../WES/Ekipamendu_controller.php',options)
         // Ruta local Imanol
@@ -155,9 +155,9 @@ function artikuluak_bistaratu() {
     document.getElementById("artikuluak").innerHTML = "";
     let options = {method: "GET", mode: 'cors'};
     // Ruta local sergio
-    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
     // Ruta local Izaskun
-    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
+    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
     // Ruta local Erik
     // fetch('../WES/Ekipamendu_controller.php',options)
     // Ruta local Imanol
@@ -184,9 +184,9 @@ function artikuluak_filtratu() {
     let filtroJson = JSON.stringify(array_filtroa);
     let options = {method: "POST", mode: 'cors', body:filtroJson, header:"Content-Type: application/json; charset=UTF-8"};
     // Sergio
-    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
     // Izaskun
-    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
+    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
     .then(data => {
         return data.json();
     })
@@ -202,9 +202,9 @@ function markak_kargatu()
 {
     let options = {method: "GET", mode: 'cors'};
     // Sergio
-    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
     // Izas
-    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
+    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
     .then(data => {
         return data.json();
     })
@@ -259,9 +259,9 @@ function kategoria_event() {
 function kategoriak_kargatu() {
     let options = {method: "GET", mode: 'cors'};
     // Ruta local sergio
-    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/kategoria_controller.php',options)
+    // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/kategoria_controller.php',options)
     // Ruta local Izaskun
-    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/kategoria_controller.php',options)
+    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/kategoria_controller.php',options)
     // Ruta local Erik
     // fetch('../WES/Ekipamendu_controller.php',options)
     // Ruta local Imanol
@@ -322,9 +322,9 @@ function kategoriaz_filtratu(id) {
     let filtroJson = JSON.stringify(array_filtroa);
     let options = {method: "POST", mode: 'cors', body:filtroJson, header:"Content-Type: application/json; charset=UTF-8"};
     // Ruta local sergio
-    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
     // Ruta local Izaskun
-    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
+    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
     .then(data => {
         return data.json();
     })
@@ -347,9 +347,9 @@ function artikuluak_eguneratu() {
     let DataJson = JSON.stringify(jsonData);
     let options = {method: "POST", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
     // Sergio
-    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
     // Izaskun
-    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
+    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
     .then(data => {
         return data.json();
     })
@@ -372,9 +372,9 @@ function artikuluak_ezabatu() {
     let DataJson = JSON.stringify(jsonData);
     let options = {method: "DELETE", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
     // Sergio
-    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
     // Izaskun
-    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
+    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
     .then(data => {
         return data.json();
     })
@@ -403,9 +403,9 @@ function artikuluak_gehitu() {
     console.log(DataJson)
     let options = {method: "PUT", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
     // Sergio
-    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
+    // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
     // Izaskun
-    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
+    fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
     .then(data => {
         return data.json();
     })
