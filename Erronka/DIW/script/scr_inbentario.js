@@ -1,10 +1,10 @@
 window.addEventListener('load', inbentarioa_bistaratu());
 
 /**
- * Artikuluak bistaratzen duen funtzioa
+ * Inbentarioa bistaratzen duen funtzioa
  */
-function artikuluak_bistaratu() {
-    document.getElementById("artikuluak").innerHTML = "";
+function inbentarioa_bistaratu() {
+    document.getElementById("inbent_taula").innerHTML = "";
     let options = {method: "GET", mode: 'cors'};
     // Ruta local sergio
     // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Ekipamendu_controller.php',options)
@@ -18,6 +18,11 @@ function artikuluak_bistaratu() {
         return data.json();
     })
     .then(response => {
-        artikulu_formatua_get(response);
+        inbentario_get(response);
     });
+}
+
+function inbentario_get(){
+
+    
 }
