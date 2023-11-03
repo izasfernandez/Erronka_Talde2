@@ -57,14 +57,8 @@ if (btnerabiltzailea != null) {
     });
     btnerabiltzailea.addEventListener('load', function admin(){
         let options = {method: "GET", mode: 'cors'};
-        // Ruta local sergio
+        // Ruta
         fetch('http://localhost/ERRONKA1/WES/Erabiltzaile_controller.php',options)
-        // Ruta local Izaskun
-        // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php?erabil='+erabil,options)
-        // Ruta local Erik
-        // fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
-        // Ruta local Imanol
-        //fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
         .then(data => {
             return data.json();
         })
@@ -103,14 +97,8 @@ function login() {
     var erabil = document.getElementById("erabil").value;
     var pass = document.getElementById("pasahitza").value;
     let options = {method: "GET", mode: 'cors'};
-    // Ruta local sergio
+    // Ruta 
     fetch('http://localhost/ERRONKA1/WES/Erabiltzaile_controller.php?erabil='+erabil,options)
-    // Ruta local Izaskun
-    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php?erabil='+erabil,options)
-    // Ruta local Erik
-    // fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
-    // Ruta local Imanol
-    //fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
     .then(data => {
         return data.json();
     })

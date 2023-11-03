@@ -9,14 +9,8 @@ var usuarioa;
 
 function erabil() {
     let options = {method: "GET", mode: 'cors'};
-    // Ruta local sergio
-    // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Erabiltzaile_controller.php',options)
-    // Ruta local Izaskun
+    // Ruta 
     fetch('http://localhost/ERRONKA1/WES/Erabiltzaile_controller.php',options)
-    // Ruta local Erik
-    // fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
-    // Ruta local Imanol
-    //fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
     .then(data => {
         return data.json();
     })
@@ -66,14 +60,8 @@ function erabil_konprobatu() {
         var erabiltzailea = {"kontsulta":true,"erabil":document.getElementById("e_erabil").value};
         let DataJson = JSON.stringify(erabiltzailea,true);
         let options = {method: "POST", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
-        // Ruta local sergio
-        // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Erabiltzaile_controller.php',options)
-        // Ruta local Izaskun
+        // Ruta 
         fetch('http://localhost/ERRONKA1/WES/Erabiltzaile_controller.php',options)
-        // Ruta local Erik
-        // fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
-        // Ruta local Imanol
-        //fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
         .then(data => {
             return data.json();
         })
@@ -140,9 +128,7 @@ function gorde() {
         var jsonData = {"izena":izena,"abizena":abizena,"erabil":erabil,"pasa":pasa, "nan":nan}
         let DataJson = JSON.stringify(jsonData);
         let options = {method: "PUT", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
-        // Sergio
-        // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Erabiltzaile_controller.php',options)
-        // Izaskun
+        // ruta
         fetch('http://localhost/ERRONKA1/WES/Erabiltzaile_controller.php',options)
         .then(data => {
             return data.json();
@@ -168,14 +154,8 @@ function erabiltzaileak_kargatu() {
     var jsonData = {"kontsulta":true}
     let DataJson = JSON.stringify(jsonData);
     let options = {method: "POST", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
-    // Ruta local sergio
-    // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Erabiltzaile_controller.php',options)
-    // Ruta local Izaskun
+    // Ruta
     fetch('http://localhost/ERRONKA1/WES/Erabiltzaile_controller.php',options)
-    // Ruta local Erik
-    // fetch('../WES/Ekipamendu_controller.php',options)
-    // Ruta local Imanol
-    // fetch('../WES/Ekipamendu_controller.php',options)
     .then(data => {
         return data.json();
     })
@@ -195,9 +175,7 @@ function erabiltzailea_ezabatu() {
     var jsonData = {"nan":nan};
     let DataJson = JSON.stringify(jsonData);
     let options = {method: "DELETE", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
-    // Sergio
-    // fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/Erabiltzaile_controller.php',options)
-    // Izaskun
+    // ruta
     fetch('http://localhost/ERRONKA1/WES/Erabiltzaile_controller.php',options)
     .then(data => {
         return data.json();
@@ -243,14 +221,8 @@ function nan_existitu(nan) {
     var kontsulta = {"kontsulta":true,"nan":nan};
     let DataJson = JSON.stringify(kontsulta,true);
     let options = {method: "POST", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
-    // Ruta local sergio
+    // Ruta 
     fetch('http://localhost/ERRONKA1/WES/Erabiltzaile_controller.php',options)
-    // Ruta local Izaskun
-    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php',options)
-    // Ruta local Erik
-    // fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
-    // Ruta local Imanol
-    //fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
     .then(data => {
         return data.json();
     })
@@ -325,14 +297,8 @@ function erabil_konp() {
         var erabiltzailea = {"kontsulta":true,"erabil":document.getElementById("e_erabil").value};
         let DataJson = JSON.stringify(erabiltzailea,true);
         let options = {method: "POST", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
-        // Ruta local sergio
+        // Ruta 
         fetch('http://localhost/ERRONKA1/WES/Erabiltzaile_controller.php',options)
-        // Ruta local Izaskun
-        // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php',options)
-        // Ruta local Erik
-        // fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
-        // Ruta local Imanol
-        //fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
         .then(data => {
             return data.json();
         })
@@ -410,14 +376,8 @@ function erabiltzailea_sortu() {
         let DataJson = JSON.stringify(erabiltzailea,true);
         console.log(DataJson)
         let options = {method: "POST", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
-        // Ruta local sergio
+        // Ruta 
         fetch('http://localhost/ERRONKA1/WES/Erabiltzaile_controller.php',options)
-        // Ruta local Izaskun
-        // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Erabiltzaile_controller.php',options)
-        // Ruta local Erik
-        // fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
-        // Ruta local Imanol
-        //fetch('../WES/Erabiltzaile_controller.php?erabil='+erabil,options)
         .then(data => {
             return data.json();
         })
