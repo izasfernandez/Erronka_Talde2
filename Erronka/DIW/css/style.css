@@ -728,7 +728,6 @@ td:hover::before{
     background-color: rgb(0, 0, 0, 0.3);
     align-items: center;
     justify-content: center;
-    /* opacity: 30%; */
     position: fixed;
     visibility: hidden;
 }
@@ -745,7 +744,6 @@ td:hover::before{
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    opacity: none;
 }
 
 /* #itxi{
@@ -753,3 +751,85 @@ td:hover::before{
     left: 0;
     position: relative;
 } */
+
+.edit-img{
+    width: 10%;
+    cursor: pointer;
+}
+
+#input-kat{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 13%;
+}
+
+/* .bloquear-fondo{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background-color: rgb(0, 0, 0, 0.3);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    visibility: hidden;
+}
+
+.bloquear-fondo.active{
+    visibility: inherit;
+} */
+
+.kat-info-container{
+    background-color: white;
+    height: 20vh;
+    width: 20vw;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.kat-container{
+    background-color: white;
+    height: 20vh;
+    width: 20vw;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    /* opacity: 0; */
+}
+
+.kat-container.active{
+    /* opacity: 1; */
+    visibility: inherit;
+}
+
+#kat-edit-container{
+    position: absolute;
+}
+
+#kat-add-container{
+    position: relative;
+}
+
+#edit-kat{
+    background-color: white;
+    cursor: pointer;
+    padding: 0.5%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    top: -11.5%;
+    right: -128px;
+    position: relative;
+}
+
+#add-kat{
+    background-color: white;
+    cursor: pointer;
+    padding: 0.5%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    top: -11.5%;
+    right: -135px;
+    position: relative;
+}
+

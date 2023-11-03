@@ -282,7 +282,11 @@ function kategoriak_kargatu() {
                 var hr = document.createElement("hr"); 
                 divart_kategoriak.appendChild(hr);  
             }    
-            combobox_art_kategoriak.appendChild(option);   
+            combobox_art_kategoriak.appendChild(option);
+            var option_edit = document.createElement("option");
+            option_edit.value = response["katList"][i]["id"];
+            option_edit.innerHTML = response["katList"][i]["izena"];
+            document.getElementById("kat-edit").appendChild(option_edit);
         }
         kategoria_event()
     });
@@ -429,5 +433,110 @@ function artikuluak_gehitu() {
         artikulua.appendChild(artikulu_esteka);
         divartikuluak.appendChild(artikulua);   
         artikulu_img_error(".art_img")
+    });
+}
+
+function kat_edit_open() {
+    document.getElementById("kat-editatu").classList.toggle("active");
+    document.getElementById("kat-edit-container").classList.toggle("active");
+}
+
+function add_kat_activatu() {
+    if (!document.getElementById("kat-add-container").classList.contains("active")) {
+        document.getElementById("kat-add-container").classList.toggle("active");
+        document.getElementById("kat-edit-container").classList.toggle("active");
+    }
+}
+
+function edit_kat_activatu() {
+    if (!document.getElementById("kat-edit-container").classList.contains("active")) {
+        document.getElementById("kat-add-container").classList.toggle("active");
+        document.getElementById("kat-edit-container").classList.toggle("active");
+    }
+}
+
+function kategoria_karga_editatzeko() 
+{
+    idkat = document.getElementById("kat-edit").value;
+    let options = {method: "GET", mode: 'cors'};
+    // Sergio
+    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/kategoria_controller.php?id_kat='+idkat,options)
+    // Izaskun
+    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
+    .then(data => {
+        return data.json();
+    })
+    .then(response => {
+        document.getElementById("kat-input-edit").value = response["katList"][0]["izena"];
+    });
+}
+
+function kategoria_editatu() 
+{
+    idkat = document.getElementById("kat-edit").value;
+    izena = document.getElementById("kat-input-edit").value;
+    data = {"id":idkat,"izena":izena};
+    DataJson = JSON.stringify(data);
+    let options = {method: "PUT", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
+    // Sergio
+    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/kategoria_controller.php',options)
+    // Izaskun
+    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
+    .then(data => {
+        return data.json();
+    })
+    .then(response => {
+        window.location.href = window.location.href;
+        if (response.match('Error')) {
+            alert("Errorea egon da :".response);
+        }else{
+            alert("Kategoria eguneratu da")
+        }
+    });
+}
+
+function kategoria_ezabatu() 
+{
+    idkat = document.getElementById("kat-edit").value;
+    data = {"id":idkat};
+    DataJson = JSON.stringify(data);
+    let options = {method: "DELETE", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
+    // Sergio
+    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/kategoria_controller.php',options)
+    // Izaskun
+    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
+    .then(data => {
+        return data.json();
+    })
+    .then(response => {
+        window.location.href = window.location.href;
+        if (response.match('Error')) {
+            alert("Errorea egon da :".response);
+        }else{
+            alert("Kategoria ezabatu da")
+        }
+    });
+}
+
+function kategoria_gehitu() 
+{
+    izena = document.getElementById("kat-input-edit").value;
+    data = {"izena":izena};
+    DataJson = JSON.stringify(data);
+    let options = {method: "POST", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
+    // Sergio
+    fetch('http://localhost/WES/Erronka%20Proiektua/Erronka/WES/kategoria_controller.php',options)
+    // Izaskun
+    // fetch('http://localhost/DWES/ERRONKA/Erronka/WES/Ekipamendu_controller.php',options)
+    .then(data => {
+        return data.json();
+    })
+    .then(response => {
+        window.location.href = window.location.href;
+        if (response.match('Error')) {
+            alert("Errorea egon da :".response);
+        }else{
+            alert("Kategoria gehitu da")
+        }
     });
 }

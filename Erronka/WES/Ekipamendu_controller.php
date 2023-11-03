@@ -23,7 +23,8 @@
         $data = json_decode($json_data,true);
         $error = "";
         if (isset($data["id"])) {
-            $error = $artikuluak->artikulua_ezabatu($data["id"]);
+            $sql = "DELETE FROM 3wag2e1.ekipamendua WHERE 3wag2e1.ekipamendua.id = ".$data["id"];
+            $error = $artikuluak->ezabatu($sql);
         }
         $json = json_encode($error);
         echo ($json);
@@ -33,7 +34,7 @@
         $json_data = file_get_contents("php://input");
         $data = json_decode($json_data,true);
         if (isset($data["izena"])&&isset($data["desk"])&&isset($data["marka"])&&isset($data["model"])&&isset($data["url"])&&isset($data["kat"])) {
-            $ekipo = $artikuluak->add_artikulua($data["izena"],$data["desk"],$data["marka"],$data["model"],$data["url"],$data["kat"]);
+            $ekipo = $artikuluak->add($data["izena"],$data["desk"],$data["marka"],$data["model"],$data["url"],$data["kat"]);
         }
         $json = json_encode($ekipo);
         echo ($json);
@@ -99,7 +100,7 @@
                 if (isset($data["izena"])&&isset($data["desk"])&&isset($data["marka"])&&isset($data["modeloa"])&&isset($data["url"])&&isset($data["id"])) {
                     $sql = "UPDATE 3wag2e1.ekipamendua SET 3wag2e1.ekipamendua.izena = '".$data["izena"]."', 3wag2e1.ekipamendua.deskribapena = '".$data["desk"]."', 3wag2e1.ekipamendua.marka = '".$data["marka"]."', 3wag2e1.ekipamendua.modelo = '".$data["modeloa"]."', 3wag2e1.ekipamendua.img_url = '".$data["url"]."' WHERE 3wag2e1.ekipamendua.id = ".$data["id"];
                 }
-                $error = $artikuluak->artikulua_eguneratu($sql);
+                $error = $artikuluak->eguneratu($sql);
                 $json = json_encode($error);
             }            
         }

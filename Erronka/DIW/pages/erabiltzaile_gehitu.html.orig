@@ -34,6 +34,10 @@
                 </nav>
             </div>
         </header>
+<<<<<<< HEAD
+        <button class="ezabatu" id="ezabatu" onclick="baja()"><b>Baja eman</b></button>
+=======
+>>>>>>> 53937622c42382bb1b20f6e99108ab1fc0d00dfc
         <div id="erabiltzaile_inf">
             <div id="erab_url">
                 <img id="img_erab" src="../img/usuario.png">

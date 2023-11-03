@@ -1,7 +1,8 @@
 <?php
     include("DB.php");
-
-    class Erabiltzailea
+    include("Listak_Inter.php");
+    
+    class Erabiltzailea implements Listak
     {
        public $nan;
        public $izena;
@@ -20,10 +21,8 @@
             $this->rola = "";
         }
 
-
-        public function erabiltzailea_kargatu($erabiltzailea)
+        public function informazioa_karga($sql)
         {
-            $sql = "SELECT * FROM 3wag2e1.erabiltzailea WHERE 3wag2e1.erabiltzailea.erabiltzailea = '".$erabiltzailea."'";
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $conn = new DB("localhost","root","","3wag2e1");
             $emaitza = $conn->select($sql);
@@ -40,23 +39,18 @@
             $conn->die();
         }
 
+
+
+        public function erabiltzailea_kargatu($erabiltzailea)
+        {
+            $sql = "SELECT * FROM 3wag2e1.erabiltzailea WHERE 3wag2e1.erabiltzailea.erabiltzailea = '".$erabiltzailea."'";
+            $this->informazioa_karga($sql);
+        }
+
         public function erabiltzailea_sesion_kargatu($nan)
         {
             $sql = "SELECT * FROM 3wag2e1.erabiltzailea WHERE 3wag2e1.erabiltzailea.nan = '".$nan."'";
-            // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
-            $conn = new DB("localhost","root","","3wag2e1");
-            $emaitza = $conn->select($sql);
-            if ($emaitza->num_rows > 0) {
-                while ($row = $emaitza->fetch_assoc()) {
-                    $this->nan = $row["nan"];
-                    $this->izena = $row["izena"];
-                    $this->abizena = $row["abizena"];
-                    $this->erabiltzailea = $row["erabiltzailea"];
-                    $this->pasahitza = $row["pasahitza"];
-                    $this->rola = $row["rola"];
-                }
-            }
-            $conn->die();
+            $this->informazioa_karga($sql);
         }
 
         public function erabiltzailea_konprobatu($erabiltzailea)
@@ -98,16 +92,7 @@
             return $emaitza;
         }
 
-        function erabiltzailea_ezabatu($nan)
-        {
-            $sql = "DELETE FROM 3wag2e1.erabiltzailea WHERE 3wag2e1.erabiltzailea.nan = '".$nan."'";
-            $conn = new DB("localhost","root","","3wag2e1");
-            $error = $conn->query($sql);
-            $conn->die();
-            return $error;
-        }
-
-        function erabiltzailea_gehitu($sql)
+        function ezabatu($sql)
         {
             $conn = new DB("localhost","root","","3wag2e1");
             $error = $conn->query($sql);
@@ -115,7 +100,15 @@
             return $error;
         }
 
-        function erabiltzailea_eguneratu($sql)
+        function gehitu($sql)
+        {
+            $conn = new DB("localhost","root","","3wag2e1");
+            $error = $conn->query($sql);
+            $conn->die();
+            return $error;
+        }
+
+        function eguneratu($sql)
         {
             $conn = new DB("localhost","root","","3wag2e1");
             $error = $conn->query($sql);
