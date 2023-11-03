@@ -30,11 +30,16 @@
         
         $gaurkodata = time();
         $erosketaData = date('Y-m-d', $gaurkodata);
-        
+
         if (isset($data["idEkipamendu"])) {
             $inbentario->add_inbent($data["idEkipamendu"],$erosketaData);
         }
         $json = json_encode($inbentario);
         echo ($json);
+    }
+
+    if($_SERVER["REQUEST_METHOD"]=="POST"){
+
+        
     }
 ?>

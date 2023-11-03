@@ -96,7 +96,6 @@ function artikulu_formatua_get(response)
     for (let i = 0; i < response["artikuluak"]["ekipList"].length; i++) {
         var img = document.createElement("img");
         img.src = response["artikuluak"]["ekipList"][i]["url"];
-        img.src = response["artikuluak"]["ekipList"][i]["url"];
         img.alt = response["artikuluak"]["ekipList"][i]["izena"]+" irudia";
         img.classList.add("art_img");
         var izena = document.createElement("h3");
