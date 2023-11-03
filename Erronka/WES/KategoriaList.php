@@ -30,10 +30,27 @@
             if ($emaitza->num_rows > 0) {
                 while ($row = $emaitza->fetch_assoc()) {
                     $kategoria = new Kategoria($row["id"],$row["izena"]);
-                    $this->add_to_list($kategoria);
+                    $this->katList[count($this->katList)] = $kategoria;
                 }
             }
             $conn->die();
+        }
+
+        function id_max()
+        {
+            $sql = "SELECT MAX(3wag2e1.kategoria.id) as max FROM 3wag2e1.kategoria";
+            // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
+            $conn = new DB("localhost","root","","3wag2e1");
+            $emaitza = $conn->select($sql);
+            $id_kat = 0;
+            if ($emaitza->num_rows > 0) {
+                while ($row = $emaitza->fetch_assoc()) {
+                    $id_kat = $row["max"];
+                }
+            }
+            $conn->die();
+            $id_kat++;
+            return $id_kat++;
         }
 
         function kategoria_kargatu()
@@ -48,10 +65,30 @@
             $this->informazioa_karga($sql);
         }
 
-        function add_to_list($kategoria)
+        function kategoria_gehitu($sql)
         {
-            $this->katList[count($this->katList)] = $kategoria;
+            $conn = new DB("localhost","root","","3wag2e1");
+            $error = $conn->query($sql);
+            $conn->die();
+            return $error;
         }
+
+        function kategoria_ezabatu($sql)
+        {
+            $conn = new DB("localhost","root","","3wag2e1");
+            $error = $conn->query($sql);
+            $conn->die();
+            return $error;
+        }
+
+        function kategoria_eguneratu($sql)
+        {
+            $conn = new DB("localhost","root","","3wag2e1");
+            $error = $conn->query($sql);
+            $conn->die();
+            return $error;
+        }
+
     }
     
 ?>

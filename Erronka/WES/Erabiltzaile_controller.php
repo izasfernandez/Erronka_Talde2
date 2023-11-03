@@ -27,7 +27,8 @@
         $erabil = new erabiltzailea();
         $error = "";
         if (isset($data["nan"])) {
-            $error = $erabil->erabiltzailea_ezabatu($data["nan"]);
+            $sql = "DELETE FROM 3wag2e1.erabiltzailea WHERE 3wag2e1.erabiltzailea.nan = '".$data["nan"]."'";
+            $error = $erabil->ezabatu($sql);
         }
         $json = json_encode($error);
         echo ($json);
@@ -44,7 +45,7 @@
                 $sql = "UPDATE 3wag2e1.erabiltzailea SET 3wag2e1.erabiltzailea.izena = '".$data["izena"]."', 3wag2e1.erabiltzailea.abizena = '".$data["abizena"]."', 3wag2e1.erabiltzailea.erabiltzailea = '".$data["erabil"]."', 3wag2e1.erabiltzailea.pasahitza = '".$data["pasa"]."' WHERE 3wag2e1.erabiltzailea.nan = '".$data["nan"]."'";
             }
         }
-        $error = $erabil->erabiltzailea_eguneratu($sql);
+        $error = $erabil->eguneratu($sql);
         $json = json_encode($error);
         echo ($json);
     }
@@ -68,7 +69,7 @@
             if (isset($data["nan"])&&isset($data["izena"])&&isset($data["abizena"])&&isset($data["erabil"])&&isset($data["rol"])&&isset($data["pasa"])) {
                 $sql = "INSERT INTO 3wag2e1.erabiltzailea VALUES('".$data["nan"]."','".$data["izena"]."','".$data["abizena"]."','".$data["erabil"]."','".$data["pasa"]."','".$data["rol"]."')";
             }
-            $error = $erabil->erabiltzailea_eguneratu($sql);
+            $error = $erabil->gehitu($sql);
             $json = json_encode($error);
         }
         echo ($json);

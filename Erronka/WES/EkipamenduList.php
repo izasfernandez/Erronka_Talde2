@@ -66,7 +66,7 @@
             $this->informazioa_karga($sql);
         }
 
-        function artikulua_eguneratu($sql)
+        function eguneratu($sql)
         {
             $conn = new DB("localhost","root","","3wag2e1");
             $error = $conn->query($sql);
@@ -84,16 +84,15 @@
             return $markak;
         }
 
-        function artikulua_ezabatu($id)
+        function ezabatu($sql)
         {
-            $sql = "DELETE FROM 3wag2e1.ekipamendua WHERE 3wag2e1.ekipamendua.id = ".$id;
             $conn = new DB("localhost","root","","3wag2e1");
             $error = $conn->query($sql);
             $conn->die();
             return $error;
         }
 
-        function add_artikulua($izena,$desk,$marka,$model,$url,$kat)
+        function add($izena,$desk,$marka,$model,$url,$kat)
         {
             $id = 0;
             $sql = "SELECT MAX(3wag2e1.ekipamendua.id) AS id FROM 3wag2e1.ekipamendua;";
@@ -104,11 +103,18 @@
                     $id = $row["id"] + 1;
                 }
             }
+            $conn->die();
             $sql = "INSERT INTO 3wag2e1.ekipamendua VALUES($id,'$izena','$desk','$marka','$model',0,$kat,'$url');";
+            $this->gehitu($sql);
             $ekipamendua = new Ekipamendua($id,$izena,$desk,$marka,$model,0,$kat,$url);
+            return $ekipamendua;
+        }
+
+        function gehitu($sql)
+        {
+            $conn = new DB("localhost","root","","3wag2e1");
             $error = $conn->query($sql);
             $conn->die();
-            return $ekipamendua;
         }
     }
 

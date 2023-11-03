@@ -6,6 +6,29 @@
         <link rel="icon" href="../img/logo.png" type="image/x-icon">
     </head>
     <body>
+        <div id="kat-editatu" class="bloquear-fondo">
+            <div id="edit-kat" onclick="edit_kat_activatu()">Editatu</div>
+            <div id="add-kat" onclick="add_kat_activatu()">Gehitu</div>
+            <div class="kat-info-container">
+                <div class="kat-container" id="kat-edit-container">
+                    <div>
+                        <h2>Editatu</h2>
+                        <select name="kat-edit" id="kat-edit" onchange="kategoria_karga_editatzeko()"></select>
+                        <input type="text" id="kat-input-edit">
+                        <button onclick="kategoria_ezabatu()">Ezabatu</button>
+                        <button onclick="kategoria_editatu()">Gorde</button>
+                    </div>
+                </div>
+                <div class="kat-container" id="kat-add-container">
+                    <div>
+                        <h2>Gehitu</h2>
+                        <input type="text" id="kat-berria">
+                        <button onclick="kategoria_gehitu()">Gehitu</button>
+                    </div>
+                </div>
+                <button id="itxi" onclick="kat_edit_open()">Itxi</button>
+            </div>
+        </div>
         <header>
             <div class="header_general">
                 <a href="Home.html">
@@ -88,9 +111,10 @@
                         <p>Irudia</p>
                         <input type="text" id="i_url">
                     </div>
-                    <div class="menu-input">
+                    <div class="menu-input" id="input-kat">
                         <label for="kategoria">Kategoria</label>
                         <select name="kategoria" id="kategoria"></select>
+                        <img class="edit-img" src="../img/editar.png" onclick="kat_edit_open()" alt="editatu">
                     </div>
                     <div class="menu-input">
                         <button id="gorde" onclick="artikuluak_gehitu()">Gehitu Artikulua</button>
