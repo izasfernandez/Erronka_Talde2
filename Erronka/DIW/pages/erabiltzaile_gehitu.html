@@ -1,26 +1,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title id="title">ERABILTZAILEAREN INFORMAZIOA</title>
+        <title id="title">ERABILTZAILEA GEHITU</title>
         <link rel="stylesheet" type="text/css" href="../css/style.css">
         <link rel="icon" href="../img/logo.png" type="image/x-icon">
     </head>
     <body>
-        <div id="bajak" class="bloquear-fondo">
-            <div class="baja-container">
-                <div>
-                    <select name="erabiltzaileak" id="erabiltzaileak"></select>
-                    <button onclick="erabiltzailea_ezabatu()">Baja eman</button>
-                </div>
-                <button id="itxi" onclick="baja()">Itxi</button>
-            </div>
-        </div>
         <header>
             <div class="header_general">
                 <a href="home.html">
                     <img class="header_img1" src="../img/logo.png" alt="logoa">
                 </a>
-                <h1><u>ERABILTZAILEAREN INFORMAZIOA</u></h1>
+                <h1><u>ERABILTZAILEA GEHITU</u></h1>
                 <div class="erabiltzaile-ikonoa">
                     <img class="header_img2" src="../img/usuario.png" alt="erabiltzailea">
                     <div id="erabil-menu">
@@ -49,14 +40,14 @@
                 <img id="img_erab" src="../img/usuario.png">
             </div>
             <div id="erabil_info">
-                <p id="te_nan">NAN</p><p id="e_nan"></p>
+                <p id="te_nan">NAN</p><input class="input" type="text" onblur="nan_konprobatu()" id="e_nan">
                 <p id="te_izena">Izena</p><input class="input" type="text" onblur="izena_konprobatu()" id="e_izena">
                 <p id="te_abizena">Abizena</p><input class="input" type="text" onblur="abizena_konprobatu()" id="e_abizena">
-                <p id="te_erabil">Erabiltzailea</p><input class="input" type="text" onblur="erabil_konprobatu()" id="e_erabil">
-                <p id="te_rola">Rola</p><p id="e_rol"></p>
-                <p id="te_pasa">Pasahitza zaharra</p><input class="input" type="text" onblur="pasahitza_zaharra_konprobatu()" id="e_pasa">
-                <p id="te_pasa_new">Pasahitza berria</p><input  class="input" type="text" onblur="pasahitza_berria_konprobatu()" id="e_pasa_new">
-                <button class="gorde" id="guardar" onclick="gorde()">Gorde</button>
+                <p id="te_erabil">Erabiltzailea</p><input class="input" type="text" onblur="erabil_konp()" id="e_erabil">
+                <p id="te_rola">Rola</p><input class="input" type="text" onblur="rol_konprob()" id="e_rol">
+                <p id="te_pasa">Pasahitza</p><input class="input" type="text" onblur="pasa_konprob()" id="e_pasa">
+                <p id="te_pasa_new">Pasahitza errepikatu</p><input  class="input" type="text" onblur="pasa_errep_konprob()" id="e_pasa_new">
+                <button class="gorde" id="sortu" onclick="erabiltzailea_sortu()">Erabiltzailea sartu</button>
             </div>
         </div>
         <footer>

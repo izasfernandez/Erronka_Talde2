@@ -636,3 +636,120 @@ td:hover::before{
 }
 
  
+.ezabatu{
+    background-color: red;
+    margin-left: 2%;
+    margin-top: 2%;
+    border: 0;
+    border-radius: 40px;
+    padding: 0.5%;
+    cursor: pointer;
+}
+
+#erabiltzaile_inf{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: 15%;
+    margin-top: 3% 15%;
+    margin-right: 15%;
+    margin-bottom: 7%;
+}
+
+#erab_url{
+    text-align: center;
+}
+
+#erabiltzaile_inf #img_erab{
+    height: 100%;
+    width: 65%;
+}
+
+#erabil_info{
+    display: grid;
+    grid-template-areas: 
+    "te_nan e_nan"
+    "te_izena e_izena"
+    "te_abizena e_abizena"
+    "te_erabil e_erabil"
+    "te_rola e_rol"
+    "te_pasa e_pasa"
+    "te_pasa_errep e_pasa_errep"
+    "gorde gorde";
+    align-items: center;
+}
+
+#te_nan{
+    grid-area: te_nan;
+}
+#te_izena{
+    grid-area: te_izena;
+}
+#te_abizena{
+    grid-area: te_abizena;
+}
+#te_erabil{
+    grid-area: te_erabil;
+}
+#te_rola{
+    grid-area: te_rola;
+}
+#te_pasa{
+    grid-area: te_pasa;
+}
+#te_pasa_errep{
+    grid-area: te_pasa_errep;
+}
+#e_nan{
+    grid-area: e_nan;
+}
+#e_izena{
+    grid-area: e_izena;
+}
+#e_abizena{
+    grid-area: e_abizena;
+}
+#e_erabil{
+    grid-area: e_erabil;
+}
+#e_rol{
+    grid-area: e_rol;
+}
+#e_pasa{
+    grid-area: e_pasa;
+}
+#e_pasa_errep{
+    grid-area: e_pasa_errep;
+}
+
+.bloquear-fondo{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background-color: rgb(0, 0, 0, 0.3);
+    align-items: center;
+    justify-content: center;
+    /* opacity: 30%; */
+    position: fixed;
+    visibility: hidden;
+}
+
+.bloquear-fondo.active{
+    visibility: inherit;
+}
+
+.baja-container{
+    background-color: white;
+    height: 20vh;
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    opacity: none;
+}
+
+/* #itxi{
+    top: 0;
+    left: 0;
+    position: relative;
+} */

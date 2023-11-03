@@ -73,6 +73,48 @@
             return $exist;
         }
 
+        public function erabiltzailea_nan_konprobatu($nan)
+        {
+            $sql = "SELECT * FROM 3wag2e1.erabiltzailea WHERE 3wag2e1.erabiltzailea.nan = '".$nan."'";
+            $exist = false;
+            // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
+            $conn = new DB("localhost","root","","3wag2e1");
+            $emaitza = $conn->select($sql);
+            if ($emaitza->num_rows > 0) {
+                $exist = true;
+            }
+            $conn->die();
+            return $exist;
+        }
+
+        public function erabiltzaileak_kargatu()
+        {
+            $sql = "SELECT 3wag2e1.erabiltzailea.nan, 3wag2e1.erabiltzailea.izena, 3wag2e1.erabiltzailea.abizena FROM 3wag2e1.erabiltzailea";
+            // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
+            $conn = new DB("localhost","root","","3wag2e1");
+            $kontsulta = $conn->select($sql);
+            $emaitza = $kontsulta->fetch_all(MYSQLI_ASSOC);
+            $conn->die();
+            return $emaitza;
+        }
+
+        function erabiltzailea_ezabatu($nan)
+        {
+            $sql = "DELETE FROM 3wag2e1.erabiltzailea WHERE 3wag2e1.erabiltzailea.nan = '".$nan."'";
+            $conn = new DB("localhost","root","","3wag2e1");
+            $error = $conn->query($sql);
+            $conn->die();
+            return $error;
+        }
+
+        function erabiltzailea_gehitu($sql)
+        {
+            $conn = new DB("localhost","root","","3wag2e1");
+            $error = $conn->query($sql);
+            $conn->die();
+            return $error;
+        }
+
         function erabiltzailea_eguneratu($sql)
         {
             $conn = new DB("localhost","root","","3wag2e1");

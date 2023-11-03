@@ -10,7 +10,6 @@
             $erabil->erabiltzailea_kargatu($_GET["erabil"]);
             session_start();
             $_SESSION["nan"] = $erabil->nan;
-            // echo $_SESSION["nan"];
             $json = json_encode($erabil);
             echo ($json);
         }else{
@@ -22,6 +21,34 @@
         }
     }
 
+    if($_SERVER["REQUEST_METHOD"]=="DELETE"){
+        $json_data = file_get_contents("php://input");
+        $data = json_decode($json_data,true);
+        $erabil = new erabiltzailea();
+        $error = "";
+        if (isset($data["nan"])) {
+            $error = $erabil->erabiltzailea_ezabatu($data["nan"]);
+        }
+        $json = json_encode($error);
+        echo ($json);
+    }
+
+    if($_SERVER["REQUEST_METHOD"]=="PUT"){
+        $json_data = file_get_contents("php://input");
+        $data = json_decode($json_data,true);
+        $erabil = new erabiltzailea();
+        if (isset($data["izena"])&&isset($data["abizena"])&&isset($data["erabil"])&&isset($data["nan"])) {
+            if (empty($data["pasa"])) {
+                $sql = "UPDATE 3wag2e1.erabiltzailea SET 3wag2e1.erabiltzailea.izena = '".$data["izena"]."', 3wag2e1.erabiltzailea.abizena = '".$data["abizena"]."', 3wag2e1.erabiltzailea.erabiltzailea = '".$data["erabil"]."' WHERE 3wag2e1.erabiltzailea.nan = '".$data["nan"]."'";
+            }else{
+                $sql = "UPDATE 3wag2e1.erabiltzailea SET 3wag2e1.erabiltzailea.izena = '".$data["izena"]."', 3wag2e1.erabiltzailea.abizena = '".$data["abizena"]."', 3wag2e1.erabiltzailea.erabiltzailea = '".$data["erabil"]."', 3wag2e1.erabiltzailea.pasahitza = '".$data["pasa"]."' WHERE 3wag2e1.erabiltzailea.nan = '".$data["nan"]."'";
+            }
+        }
+        $error = $erabil->erabiltzailea_eguneratu($sql);
+        $json = json_encode($error);
+        echo ($json);
+    }
+
     if($_SERVER["REQUEST_METHOD"]=="POST"){
         $json_data = file_get_contents("php://input");
         $data = json_decode($json_data,true);
@@ -30,14 +57,16 @@
             if (isset($data["erabil"])) {
                 $error = $erabil->erabiltzailea_konprobatu($data["erabil"]);
                 $json = json_encode($error);
+            }elseif (isset($data["nan"])) {
+                $error = $erabil->erabiltzailea_nan_konprobatu($data["nan"]);
+                $json = json_encode($error);
+            }else{
+                $emaitza = $erabil->erabiltzaileak_kargatu();
+                $json = json_encode($emaitza);
             }
         }else{
-            if (isset($data["izena"])&&isset($data["abizena"])&&isset($data["erabil"])&&isset($data["nan"])) {
-                if (empty($data["pasa"])) {
-                    $sql = "UPDATE 3wag2e1.erabiltzailea SET 3wag2e1.erabiltzailea.izena = '".$data["izena"]."', 3wag2e1.erabiltzailea.abizena = '".$data["abizena"]."', 3wag2e1.erabiltzailea.erabiltzailea = '".$data["erabil"]."' WHERE 3wag2e1.erabiltzailea.nan = '".$data["nan"]."'";
-                }else{
-                    $sql = "UPDATE 3wag2e1.erabiltzailea SET 3wag2e1.erabiltzailea.izena = '".$data["izena"]."', 3wag2e1.erabiltzailea.abizena = '".$data["abizena"]."', 3wag2e1.erabiltzailea.erabiltzailea = '".$data["erabil"]."', 3wag2e1.erabiltzailea.pasahitza = '".$data["pasa"]."' WHERE 3wag2e1.erabiltzailea.nan = '".$data["nan"]."'";
-                }
+            if (isset($data["nan"])&&isset($data["izena"])&&isset($data["abizena"])&&isset($data["erabil"])&&isset($data["rol"])&&isset($data["pasa"])) {
+                $sql = "INSERT INTO 3wag2e1.erabiltzailea VALUES('".$data["nan"]."','".$data["izena"]."','".$data["abizena"]."','".$data["erabil"]."','".$data["pasa"]."','".$data["rol"]."')";
             }
             $error = $erabil->erabiltzailea_eguneratu($sql);
             $json = json_encode($error);
