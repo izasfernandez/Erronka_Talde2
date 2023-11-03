@@ -316,9 +316,10 @@ function artikuluak_eguneratu() {
     var art_mark = document.getElementById("a_marka").value;
     var art_model = document.getElementById("a_modeloa").value;
     var art_url = document.getElementById("img_url").value;
-    var jsonData = {"filtro":false,"id":id_art,"izena":art_izena,"desk":art_desk,"modeloa":art_mark,"marka":art_model, "url":art_url};
+    var jsonData = {"id":id_art,"izena":art_izena,"desk":art_desk,"modeloa":art_mark,"marka":art_model, "url":art_url};
     let DataJson = JSON.stringify(jsonData);
-    let options = {method: "POST", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
+    console.log(DataJson)
+    let options = {method: "PUT", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
     // ruta
     fetch('http://localhost/ERRONKA1/WES/Ekipamendu_controller.php',options)
     .then(data => {
@@ -367,10 +368,10 @@ function artikuluak_gehitu() {
     var model = document.getElementById("i_model").value;
     var url = document.getElementById("i_url").value;
     var kat = document.getElementById("kategoria").value;
-    var jsonData = {"izena":izena,"desk":desk,"marka":marka,"model":model,"url":url,"kat":kat};
+    var jsonData = {"filtro":false,"izena":izena,"desk":desk,"marka":marka,"model":model,"url":url,"kat":kat};
     let DataJson = JSON.stringify(jsonData);
     console.log(DataJson)
-    let options = {method: "PUT", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
+    let options = {method: "POST", mode: 'cors', body:DataJson, header:"Content-Type: application/json; charset=UTF-8"};
     // ruta
     fetch('http://localhost/ERRONKA1/WES/Ekipamendu_controller.php',options)
     .then(data => {

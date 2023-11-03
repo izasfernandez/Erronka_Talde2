@@ -833,3 +833,8 @@ td:hover::before{
     position: relative;
 }
 
+.kat-container button,
+.kat-container h2{
+    margin: 4%;
+}
+
