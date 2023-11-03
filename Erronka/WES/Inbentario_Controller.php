@@ -23,5 +23,18 @@
         $json = json_encode($error);
         echo ($json);
     }
-    
+
+    if($_SERVER["REQUEST_METHOD"]=="POST"){
+        $json_data = file_get_contents("php://input");
+        $data = json_decode($json_data,true);
+        
+        $gaurkodata = time();
+        $erosketaData = date('Y-m-d', $gaurkodata);
+        
+        if (isset($data["idEkipamendu"])) {
+            $inbentario->add_inbent($data["idEkipamendu"],$erosketaData);
+        }
+        $json = json_encode($inbentario);
+        echo ($json);
+    }
 ?>
