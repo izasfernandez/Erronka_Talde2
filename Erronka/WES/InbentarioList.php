@@ -30,16 +30,13 @@
             if ($emaitza->num_rows > 0) {
                 while ($row = $emaitza->fetch_assoc()) {
                     $inbentarioa = new Inbentarioa($row["etiketa"],$row["idEkipamendu"],$row["erosketaData"]);
-                    $this->add_to_list($inbentarioa);
+                    $this->inbList[count($this->inbList)] = $inbentarioa;
+
                 }
             }
             $conn->die();
         }
 
-        function add_to_list($inbentarioa)
-        {
-            $this->inbList[count($this->inbList)] = $inbentarioa;
-        }
     }
     
 ?>
