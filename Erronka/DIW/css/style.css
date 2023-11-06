@@ -617,7 +617,7 @@ td{
 td:hover{
     background-color: #e9697a; 
 }
-td:hover::before{
+/* td:hover::before{
     content: attr(data-text);
     position: absolute;
     background: rgba(0, 0, 0, 0.8);
@@ -629,12 +629,16 @@ td:hover::before{
     width: 100%;
     white-space: pre-wrap;
     z-index: 1;
-}
+} */
 
 .taula{
     padding-top: 3%;
+   
 }
-
+.scrollable-rows{
+    overflow-y: scroll;
+    max-height: 300px;
+}
  
 .ezabatu{
     background-color: red;
