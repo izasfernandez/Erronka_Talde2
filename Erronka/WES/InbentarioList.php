@@ -5,12 +5,12 @@
     class Inbentarioa
     {
         public $etiketa;
-        public $idEkipamendua;
+        public $idEkipamendu;
         public $erosketaData;
 
-        function __construct($etiketa,$idEkipamendua,$erosketaData){
+        function __construct($etiketa,$idEkipamendu,$erosketaData){
             $this->etiketa = $etiketa;
-            $this->idEkipamendua = $idEkipamendua;
+            $this->idEkipamendu = $idEkipamendu;
             $this->erosketaData = $erosketaData;
         }
     }
