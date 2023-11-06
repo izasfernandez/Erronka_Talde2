@@ -497,3 +497,72 @@ function kategoria_gehitu()
         }
     });
 }
+
+function konprobatu_erroreak() {
+    const input = document.querySelectorAll(".input");
+    var error = false;
+    input.forEach(element => {
+        if(!element.checkValidity()){
+            error = true;
+        }
+    });
+    return error;
+}
+
+function deskribapena_konprobatu() {
+    if (!document.getElementById("i_desk").value) {
+        event.preventDefault();
+        document.getElementById("i_desk").setCustomValidity("Izena bete behar da");
+    }else{
+        document.getElementById("i_desk").setCustomValidity("");
+    }
+    document.getElementById("i_desk").reportValidity();
+}
+
+function marka_konprobatu() {
+    if (!document.getElementById("i_marka").value) {
+        event.preventDefault();
+        document.getElementById("i_marka").setCustomValidity("Marka bete behar da");
+    }else{
+        document.getElementById("i_marka").setCustomValidity("");
+    }
+    document.getElementById("i_marka").reportValidity();
+}
+
+function modeloa_konprobatu() {
+    if (!document.getElementById("i_model").value) {
+        event.preventDefault();
+        document.getElementById("i_model").setCustomValidity("Modeloa bete behar da");
+    }else{
+        document.getElementById("i_model").setCustomValidity("");
+    }
+    document.getElementById("i_model").reportValidity();
+}
+
+function izena_konprobatu() {
+    izena = document.getElementById("i_izena").value;
+    izena = encodeURIComponent(izena);
+    console.log(izena);
+    if (!document.getElementById("i_izena").value) {
+        event.preventDefault();
+        document.getElementById("i_izena").setCustomValidity("Izena bete behar da");
+        document.getElementById("i_izena").reportValidity();
+    }else{
+        let options = {method: "GET", mode: 'cors'};
+        // Ruta 
+        fetch("http://localhost/ERRONKA1/WES/Ekipamendu_controller.php?artikulu_izena =" + izena, options)
+        .then(data => {
+            return data.json();
+        })
+        .then(response => {
+            console.log(response);
+            if (response) {
+                document.getElementById("i_izena").setCustomValidity("Izena jadanik existitzen da");
+                document.getElementById("i_izena").reportValidity();
+            }else{
+                document.getElementById("i_izena").setCustomValidity("");
+                document.getElementById("i_izena").reportValidity();
+            }
+        });
+    }
+}

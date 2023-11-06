@@ -9,6 +9,9 @@
         if (isset($_GET["id_art"])) {
             $artikuluak->artikulu_info_kargatu($_GET["id_art"]);
             $json = json_encode($artikuluak);
+        } elseif (isset($_GET["artikulu_izena"])) {
+            $jsonData = $artikuluak->izena_existitu($_GET["artikulu_izena"]);
+            $json = json_encode($jsonData);
         } else {
             $artikuluak->artikuluak_kargatu();
             $markak = $artikuluak->markak_kargatu();
