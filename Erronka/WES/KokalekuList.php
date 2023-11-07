@@ -1,4 +1,8 @@
 <?php
+
+    include("DB.php");
+    include("Listak_Inter.php");
+
     class Kokalekua
     {
         public $etiketa;
@@ -23,24 +27,23 @@
             $this->kokList = [];
         }
 
-        function informazioa_karga()
+        function informazioa_karga($sql)
         {
-            $sql = "SELECT * FROM 3wag2e1.kokalekua";
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $conn = new DB("localhost","root","","3wag2e1");
             $emaitza = $conn->select($sql);
             if ($emaitza->num_rows > 0) {
-                while ($row = $emaitza->fetch_assoc()) {
-                    $kokalekua = new Kokalekua($row["etiketa"],$row["idGela"],$row["hasieraData"],$row["amaieraData"]);
-                    $this->add_to_list($kokalekua);
+                while ($row = $emaitza->fetch_assoc()){
+                    $kokalekua = new Kokalekua($row["ekipIzena"],$row["gelaIzena"],$row["hasieraData"],$row["amaieraData"]);
+                    $this->kokList[count($this->kokList)] = $kokalekua;
                 }
             }
             $conn->die();
         }
 
-        function add_to_list($kokalekua)
-        {
-            $this->kokList[count($this->kokList)] = $kokalekua;
+        function kokaleku_info_kargatu(){
+            $sql = "SELECT ekipamendua.izena as ekipIzena, gela.izena as gelaIzena, kokalekua.hasieraData, kokalekua.amaieraData FROM kokalekua, gela, ekipamendua, inbentarioa  WHERE kokalekua.idGela = gela.id AND inbentarioa.idEkipamendu = ekipamendua.id AND inbentarioa.etiketa = kokalekua.etiketa";
+            $this->informazioa_karga($sql);
         }
     }    
 ?>
