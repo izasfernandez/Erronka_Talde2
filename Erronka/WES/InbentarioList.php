@@ -31,7 +31,7 @@
             $emaitza = $conn->select($sql);
             if ($emaitza->num_rows > 0) {
                 while ($row = $emaitza->fetch_assoc()) {
-                    $inbentarioa = new Inbentarioa($row["etiketa"],$row["idEkipamendu"],$row["erosketaData"]);
+                    $inbentarioa = new Inbentarioa($row["etiketa"],$row["izena"],$row["erosketaData"]);
                     $this->inbList[count($this->inbList)] = $inbentarioa;
 
                 }
@@ -40,7 +40,7 @@
         }
 
         function inbentario_info_kargatu(){
-            $sql = "SELECT * FROM 3wag2e1.inbentarioa";
+            $sql = "SELECT 3wag2e1.inbentarioa.etiketa, 3wag2e1.ekipamendua.izena, 3wag2e1.inbentarioa.erosketaData FROM 3wag2e1.inbentarioa, 3wag2e1.ekipamendua  WHERE 3wag2e1.inbentarioa.idEkipamendu = 3wag2e1.ekipamendua.id";
             $this->informazioa_karga($sql);
         }
 
