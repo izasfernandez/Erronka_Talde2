@@ -26,7 +26,7 @@
         $data = json_decode($json_data,true);
         $error = "";
         if (isset($data["id"])) {
-            $sql = "DELETE FROM 3wag2e1.ekipamendua WHERE 3wag2e1.ekipamendua.id = ".$data["id"];
+            $sql = "DELETE FROM ekipamendua WHERE ekipamendua.id = ".$data["id"];
             $error = $artikuluak->ezabatu($sql);
         }
         $json = json_encode($error);
@@ -38,7 +38,7 @@
         $data = json_decode($json_data,true);
         $sql = "";
         if (isset($data["izena"])&&isset($data["desk"])&&isset($data["marka"])&&isset($data["modeloa"])&&isset($data["url"])&&isset($data["id"])) {
-            $sql = "UPDATE 3wag2e1.ekipamendua SET 3wag2e1.ekipamendua.izena = '".$data["izena"]."', 3wag2e1.ekipamendua.deskribapena = '".$data["desk"]."', 3wag2e1.ekipamendua.marka = '".$data["marka"]."', 3wag2e1.ekipamendua.modelo = '".$data["modeloa"]."', 3wag2e1.ekipamendua.img_url = '".$data["url"]."' WHERE 3wag2e1.ekipamendua.id = ".$data["id"];
+            $sql = "UPDATE ekipamendua SET ekipamendua.izena = '".$data["izena"]."', ekipamendua.deskribapena = '".$data["desk"]."', ekipamendua.marka = '".$data["marka"]."', ekipamendua.modelo = '".$data["modeloa"]."', ekipamendua.img_url = '".$data["url"]."' WHERE ekipamendua.id = ".$data["id"];
         }
         $error = $artikuluak->eguneratu($sql);
         $json = json_encode($error);
@@ -52,39 +52,39 @@
         if (isset($json_data)) {
             if ($data["filtro"]) {
                 if(!empty($data["art_izena"])){
-                    $query_filtroa = " WHERE LOWER(3wag2e1.ekipamendua.izena) LIKE LOWER('%".$data["art_izena"]."%')";
+                    $query_filtroa = " WHERE LOWER(ekipamendua.izena) LIKE LOWER('%".$data["art_izena"]."%')";
                 }
                 if(!empty($data["art_deskribapena"])){
                     if (empty($query_filtroa)) {
-                        $query_filtroa = " WHERE LOWER(3wag2e1.ekipamendua.deskribapena) LIKE LOWER('%".$data["art_deskribapena"]."%')";
+                        $query_filtroa = " WHERE LOWER(ekipamendua.deskribapena) LIKE LOWER('%".$data["art_deskribapena"]."%')";
                     }else{
-                        $query_filtroa = $query_filtroa." AND 3wag2e1.ekipamendua.deskribapena LIKE LOWER('%".$data["art_deskribapena"]."%')";
+                        $query_filtroa = $query_filtroa." AND ekipamendua.deskribapena LIKE LOWER('%".$data["art_deskribapena"]."%')";
                     }
                 }
                 if(!empty($data["art_stck_min"])){
                     if (empty($query_filtroa)) {
-                        $query_filtroa = " WHERE 3wag2e1.ekipamendua.stock >= '".$data["art_stck_min"]."'";
+                        $query_filtroa = " WHERE ekipamendua.stock >= '".$data["art_stck_min"]."'";
                     }else{
-                        $query_filtroa = $query_filtroa." AND 3wag2e1.ekipamendua.stock >= '".$data["art_stck_min"]."'";
+                        $query_filtroa = $query_filtroa." AND ekipamendua.stock >= '".$data["art_stck_min"]."'";
                     }
                 }
                 if(!empty($data["art_stck_max"])){
                     if (empty($query_filtroa)) {
-                        $query_filtroa = " WHERE 3wag2e1.ekipamendua.stock <= ".$data["art_stck_max"];
+                        $query_filtroa = " WHERE ekipamendua.stock <= ".$data["art_stck_max"];
                     }else{
-                        $query_filtroa = $query_filtroa." AND 3wag2e1.ekipamendua.stock <= ".$data["art_stck_max"];
+                        $query_filtroa = $query_filtroa." AND ekipamendua.stock <= ".$data["art_stck_max"];
                     }
                 }
                 if(!empty($data["markak"])){
                     for ($i=0; $i < count($data["markak"]); $i++) { 
                         if ($i == 0) {
                             if (empty($query_filtroa)) {
-                                $query_filtroa = " WHERE (3wag2e1.ekipamendua.marka = '".$data["markak"][$i]."' ";
+                                $query_filtroa = " WHERE (ekipamendua.marka = '".$data["markak"][$i]."' ";
                             }else{
-                                $query_filtroa = $query_filtroa." AND (3wag2e1.ekipamendua.marka = '".$data["markak"][$i]."' ";
+                                $query_filtroa = $query_filtroa." AND (ekipamendua.marka = '".$data["markak"][$i]."' ";
                             }
                         }else{
-                            $query_filtroa = $query_filtroa." OR 3wag2e1.ekipamendua.marka = '".$data["markak"][$i]."' ";
+                            $query_filtroa = $query_filtroa." OR ekipamendua.marka = '".$data["markak"][$i]."' ";
                         }
                         if ($i == count($data["markak"])-1) {
                             $query_filtroa = $query_filtroa.")";
@@ -93,9 +93,9 @@
                 }
                 if($data["kategoria"] <> 0){
                     if (empty($query_filtroa)) {
-                        $query_filtroa = " WHERE 3wag2e1.ekipamendua.idKategoria = ".$data["kategoria"];
+                        $query_filtroa = " WHERE ekipamendua.idKategoria = ".$data["kategoria"];
                     }else{
-                        $query_filtroa = $query_filtroa." AND 3wag2e1.ekipamendua.idKategoria = ".$data["kategoria"];
+                        $query_filtroa = $query_filtroa." AND ekipamendua.idKategoria = ".$data["kategoria"];
                     }
                 }
                 $artikuluak->artikuluak_filtratu($query_filtroa);

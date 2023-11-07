@@ -43,19 +43,19 @@
 
         public function erabiltzailea_kargatu($erabiltzailea)
         {
-            $sql = "SELECT * FROM 3wag2e1.erabiltzailea WHERE 3wag2e1.erabiltzailea.erabiltzailea = '".$erabiltzailea."'";
+            $sql = "SELECT * FROM erabiltzailea WHERE erabiltzailea.erabiltzailea = '".$erabiltzailea."'";
             $this->informazioa_karga($sql);
         }
 
         public function erabiltzailea_sesion_kargatu($nan)
         {
-            $sql = "SELECT * FROM 3wag2e1.erabiltzailea WHERE 3wag2e1.erabiltzailea.nan = '".$nan."'";
+            $sql = "SELECT * FROM erabiltzailea WHERE erabiltzailea.nan = '".$nan."'";
             $this->informazioa_karga($sql);
         }
 
         public function erabiltzailea_konprobatu($erabiltzailea)
         {
-            $sql = "SELECT * FROM 3wag2e1.erabiltzailea WHERE 3wag2e1.erabiltzailea.erabiltzailea = '".$erabiltzailea."'";
+            $sql = "SELECT * FROM erabiltzailea WHERE erabiltzailea.erabiltzailea = '".$erabiltzailea."'";
             $exist = false;
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $conn = new DB("localhost","root","","3wag2e1");
@@ -69,7 +69,7 @@
 
         public function erabiltzailea_nan_konprobatu($nan)
         {
-            $sql = "SELECT * FROM 3wag2e1.erabiltzailea WHERE 3wag2e1.erabiltzailea.nan = '".$nan."'";
+            $sql = "SELECT * FROM erabiltzailea WHERE erabiltzailea.nan = '".$nan."'";
             $exist = false;
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $conn = new DB("localhost","root","","3wag2e1");
@@ -83,7 +83,7 @@
 
         public function erabiltzaileak_kargatu()
         {
-            $sql = "SELECT 3wag2e1.erabiltzailea.nan, 3wag2e1.erabiltzailea.izena, 3wag2e1.erabiltzailea.abizena FROM 3wag2e1.erabiltzailea";
+            $sql = "SELECT erabiltzailea.nan, erabiltzailea.izena, erabiltzailea.abizena FROM erabiltzailea";
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $conn = new DB("localhost","root","","3wag2e1");
             $kontsulta = $conn->select($sql);

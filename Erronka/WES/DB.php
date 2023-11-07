@@ -16,6 +16,8 @@
             if ($this->conn->connect_error) {
                 die("Connection failed: " . $this->conn->connect_error);
             }
+            $sql = "USE 3wag2e1;";
+            $this->query($sql);
         }
 
         public function select($sql)
@@ -32,19 +34,6 @@
                 return "ERROR: " . $this->conn->error;
             }
         }
-
-        // public function multy_query($sql)
-        // {
-        //     $this->conn->multy_query($sql);
-        // }
-
-        // public function prepared_statement($sql,$mota,$args)
-        // {
-        //     $stmt = $this->conn->prepare($sql);
-        //     $stmt->bind_param($mota, $args);
-        //     $stmt->execute();
-        //     $stmt->close();
-        // }
 
         public function die()
         {

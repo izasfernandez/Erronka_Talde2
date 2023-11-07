@@ -38,7 +38,7 @@
 
         function id_max()
         {
-            $sql = "SELECT MAX(3wag2e1.kategoria.id) as max FROM 3wag2e1.kategoria";
+            $sql = "SELECT MAX(kategoria.id) as max FROM kategoria";
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $conn = new DB("localhost","root","","3wag2e1");
             $emaitza = $conn->select($sql);
@@ -55,13 +55,13 @@
 
         function kategoria_kargatu()
         {
-            $sql = "SELECT * FROM 3wag2e1.kategoria";
+            $sql = "SELECT * FROM kategoria";
             $this->informazioa_karga($sql);
         }
 
         function kategoria_izena_kargatu($id)
         {
-            $sql = "SELECT * FROM 3wag2e1.kategoria WHERE 3wag2e1.kategoria.id = ".$id;
+            $sql = "SELECT * FROM kategoria WHERE kategoria.id = ".$id;
             $this->informazioa_karga($sql);
         }
 

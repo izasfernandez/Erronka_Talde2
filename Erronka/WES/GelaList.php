@@ -24,7 +24,7 @@
 
         function informazioa_karga()
         {
-            $sql = "SELECT * FROM 3wag2e1.gela";
+            $sql = "SELECT * FROM gela";
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $conn = new DB("localhost","root","","3wag2e1");
             $emaitza = $conn->select($sql);

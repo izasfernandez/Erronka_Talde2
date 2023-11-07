@@ -50,19 +50,19 @@
 
         function artikulu_info_kargatu($id)
         {
-            $sql = "SELECT * FROM 3wag2e1.ekipamendua WHERE 3wag2e1.ekipamendua.id = ".$id;
+            $sql = "SELECT * FROM ekipamendua WHERE ekipamendua.id = ".$id;
             $this->informazioa_karga($sql);
         }
 
         function artikuluak_kargatu()
         {
-            $sql = "SELECT * FROM 3wag2e1.ekipamendua";
+            $sql = "SELECT * FROM ekipamendua";
             $this->informazioa_karga($sql);
         }
 
         function artikuluak_filtratu($queryFiltroa)
         {
-            $sql = "SELECT * FROM 3wag2e1.ekipamendua".$queryFiltroa;
+            $sql = "SELECT * FROM ekipamendua".$queryFiltroa;
             $this->informazioa_karga($sql);
         }
 
@@ -76,7 +76,7 @@
 
         function markak_kargatu()
         {
-            $sql = "SELECT DISTINCT(3wag2e1.ekipamendua.marka) FROM 3wag2e1.ekipamendua;";
+            $sql = "SELECT DISTINCT(ekipamendua.marka) FROM ekipamendua;";
             $conn = new DB("localhost","root","","3wag2e1");
             $kontsulta = $conn->select($sql);
             $markak = $kontsulta->fetch_all(MYSQLI_ASSOC);
@@ -95,7 +95,7 @@
         function add($izena,$desk,$marka,$model,$url,$kat)
         {
             $id = 0;
-            $sql = "SELECT MAX(3wag2e1.ekipamendua.id) AS id FROM 3wag2e1.ekipamendua;";
+            $sql = "SELECT MAX(ekipamendua.id) AS id FROM ekipamendua;";
             $conn = new DB("localhost","root","","3wag2e1");
             $kontsulta = $conn->select($sql);
             if ($kontsulta->num_rows > 0) {
@@ -104,7 +104,7 @@
                 }
             }
             $conn->die();
-            $sql = "INSERT INTO 3wag2e1.ekipamendua VALUES($id,'$izena','$desk','$marka','$model',0,$kat,'$url');";
+            $sql = "INSERT INTO ekipamendua VALUES($id,'$izena','$desk','$marka','$model',0,$kat,'$url');";
             $this->gehitu($sql);
             $ekipamendua = new Ekipamendua($id,$izena,$desk,$marka,$model,0,$kat,$url);
             return $ekipamendua;
@@ -119,7 +119,7 @@
 
         function izena_existitu($izena)
         {
-            $sql = "SELECT * FROM 3wag2e1.ekipamendua WHERE LOWER(3wag2e1.ekipamendua.izena) = LOWER(".$izena.")";
+            $sql = "SELECT * FROM ekipamendua WHERE LOWER(ekipamendua.izena) = LOWER(".$izena.")";
             $exist = false;
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $conn = new DB("localhost","root","","3wag2e1");

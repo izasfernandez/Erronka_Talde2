@@ -40,12 +40,12 @@
         }
 
         function inbentario_info_kargatu(){
-            $sql = "SELECT 3wag2e1.inbentarioa.etiketa, 3wag2e1.ekipamendua.izena, 3wag2e1.inbentarioa.erosketaData FROM 3wag2e1.inbentarioa, 3wag2e1.ekipamendua  WHERE 3wag2e1.inbentarioa.idEkipamendu = 3wag2e1.ekipamendua.id";
+            $sql = "SELECT inbentarioa.etiketa, ekipamendua.izena, inbentarioa.erosketaData FROM inbentarioa, ekipamendua  WHERE inbentarioa.idEkipamendu = ekipamendua.id";
             $this->informazioa_karga($sql);
         }
 
         function inbent_ezabatu($etiketa){
-            $sql = "DELETE FROM 3wag2e1.inbentarioa WHERE 3wag2e1.inbentarioa.etiketa = '". $etiketa . "'";
+            $sql = "DELETE FROM inbentarioa WHERE inbentarioa.etiketa = '". $etiketa . "'";
             $conn = new DB("localhost","root","","3wag2e1");
             $error = $conn->query($sql);
             $conn->die();
@@ -73,7 +73,7 @@
             while($this->etiketaExists($etiketa)){
                 $etiketa = $this->generateRandomEtiketa();
             }
-            $sql = "INSERT INTO 3wag2e1.inbentarioa (etiketa, idEkipamendu, erosketaData) VALUES ('$etiketa', $idEkipamendu, '$erosketaData');";
+            $sql = "INSERT INTO inbentarioa (etiketa, idEkipamendu, erosketaData) VALUES ('$etiketa', $idEkipamendu, '$erosketaData');";
             $conn = new DB("localhost", "root", "", "3wag2e1");
             $error = $conn->query($sql);
             $conn->die();
@@ -82,7 +82,7 @@
         }
         
         function etiketaExists($etiketa) {
-            $sql = "SELECT 3wag2e1.inbentarioa.etiketa FROM 3wag2e1.inbentarioa WHERE 3wag2e1.inbentarioa.etiketa = '$etiketa';";
+            $sql = "SELECT inbentarioa.etiketa FROM inbentarioa WHERE inbentarioa.etiketa = '$etiketa';";
             $conn = new DB("localhost", "root", "", "3wag2e1");
             $result = $conn->select($sql);
             $exist = false;

@@ -27,7 +27,7 @@
         $erabil = new erabiltzailea();
         $error = "";
         if (isset($data["nan"])) {
-            $sql = "DELETE FROM 3wag2e1.erabiltzailea WHERE 3wag2e1.erabiltzailea.nan = '".$data["nan"]."'";
+            $sql = "DELETE FROM erabiltzailea WHERE erabiltzailea.nan = '".$data["nan"]."'";
             $error = $erabil->ezabatu($sql);
         }
         $json = json_encode($error);
@@ -40,9 +40,9 @@
         $erabil = new erabiltzailea();
         if (isset($data["izena"])&&isset($data["abizena"])&&isset($data["erabil"])&&isset($data["nan"])) {
             if (empty($data["pasa"])) {
-                $sql = "UPDATE 3wag2e1.erabiltzailea SET 3wag2e1.erabiltzailea.izena = '".$data["izena"]."', 3wag2e1.erabiltzailea.abizena = '".$data["abizena"]."', 3wag2e1.erabiltzailea.erabiltzailea = '".$data["erabil"]."' WHERE 3wag2e1.erabiltzailea.nan = '".$data["nan"]."'";
+                $sql = "UPDATE erabiltzailea SET erabiltzailea.izena = '".$data["izena"]."', erabiltzailea.abizena = '".$data["abizena"]."', erabiltzailea.erabiltzailea = '".$data["erabil"]."' WHERE erabiltzailea.nan = '".$data["nan"]."'";
             }else{
-                $sql = "UPDATE 3wag2e1.erabiltzailea SET 3wag2e1.erabiltzailea.izena = '".$data["izena"]."', 3wag2e1.erabiltzailea.abizena = '".$data["abizena"]."', 3wag2e1.erabiltzailea.erabiltzailea = '".$data["erabil"]."', 3wag2e1.erabiltzailea.pasahitza = '".$data["pasa"]."' WHERE 3wag2e1.erabiltzailea.nan = '".$data["nan"]."'";
+                $sql = "UPDATE erabiltzailea SET erabiltzailea.izena = '".$data["izena"]."', erabiltzailea.abizena = '".$data["abizena"]."', erabiltzailea.erabiltzailea = '".$data["erabil"]."', erabiltzailea.pasahitza = '".$data["pasa"]."' WHERE erabiltzailea.nan = '".$data["nan"]."'";
             }
         }
         $error = $erabil->eguneratu($sql);
@@ -67,7 +67,7 @@
             }
         }else{
             if (isset($data["nan"])&&isset($data["izena"])&&isset($data["abizena"])&&isset($data["erabil"])&&isset($data["rol"])&&isset($data["pasa"])) {
-                $sql = "INSERT INTO 3wag2e1.erabiltzailea VALUES('".$data["nan"]."','".$data["izena"]."','".$data["abizena"]."','".$data["erabil"]."','".$data["pasa"]."','".$data["rol"]."')";
+                $sql = "INSERT INTO erabiltzailea VALUES('".$data["nan"]."','".$data["izena"]."','".$data["abizena"]."','".$data["erabil"]."','".$data["pasa"]."','".$data["rol"]."')";
             }
             $error = $erabil->gehitu($sql);
             $json = json_encode($error);
