@@ -7,10 +7,14 @@
     if($_SERVER["REQUEST_METHOD"]=="GET"){
         if (isset($_GET["erabil"])) {
             $erabil = new erabiltzailea();
-            $erabil->erabiltzailea_kargatu($_GET["erabil"]);
-            session_start();
-            $_SESSION["nan"] = $erabil->nan;
-            $json = json_encode($erabil);
+            $error = $erabil->erabiltzailea_kargatu($_GET["erabil"]);
+            if(!$error){
+                $json = json_encode($error);
+            }else{
+                session_start();
+                $_SESSION["nan"] = $erabil->nan;
+                $json = json_encode($erabil);
+            }
             echo ($json);
         }else{
             session_start();

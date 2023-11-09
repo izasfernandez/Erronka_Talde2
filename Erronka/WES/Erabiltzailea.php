@@ -35,6 +35,9 @@
                     $this->pasahitza = $row["pasahitza"];
                     $this->rola = $row["rola"];
                 }
+                return true;
+            }else{
+                return false;
             }
             $conn->die();
         }
@@ -44,7 +47,8 @@
         public function erabiltzailea_kargatu($erabiltzailea)
         {
             $sql = "SELECT * FROM erabiltzailea WHERE erabiltzailea.erabiltzailea = '".$erabiltzailea."'";
-            $this->informazioa_karga($sql);
+            $error = $this->informazioa_karga($sql);
+            return $error;
         }
 
         public function erabiltzailea_sesion_kargatu($nan)

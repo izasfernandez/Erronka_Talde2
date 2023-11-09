@@ -44,6 +44,11 @@
             $this->informazioa_karga($sql);
         }
 
+        function inbentario_info_filtroz_kargatu($filtroa){
+            $sql = "SELECT inbentarioa.etiketa, ekipamendua.izena, inbentarioa.erosketaData FROM inbentarioa, ekipamendua  WHERE inbentarioa.idEkipamendu = ekipamendua.id".$filtroa;
+            $this->informazioa_karga($sql);
+        }
+
         function inbent_ezabatu($etiketa){
             $sql = "DELETE FROM inbentarioa WHERE inbentarioa.etiketa = '". $etiketa . "'";
             $conn = new DB("localhost","root","","3wag2e1");
@@ -69,15 +74,26 @@
 
         function add_inbent($idEkipamendu,$erosketaData){
             $etiketa = $this->generateRandomEtiketa();
-
             while($this->etiketaExists($etiketa)){
                 $etiketa = $this->generateRandomEtiketa();
             }
             $sql = "INSERT INTO inbentarioa (etiketa, idEkipamendu, erosketaData) VALUES ('$etiketa', $idEkipamendu, '$erosketaData');";
             $conn = new DB("localhost", "root", "", "3wag2e1");
-            $error = $conn->query($sql);
+            $conn->query($sql);
+            $sql = "SELECT ekipamendua.izena, ekipamendua.stock FROM ekipamendua WHERE ekipamendua.id = ".$idEkipamendu;
+            $izena = "";
+            $stock = 0;
+            $emaitza = $conn->select($sql);
+            if ($emaitza->num_rows > 0) {
+                $row = $emaitza->fetch_assoc();
+                $izena = $row["izena"];
+                $stock = $row["stock"];
+                $stock++;
+                $sql = "UPDATE ekipamendua SET ekipamendua.stock = ".$stock." WHERE ekipamendua.id = ".$idEkipamendu;
+                $conn->query($sql);
+            }
             $conn->die();
-            $inbentarioa = new Inbentarioa($etiketa, $idEkipamendu, $erosketaData);
+            $inbentarioa = new Inbentarioa($etiketa, $izena, $erosketaData);
             $this->inbList[count($this->inbList)] = $inbentarioa; 
         }
         

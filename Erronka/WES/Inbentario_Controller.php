@@ -27,14 +27,30 @@
     if($_SERVER["REQUEST_METHOD"]=="POST"){
         $json_data = file_get_contents("php://input");
         $data = json_decode($json_data,true);
-        
+        $filtroa = "";
         $gaurkodata = time();
         $erosketaData = date('Y-m-d', $gaurkodata);
-
         if (isset($data["idEkipamendu"])) {
-            $inbentario->add_inbent($data["idEkipamendu"],$erosketaData);
+            for ($i=0; $i < $data["stck"]; $i++) { 
+                $inbentario->add_inbent($data["idEkipamendu"],$erosketaData);
+                $json = json_encode($inbentario);
+            }
+        }else{
+            if (isset($data["bilaketa"])) {
+                $filtroa = " AND LOWER(inbentarioa.etiketa) LIKE '%".$data["bilaketa"]."%'";
+            }
+            if (!empty($data["artikulua"])) {
+                $filtroa = $filtroa." AND inbentarioa.idEkipamendu IN (SELECT ekipamendua.id FROM ekipamendua WHERE ekipamendua.izena LIKE '%".$data["artikulua"]."%')";
+            }
+            if (!empty($data["hData"])) {
+                $filtroa = $filtroa." AND inbentarioa.erosketaData >= '".$data["hData"]."'";
+            }
+            if (!empty($data["aData"])) {
+                $filtroa = $filtroa." AND inbentarioa.erosketaData <= '".$data["aData"]."'";
+            }
+            $inbentario->inbentario_info_filtroz_kargatu($filtroa);
+            $json = json_encode($inbentario);
         }
-        $json = json_encode($inbentario);
         echo ($json);
     }
 
