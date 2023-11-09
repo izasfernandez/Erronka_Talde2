@@ -45,5 +45,14 @@
             $sql = "SELECT ekipamendua.izena as ekipIzena, gela.izena as gelaIzena, kokalekua.hasieraData, kokalekua.amaieraData FROM kokalekua, gela, ekipamendua, inbentarioa  WHERE kokalekua.idGela = gela.id AND inbentarioa.idEkipamendu = ekipamendua.id AND inbentarioa.etiketa = kokalekua.etiketa";
             $this->informazioa_karga($sql);
         }
+
+        function kokaleku_ezabatu(){
+            $sql = "DELETE FROM kokalekua WHERE kokalekua.etiketa = '". $etiketa . "' AND kokalekua.hasieraData = '". $hasieraData . "'";
+            $conn = new DB("localhost","root","","3wag2e1");
+            $error = $conn->query($sql);
+            $conn->die();
+            return $error;
+
+        }
     }    
 ?>

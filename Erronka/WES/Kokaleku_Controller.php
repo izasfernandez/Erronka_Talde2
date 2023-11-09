@@ -12,5 +12,15 @@
         echo ($json);
     }
 
+    if($_SERVER["REQUEST_METHOD"]=="DELETE"){
+        $json_data = file_get_contents("php://input");
+        $data = json_decode($json_data,true);
+        $error = "";
+        if (isset($data["etiketa"]) && isset($data["hasieraData"])) {
+            $error = $inbentario->kokaleku_ezabatu($data["etiketa"], $data["hasieraData"]);
+        }
+        $json = json_encode($error);
+        echo ($json);
+    }
 
 ?>
