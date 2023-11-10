@@ -92,7 +92,7 @@
             return $error;
         }
 
-        function add($izena,$desk,$marka,$model,$url,$kat)
+        function add($izena,$desk,$marka,$model,$url,$kat,$stck)
         {
             $id = 0;
             $sql = "SELECT MAX(ekipamendua.id) AS id FROM ekipamendua;";
@@ -104,9 +104,9 @@
                 }
             }
             $conn->die();
-            $sql = "INSERT INTO ekipamendua VALUES($id,'$izena','$desk','$marka','$model',0,$kat,'$url');";
+            $sql = "INSERT INTO ekipamendua VALUES($id,'$izena','$desk','$marka','$model',$stck,$kat,'$url');";
             $this->gehitu($sql);
-            $ekipamendua = new Ekipamendua($id,$izena,$desk,$marka,$model,0,$kat,$url);
+            $ekipamendua = new Ekipamendua($id,$izena,$desk,$marka,$model,$stck,$kat,$url);
             return $ekipamendua;
         }
 

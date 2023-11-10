@@ -102,7 +102,11 @@
                 $json = json_encode($artikuluak);
             } else {
                 if (isset($data["izena"])&&isset($data["desk"])&&isset($data["marka"])&&isset($data["model"])&&isset($data["url"])&&isset($data["kat"])) {
-                    $ekipo = $artikuluak->add($data["izena"],$data["desk"],$data["marka"],$data["model"],$data["url"],$data["kat"]);
+                    if (isset($data["stck"])) {
+                        $ekipo = $artikuluak->add($data["izena"],$data["desk"],$data["marka"],$data["model"],$data["url"],$data["kat"],$data["stck"]);
+                    }else{
+                        $ekipo = $artikuluak->add($data["izena"],$data["desk"],$data["marka"],$data["model"],$data["url"],$data["kat"],0);
+                    }
                 }
                 $json = json_encode($ekipo);
             }            
