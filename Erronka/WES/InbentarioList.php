@@ -50,7 +50,17 @@
         }
 
         function inbent_ezabatu($etiketa){
+            $sql = "UPDATE ekipamendua SET ekipamendua.stock = ekipamendua.stock-1 WHERE ekipamendua.id = (SELECT inbentarioa.idEkipamendu FROM inbentarioa WHERE inbentarioa.etiketa = '".$etiketa."')";
+            $conn = new DB("localhost","root","","3wag2e1");
+            $error = $conn->query($sql);
             $sql = "DELETE FROM inbentarioa WHERE inbentarioa.etiketa = '". $etiketa . "'";
+            $error = $conn->query($sql);
+            $conn->die();
+            return $error;
+        }
+
+        function inbent_eguneratu($etiketa, $etiketa_berria){
+            $sql = "UPDATE inbentarioa SET inbentarioa.etiketa = UPPER('".$etiketa_berria."') WHERE inbentarioa.etiketa = '".$etiketa."'";
             $conn = new DB("localhost","root","","3wag2e1");
             $error = $conn->query($sql);
             $conn->die();
