@@ -92,7 +92,17 @@
                 $sql = "UPDATE ekipamendua SET ekipamendua.stock = ".$stock." WHERE ekipamendua.id = ".$idEkipamendu;
                 $conn->query($sql);
             }
-            if ($kat == 1 || $kat == 2) {
+            $sql = "SELECT  kategoria.inb_yn FROM kategoria WHERE kategoria.id = ".$kat;
+            $inb = false;
+            $emaitza = $conn->select($sql);
+            if ($emaitza->num_rows > 0) {
+                $row = $emaitza->fetch_assoc();
+                $inb_yn = $row["inb_yn"];
+                if ($inb_yn == 1) {
+                    $inb = true;
+                }
+            }
+            if ($inb) {
                 $sql = "INSERT INTO inbentarioa (etiketa, idEkipamendu, erosketaData) VALUES ('$etiketa', $idEkipamendu, '$erosketaData');";
                 $conn->query($sql);
                 $inbentarioa = new Inbentarioa($etiketa, $izena, $erosketaData);
