@@ -9,12 +9,14 @@
         public $idGela;
         public $hdata;
         public $adata;
+        public $izena;
 
-        function __construct($etiketa,$idGela,$hdata,$adata){
+        function __construct($etiketa,$idGela,$hdata,$adata,$izena){
             $this->etiketa = $etiketa;
             $this->idGela = $idGela;
             $this->hdata = $hdata;
             $this->adata = $adata;
+            $this->izena = $izena;
         }
     }
     
@@ -34,7 +36,7 @@
             $emaitza = $conn->select($sql);
             if ($emaitza->num_rows > 0) {
                 while ($row = $emaitza->fetch_assoc()){
-                    $kokalekua = new Kokalekua($row["ekipIzena"],$row["gelaIzena"],$row["hasieraData"],$row["amaieraData"]);
+                    $kokalekua = new Kokalekua($row["etiketa"],$row["gelaIzena"],$row["hasieraData"],$row["amaieraData"],$row["ekipIzena"]);
                     $this->kokList[count($this->kokList)] = $kokalekua;
                 }
             }
@@ -42,7 +44,7 @@
         }
 
         function kokaleku_info_kargatu(){
-            $sql = "SELECT ekipamendua.izena as ekipIzena, gela.izena as gelaIzena, kokalekua.hasieraData, kokalekua.amaieraData FROM kokalekua, gela, ekipamendua, inbentarioa  WHERE kokalekua.idGela = gela.id AND inbentarioa.idEkipamendu = ekipamendua.id AND inbentarioa.etiketa = kokalekua.etiketa";
+            $sql = "SELECT ekipamendua.izena as ekipIzena, kokalekua.etiketa, gela.izena as gelaIzena, kokalekua.hasieraData, kokalekua.amaieraData FROM kokalekua, gela, ekipamendua, inbentarioa  WHERE kokalekua.idGela = gela.id AND inbentarioa.idEkipamendu = ekipamendua.id AND inbentarioa.etiketa = kokalekua.etiketa";
             $this->informazioa_karga($sql);
         }
 
