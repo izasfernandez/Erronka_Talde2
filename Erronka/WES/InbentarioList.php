@@ -77,24 +77,28 @@
             while($this->etiketaExists($etiketa)){
                 $etiketa = $this->generateRandomEtiketa();
             }
-            $sql = "INSERT INTO inbentarioa (etiketa, idEkipamendu, erosketaData) VALUES ('$etiketa', $idEkipamendu, '$erosketaData');";
             $conn = new DB("localhost", "root", "", "3wag2e1");
-            $conn->query($sql);
-            $sql = "SELECT ekipamendua.izena, ekipamendua.stock FROM ekipamendua WHERE ekipamendua.id = ".$idEkipamendu;
+            $sql = "SELECT ekipamendua.izena, ekipamendua.stock, ekipamendua.idKategoria FROM ekipamendua WHERE ekipamendua.id = ".$idEkipamendu;
             $izena = "";
+            $kat = "";
             $stock = 0;
             $emaitza = $conn->select($sql);
             if ($emaitza->num_rows > 0) {
                 $row = $emaitza->fetch_assoc();
                 $izena = $row["izena"];
+                $kat = $row["idKategoria"];
                 $stock = $row["stock"];
                 $stock++;
                 $sql = "UPDATE ekipamendua SET ekipamendua.stock = ".$stock." WHERE ekipamendua.id = ".$idEkipamendu;
                 $conn->query($sql);
             }
+            if ($kat == 1 || $kat == 2) {
+                $sql = "INSERT INTO inbentarioa (etiketa, idEkipamendu, erosketaData) VALUES ('$etiketa', $idEkipamendu, '$erosketaData');";
+                $conn->query($sql);
+                $inbentarioa = new Inbentarioa($etiketa, $izena, $erosketaData);
+                $this->inbList[count($this->inbList)] = $inbentarioa; 
+            }
             $conn->die();
-            $inbentarioa = new Inbentarioa($etiketa, $izena, $erosketaData);
-            $this->inbList[count($this->inbList)] = $inbentarioa; 
         }
         
         function etiketaExists($etiketa) {
