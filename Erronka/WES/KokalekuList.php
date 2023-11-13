@@ -56,22 +56,11 @@
             return $error;
         }
 
-        function add_kokaleku(){
+        function add_kokaleku($sql){
             $conn = new DB("localhost", "root", "", "3wag2e1");
-            $sql = "SELECT inbentarioa.etiketa, ekipamendua.izena, gela.izena, kokalekua.hasieraData, kokalekua.amaieraData 
-            FROM gela, ekipamendua, inbentarioa, kokalekua 
-            WHERE (kokalekua.amaieraData < NOW() 
-            OR NOT EXISTS (SELECT * FROM kokalekua WHERE kokalekua.etiketa = inbentarioa.etiketa) 
-            AND kokalekua.amaieraData IS NOT NULL)
-            AND kokalekua.etiketa = inbentarioa.etiketa 
-            AND ekipamendua.id = inbentarioa.idEkipamendu 
-            AND kokalekua.idGela = gela.id";
-            $izena = "";
-            $kat = "";
-            $stock = 0;
-            $emaitza = $conn->select($sql);
-            
+            $error = $conn->query($sql);
             $conn->die();
+            return $error;
         }
     }    
 ?>
