@@ -50,7 +50,17 @@
         }
 
         function inbent_ezabatu($etiketa){
+            $sql = "UPDATE ekipamendua SET ekipamendua.stock = ekipamendua.stock-1 WHERE ekipamendua.id = (SELECT inbentarioa.idEkipamendu FROM inbentarioa WHERE inbentarioa.etiketa = '".$etiketa."')";
+            $conn = new DB("localhost","root","","3wag2e1");
+            $error = $conn->query($sql);
             $sql = "DELETE FROM inbentarioa WHERE inbentarioa.etiketa = '". $etiketa . "'";
+            $error = $conn->query($sql);
+            $conn->die();
+            return $error;
+        }
+
+        function inbent_eguneratu($etiketa, $etiketa_berria){
+            $sql = "UPDATE inbentarioa SET inbentarioa.etiketa = UPPER('".$etiketa_berria."') WHERE inbentarioa.etiketa = '".$etiketa."'";
             $conn = new DB("localhost","root","","3wag2e1");
             $error = $conn->query($sql);
             $conn->die();
@@ -92,7 +102,17 @@
                 $sql = "UPDATE ekipamendua SET ekipamendua.stock = ".$stock." WHERE ekipamendua.id = ".$idEkipamendu;
                 $conn->query($sql);
             }
-            if ($kat == 1 || $kat == 2) {
+            $sql = "SELECT  kategoria.inb_yn FROM kategoria WHERE kategoria.id = ".$kat;
+            $inb = false;
+            $emaitza = $conn->select($sql);
+            if ($emaitza->num_rows > 0) {
+                $row = $emaitza->fetch_assoc();
+                $inb_yn = $row["inb_yn"];
+                if ($inb_yn == 1) {
+                    $inb = true;
+                }
+            }
+            if ($inb) {
                 $sql = "INSERT INTO inbentarioa (etiketa, idEkipamendu, erosketaData) VALUES ('$etiketa', $idEkipamendu, '$erosketaData');";
                 $conn->query($sql);
                 $inbentarioa = new Inbentarioa($etiketa, $izena, $erosketaData);

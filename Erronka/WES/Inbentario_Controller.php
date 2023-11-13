@@ -55,7 +55,13 @@
     }
 
     if($_SERVER["REQUEST_METHOD"]=="PUT"){
-
-        
+        $json_data = file_get_contents("php://input");
+        $data = json_decode($json_data,true);
+        $error = "";
+        if (isset($data["etiketa"]) && isset($data["etiketa_berria"])) {
+            $error = $inbentario->inbent_eguneratu($data["etiketa"],$data["etiketa_berria"]);
+        }
+        $json = json_encode($error);
+        echo ($json);
     }
 ?>
