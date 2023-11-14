@@ -44,7 +44,11 @@
         }
 
         function kokaleku_info_kargatu(){
-            $sql = "SELECT ekipamendua.izena as ekipIzena, kokalekua.etiketa, gela.izena as gelaIzena, kokalekua.hasieraData, kokalekua.amaieraData FROM kokalekua, gela, ekipamendua, inbentarioa  WHERE kokalekua.idGela = gela.id AND inbentarioa.idEkipamendu = ekipamendua.id AND inbentarioa.etiketa = kokalekua.etiketa";
+            $sql = "SELECT ekipamendua.izena as ekipIzena, kokalekua.etiketa, gela.izena as gelaIzena, kokalekua.hasieraData, kokalekua.amaieraData 
+            FROM kokalekua, gela, ekipamendua, inbentarioa  
+            WHERE kokalekua.idGela = gela.id 
+            AND inbentarioa.idEkipamendu = ekipamendua.id 
+            AND inbentarioa.etiketa = kokalekua.etiketa";
             $this->informazioa_karga($sql);
         }
 
