@@ -44,6 +44,11 @@
             $this->informazioa_karga($sql);
         }
 
+        function kokaleku_art_kok_karga(){
+            $sql = "SELECT inbentarioa.etiketa, ekipamendua.izena, inbentarioa.erosketaData FROM inbentarioa, ekipamendua WHERE inbentarioa.etiketa IN (SELECT kokalekua.etiketa FROM kokalekua WHERE kokalekua.amaieraData IS NULL OR kokalekua.amaieraData < curdate()) AND inbentarioa.idEkipamendu = ekipamendua.id";
+            $this->informazioa_karga($sql);
+        }
+
         function inbentario_info_kargatu(){
             $sql = "SELECT inbentarioa.etiketa, ekipamendua.izena, inbentarioa.erosketaData FROM inbentarioa, ekipamendua  WHERE inbentarioa.idEkipamendu = ekipamendua.id";
             $this->informazioa_karga($sql);

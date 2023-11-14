@@ -9,8 +9,12 @@
 
     if($_SERVER["REQUEST_METHOD"]=="GET"){
         if (isset($_GET["kok_art"])) {
-            $inbentario->kokaleku_art_karga();
-        }else{
+            $inbentario_berria = new InbentarioList();
+            $inbentario_aldaketa = new InbentarioList();
+            $inbentario_berria->kokaleku_art_karga();
+            $inbentario_aldaketa->kokaleku_art_kok_karga();
+            $inbentario = ["berria"=>$inbentario_berria,"aldaketa"=>$inbentario_aldaketa];
+        } else {
             $inbentario->inbentario_info_kargatu();
         }
         $json = json_encode($inbentario);

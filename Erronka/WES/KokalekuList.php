@@ -48,7 +48,7 @@
             $this->informazioa_karga($sql);
         }
 
-        function kokaleku_ezabatu(){
+        function kokaleku_ezabatu($etiketa,$hasieraData){
             $sql = "DELETE FROM kokalekua WHERE kokalekua.etiketa = '". $etiketa . "' AND kokalekua.hasieraData = '". $hasieraData . "'";
             $conn = new DB("localhost","root","","3wag2e1");
             $error = $conn->query($sql);
@@ -58,6 +58,13 @@
 
         function add_kokaleku($sql){
             $conn = new DB("localhost", "root", "", "3wag2e1");
+            $error = $conn->query($sql);
+            $conn->die();
+            return $error;
+        }
+
+        function kokaleku_eguneratu($sql) {
+            $conn = new DB("localhost","root","","3wag2e1");
             $error = $conn->query($sql);
             $conn->die();
             return $error;
