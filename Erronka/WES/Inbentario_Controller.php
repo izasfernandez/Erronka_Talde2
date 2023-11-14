@@ -8,7 +8,11 @@
     $inbentario = new InbentarioList();
 
     if($_SERVER["REQUEST_METHOD"]=="GET"){
-        $inbentario->inbentario_info_kargatu();
+        if (isset($_GET["kok_art"])) {
+            $inbentario->kokaleku_art_karga();
+        }else{
+            $inbentario->inbentario_info_kargatu();
+        }
         $json = json_encode($inbentario);
         echo ($json);
     }

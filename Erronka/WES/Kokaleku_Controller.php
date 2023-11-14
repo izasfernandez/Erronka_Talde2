@@ -24,4 +24,29 @@
         echo ($json);
     }
 
+    if($_SERVER["REQUEST_METHOD"]=="POST"){
+        $json_data = file_get_contents("php://input");
+        $data = json_decode($json_data,true);
+        $error = "";
+        $sql = "";
+        $adata = "";
+        $hdata = "";
+        if (empty($data["adata"])) {
+            $adata = "NULL";
+        }else{
+            $adata = "'".$data["adata"]."'";
+        }
+        if (empty($data["hdata"])) {
+            $gaurkodata = time();
+            $hdata = date('Y-m-d', $gaurkodata);
+        }else{
+            $hdata = $data["hdata"];
+        }
+        if (isset($data["art"]) && isset($data["gela"])) {
+            $sql = "INSERT INTO kokalekua VALUES('".$data["art"]."',".$data["gela"].",'".$hdata."',".$adata.")";
+            $error = $kokaleku->add_kokaleku($sql);
+        }
+        $json = json_encode($error);
+        echo ($json);
+    }
 ?>
