@@ -50,7 +50,7 @@
             }
             $conn->die();
             $id_kat++;
-            return $id_kat++;
+            return $id_kat;
         }
 
         function kategoria_kargatu()
