@@ -54,7 +54,6 @@
         public function erabiltzailea_sesion_kargatu($nan)
         {
             $sql = "SELECT * FROM erabiltzailea WHERE erabiltzailea.nan = '".$nan."'";
-            echo $sql;
             $this->informazioa_karga($sql);
         }
 
