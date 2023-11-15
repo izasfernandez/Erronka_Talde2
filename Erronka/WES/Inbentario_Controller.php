@@ -43,9 +43,10 @@
         if (isset($data["idEkipamendu"])) {
             var_dump($data);
             for ($i=0; $i < $data["stck"]; $i++) { 
+                echo"aaa";
                 $inbentario->add_inbent($data["idEkipamendu"],$erosketaData);
-                $json = json_encode($inbentario);
             }
+            $json = json_encode($inbentario);
         }else{
             if (isset($data["bilaketa"])) {
                 $filtroa = " AND LOWER(inbentarioa.etiketa) LIKE '%".$data["bilaketa"]."%'";
