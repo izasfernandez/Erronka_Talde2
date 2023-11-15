@@ -25,7 +25,7 @@
             session_start();
             $erabil = new erabiltzailea();
             echo $_SESSION["nan"];
-            $erabil->erabiltzailea_sesion_kargatu($_SESSION["nan"]);
+            $erabil->erabiltzailea_sesion_kargatu("79434309z");
             $json = json_encode($erabil);
             echo ($json);
         }
