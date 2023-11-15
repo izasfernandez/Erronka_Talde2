@@ -75,6 +75,7 @@
         {
             $sql = "SELECT * FROM erabiltzailea WHERE erabiltzailea.nan = '".$nan."'";
             $exist = false;
+            echo $sql;
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $emaitza = $conn->select($sql);
