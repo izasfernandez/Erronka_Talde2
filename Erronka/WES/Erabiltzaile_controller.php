@@ -22,7 +22,7 @@
             }
             echo ($json);
         }else{
-            session_start();
+            // session_start();
             $erabil = new erabiltzailea();
             echo $_SESSION["nan"];
             $erabil->erabiltzailea_sesion_kargatu("79434309z");
