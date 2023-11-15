@@ -8,10 +8,10 @@
     include("Erabiltzailea.php");
 
     if($_SERVER["REQUEST_METHOD"]=="GET"){
-        echo $_GET["erabil"];
         if (isset($_GET["erabil"])) {
             $erabil = new erabiltzailea();
             $error = $erabil->erabiltzailea_kargatu($_GET["erabil"]);
+            // echo $_SESSION["nan"];
             if(!$error){
                 $json = json_encode($error);
             }else{
@@ -22,6 +22,7 @@
             echo ($json);
         }else{
             session_start();
+            echo $_SESSION["nan"];
             $erabil = new erabiltzailea();
             echo $_SESSION["nan"];
             $erabil->erabiltzailea_sesion_kargatu($_SESSION["nan"]);
