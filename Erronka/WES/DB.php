@@ -12,7 +12,7 @@
             $this->username = $username;
             $this->password = $password;
             $this->db_conexioa = $db_conexioa;
-            $this->conn = new mysqli($servername, $username, $password, $db_conexioa);
+            $this->conn = new mysqli("localhost", "root", "", "3wag2e1");
             if ($this->conn->connect_error) {
                 die("Connection failed: " . $this->conn->connect_error);
             }

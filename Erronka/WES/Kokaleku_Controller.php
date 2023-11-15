@@ -31,24 +31,45 @@
         $data = json_decode($json_data,true);
         $error = "";
         $sql = "";
-        $adata = "";
-        $hdata = "";
-        if (empty($data["adata"])) {
-            $adata = "NULL";
+        if (isset($data["kontsulta"])) {
+            if (isset($data["artikulua"])) {
+                $sql = "  AND kokalekua.etiketa IN (SELECT inbentarioa.etiketa FROM inbentarioa WHERE inbentarioa.idEkipamendu IN (SELECT ekipamendua.id FROM ekipamendua WHERE LOWER(ekipamendua.izena) LIKE LOWER('%".$data["artikulua"]."%')))";
+            }
+            if (!empty($data["hData_f"])) {
+                $sql = $sql." AND kokalekua.hasieraData <= '".$data["hData_f"]."'";
+            }
+            if (!empty($data["hData_t"])) {
+                $sql = $sql." AND kokalekua.hasieraData >= '".$data["hData_t"]."'";
+            }
+            if (!empty($data["hData_f"])) {
+                $sql = $sql." AND kokalekua.amaieraData <= '".$data["aData_f"]."'";
+            }
+            if (!empty($data["hData_t"])) {
+                $sql = $sql." AND kokalekua.amaieraData >= '".$data["aData_t"]."'";
+            }
+            $kokaleku->kokaleku_filtratu($sql);
+            $json = json_encode($kokaleku);
         }else{
-            $adata = "'".$data["adata"]."'";
+            $adata = "";
+            $hdata = "";
+            if (empty($data["adata"])) {
+                $adata = "NULL";
+            }else{
+                $adata = "'".$data["adata"]."'";
+            }
+            if (empty($data["hdata"])) {
+                $gaurkodata = time();
+                $hdata = date('Y-m-d', $gaurkodata);
+            }else{
+                $hdata = $data["hdata"];
+            }
+            if (isset($data["art"]) && isset($data["gela"])) {
+                $sql = "INSERT INTO kokalekua VALUES('".$data["art"]."',".$data["gela"].",'".$hdata."',".$adata.")";
+                $error = $kokaleku->add_kokaleku($sql);
+            }
+            $json = json_encode($error);
         }
-        if (empty($data["hdata"])) {
-            $gaurkodata = time();
-            $hdata = date('Y-m-d', $gaurkodata);
-        }else{
-            $hdata = $data["hdata"];
-        }
-        if (isset($data["art"]) && isset($data["gela"])) {
-            $sql = "INSERT INTO kokalekua VALUES('".$data["art"]."',".$data["gela"].",'".$hdata."',".$adata.")";
-            $error = $kokaleku->add_kokaleku($sql);
-        }
-        $json = json_encode($error);
+        
         echo ($json);
     }
 

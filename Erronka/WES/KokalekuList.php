@@ -52,6 +52,15 @@
             $this->informazioa_karga($sql);
         }
 
+        function kokaleku_filtratu($filtro){
+            $sql = "SELECT ekipamendua.izena as ekipIzena, kokalekua.etiketa, gela.izena as gelaIzena, kokalekua.hasieraData, kokalekua.amaieraData 
+            FROM kokalekua, gela, ekipamendua, inbentarioa  
+            WHERE kokalekua.idGela = gela.id 
+            AND inbentarioa.idEkipamendu = ekipamendua.id 
+            AND inbentarioa.etiketa = kokalekua.etiketa".$filtro;
+            $this->informazioa_karga($sql);
+        }
+
         function kokaleku_ezabatu($etiketa,$hasieraData){
             $sql = "DELETE FROM kokalekua WHERE kokalekua.etiketa = '". $etiketa . "' AND kokalekua.hasieraData = '". $hasieraData . "'";
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
