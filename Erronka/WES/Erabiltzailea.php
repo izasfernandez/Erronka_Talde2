@@ -13,12 +13,12 @@
 
        function __construct()
        {
-            $this->nan = "ikasle123";
-            $this->izena = "ikasle123";
-            $this->abizena = "ikasle123";
-            $this->erabiltzailea = "ikasle123";
-            $this->pasahitza = "ikasle123";
-            $this->rola = "ikasle123";
+            $this->nan = "";
+            $this->izena = "";
+            $this->abizena = "";
+            $this->erabiltzailea = "";
+            $this->pasahitza = "";
+            $this->rola = "";
         }
 
         public function informazioa_karga($sql)
