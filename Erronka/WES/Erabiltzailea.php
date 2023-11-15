@@ -13,18 +13,18 @@
 
        function __construct()
        {
-            $this->nan = "";
-            $this->izena = "";
-            $this->abizena = "";
-            $this->erabiltzailea = "";
-            $this->pasahitza = "";
-            $this->rola = "";
+            $this->nan = "ikasle123";
+            $this->izena = "ikasle123";
+            $this->abizena = "ikasle123";
+            $this->erabiltzailea = "ikasle123";
+            $this->pasahitza = "ikasle123";
+            $this->rola = "ikasle123";
         }
 
         public function informazioa_karga($sql)
         {
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $emaitza = $conn->select($sql);
             if ($emaitza->num_rows > 0) {
                 while ($row = $emaitza->fetch_assoc()) {
@@ -62,7 +62,7 @@
             $sql = "SELECT * FROM erabiltzailea WHERE erabiltzailea.erabiltzailea = '".$erabiltzailea."'";
             $exist = false;
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $emaitza = $conn->select($sql);
             if ($emaitza->num_rows > 0) {
                 $exist = true;
@@ -76,7 +76,7 @@
             $sql = "SELECT * FROM erabiltzailea WHERE erabiltzailea.nan = '".$nan."'";
             $exist = false;
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $emaitza = $conn->select($sql);
             if ($emaitza->num_rows > 0) {
                 $exist = true;
@@ -89,7 +89,7 @@
         {
             $sql = "SELECT erabiltzailea.nan, erabiltzailea.izena, erabiltzailea.abizena FROM erabiltzailea";
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $kontsulta = $conn->select($sql);
             $emaitza = $kontsulta->fetch_all(MYSQLI_ASSOC);
             $conn->die();
@@ -98,7 +98,7 @@
 
         function ezabatu($sql)
         {
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $error = $conn->query($sql);
             $conn->die();
             return $error;
@@ -106,7 +106,7 @@
 
         function gehitu($sql)
         {
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $error = $conn->query($sql);
             $conn->die();
             return $error;
@@ -114,7 +114,7 @@
 
         function eguneratu($sql)
         {
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $error = $conn->query($sql);
             $conn->die();
             return $error;

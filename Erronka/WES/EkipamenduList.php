@@ -37,7 +37,7 @@
         function informazioa_karga($sql)
         {
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $emaitza = $conn->select($sql);
             if ($emaitza->num_rows > 0) {
                 while ($row = $emaitza->fetch_assoc()) {
@@ -68,7 +68,7 @@
 
         function eguneratu($sql)
         {
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $error = $conn->query($sql);
             $conn->die();
             return $error;
@@ -77,7 +77,7 @@
         function markak_kargatu()
         {
             $sql = "SELECT DISTINCT(ekipamendua.marka) FROM ekipamendua;";
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $kontsulta = $conn->select($sql);
             $markak = $kontsulta->fetch_all(MYSQLI_ASSOC);
             $conn->die();
@@ -86,7 +86,7 @@
 
         function ezabatu($sql)
         {
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $error = $conn->query($sql);
             $conn->die();
             return $error;
@@ -96,7 +96,7 @@
         {
             $id = 0;
             $sql = "SELECT MAX(ekipamendua.id) AS id FROM ekipamendua;";
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $kontsulta = $conn->select($sql);
             if ($kontsulta->num_rows > 0) {
                 while ($row = $kontsulta->fetch_assoc()) {
@@ -112,7 +112,7 @@
 
         function gehitu($sql)
         {
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $conn->query($sql);
             $conn->die();
         }
@@ -122,7 +122,7 @@
             $sql = "SELECT * FROM ekipamendua WHERE LOWER(ekipamendua.izena) = LOWER(".$izena.")";
             $exist = false;
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $emaitza = $conn->select($sql);
             if ($emaitza->num_rows > 0) {
                 $exist = true;

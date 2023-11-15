@@ -32,7 +32,7 @@
         function informazioa_karga($sql)
         {
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $emaitza = $conn->select($sql);
             if ($emaitza->num_rows > 0) {
                 while ($row = $emaitza->fetch_assoc()){
@@ -54,21 +54,21 @@
 
         function kokaleku_ezabatu($etiketa,$hasieraData){
             $sql = "DELETE FROM kokalekua WHERE kokalekua.etiketa = '". $etiketa . "' AND kokalekua.hasieraData = '". $hasieraData . "'";
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $error = $conn->query($sql);
             $conn->die();
             return $error;
         }
 
         function add_kokaleku($sql){
-            $conn = new DB("localhost", "root", "", "3wag2e1");
+            $conn = new DB("192.168.201.102", "talde2", "ikasle123", "3wag2e1");
             $error = $conn->query($sql);
             $conn->die();
             return $error;
         }
 
         function kokaleku_eguneratu($sql) {
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $error = $conn->query($sql);
             $conn->die();
             return $error;

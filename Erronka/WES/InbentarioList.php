@@ -27,7 +27,7 @@
         function informazioa_karga($sql)
         {
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $emaitza = $conn->select($sql);
             if ($emaitza->num_rows > 0) {
                 while ($row = $emaitza->fetch_assoc()) {
@@ -61,7 +61,7 @@
 
         function inbent_ezabatu($etiketa){
             $sql = "UPDATE ekipamendua SET ekipamendua.stock = ekipamendua.stock-1 WHERE ekipamendua.id = (SELECT inbentarioa.idEkipamendu FROM inbentarioa WHERE inbentarioa.etiketa = '".$etiketa."')";
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $error = $conn->query($sql);
             $sql = "DELETE FROM inbentarioa WHERE inbentarioa.etiketa = '". $etiketa . "'";
             $error = $conn->query($sql);
@@ -71,7 +71,7 @@
 
         function inbent_eguneratu($etiketa, $etiketa_berria){
             $sql = "UPDATE inbentarioa SET inbentarioa.etiketa = UPPER('".$etiketa_berria."') WHERE inbentarioa.etiketa = '".$etiketa."'";
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $error = $conn->query($sql);
             $conn->die();
             return $error;
@@ -97,10 +97,10 @@
             while($this->etiketaExists($etiketa)){
                 $etiketa = $this->generateRandomEtiketa();
             }
-            $conn = new DB("localhost", "root", "", "3wag2e1");
+            $conn = new DB("192.168.201.102", "talde2", "ikasle123", "3wag2e1");
             $sql = "SELECT ekipamendua.izena, ekipamendua.stock, ekipamendua.idKategoria FROM ekipamendua WHERE ekipamendua.id = ".$idEkipamendu;
-            $izena = "";
-            $kat = "";
+            $izena = "ikasle123";
+            $kat = "ikasle123";
             $stock = 0;
             $emaitza = $conn->select($sql);
             if ($emaitza->num_rows > 0) {
@@ -133,7 +133,7 @@
         
         function etiketaExists($etiketa) {
             $sql = "SELECT inbentarioa.etiketa FROM inbentarioa WHERE inbentarioa.etiketa = '$etiketa';";
-            $conn = new DB("localhost", "root", "", "3wag2e1");
+            $conn = new DB("192.168.201.102", "talde2", "ikasle123", "3wag2e1");
             $result = $conn->select($sql);
             $exist = false;
             if ($result->num_rows > 0) {

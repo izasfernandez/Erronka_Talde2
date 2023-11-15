@@ -27,7 +27,7 @@ class Gela
         function informazioa_karga($sql)
         {
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $emaitza = $conn->select($sql);
             if ($emaitza->num_rows > 0) {
                 while ($row = $emaitza->fetch_assoc()) {
@@ -52,7 +52,7 @@ class Gela
 
         function gela_ezabatu($sql)
         {
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $error = $conn->query($sql);
             $conn->die();
             return $error;
@@ -60,7 +60,7 @@ class Gela
 
         function gela_eguneratu($sql)
         {
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $error = $conn->query($sql);
             $conn->die();
             return $error;
@@ -70,7 +70,7 @@ class Gela
         {
             $sql = "SELECT MAX(gela.id) as max FROM gela";
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $emaitza = $conn->select($sql);
             $id_gela = 0;
             if ($emaitza->num_rows > 0) {
@@ -85,7 +85,7 @@ class Gela
 
         function gela_gehitu($sql)
         {
-            $conn = new DB("localhost","root","","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $error = $conn->query($sql);
             $conn->die();
             return $error;
