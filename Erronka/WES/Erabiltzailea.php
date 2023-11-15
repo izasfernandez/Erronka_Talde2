@@ -47,15 +47,14 @@
         public function erabiltzailea_kargatu($erabiltzailea)
         {
             $sql = "SELECT * FROM erabiltzailea WHERE erabiltzailea.erabiltzailea = '".$erabiltzailea."'";
-            echo $sql;
             $error = $this->informazioa_karga($sql);
-            echo $error;
             return $error;
         }
 
         public function erabiltzailea_sesion_kargatu($nan)
         {
             $sql = "SELECT * FROM erabiltzailea WHERE erabiltzailea.nan = '".$nan."'";
+            echo $sql;
             $this->informazioa_karga($sql);
         }
 
