@@ -16,6 +16,7 @@
             }else{
                 session_start();
                 $_SESSION["nan"] = $erabil->nan;
+                echo $_SESSION["nan"];
                 $json = json_encode($erabil);
             }
             echo ($json);
