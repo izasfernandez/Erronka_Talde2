@@ -8,6 +8,7 @@
     include("Erabiltzailea.php");
 
     if($_SERVER["REQUEST_METHOD"]=="GET"){
+        echo $_GET["erabil"];
         if (isset($_GET["erabil"])) {
             $erabil = new erabiltzailea();
             $error = $erabil->erabiltzailea_kargatu($_GET["erabil"]);
