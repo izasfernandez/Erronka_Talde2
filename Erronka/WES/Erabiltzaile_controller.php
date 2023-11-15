@@ -23,7 +23,7 @@
             echo ($json);
         }else{
             session_start();
-            echo session.use_cookies;
+            echo "aaa";
             $erabil = new erabiltzailea();
             echo $_SESSION["nan"];
             $erabil->erabiltzailea_sesion_kargatu($_SESSION["nan"]);
