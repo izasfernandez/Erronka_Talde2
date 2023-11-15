@@ -41,7 +41,7 @@
         $gaurkodata = time();
         $erosketaData = date('Y-m-d', $gaurkodata);
         if (isset($data["idEkipamendu"])) {
-            echo "aa";
+            var_dump($data);
             for ($i=0; $i < $data["stck"]; $i++) { 
                 $inbentario->add_inbent($data["idEkipamendu"],$erosketaData);
                 $json = json_encode($inbentario);
