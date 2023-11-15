@@ -17,13 +17,11 @@
             }else{
                 session_start();
                 $_SESSION["nan"] = $erabil->nan;
-                echo $_SESSION["nan"];
                 $json = json_encode($erabil);
             }
             echo ($json);
         }else{
             session_start();
-            echo $_SESSION["nan"];
             $erabil = new erabiltzailea();
             echo $_SESSION["nan"];
             $erabil->erabiltzailea_sesion_kargatu($_SESSION["nan"]);
