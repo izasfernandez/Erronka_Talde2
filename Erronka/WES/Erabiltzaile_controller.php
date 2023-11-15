@@ -17,13 +17,15 @@
                 $json = json_encode($error);
             }else{
                 session_start();
+                ini_set('session.use_only_cookies', 1);
                 $_SESSION["nan"] = $erabil->nan;
                 $json = json_encode($erabil);
             }
             echo ($json);
         }else{
             session_start();
-            echo "aaa";
+            // echo "aaa";
+            // echo session.use_cookies;
             $erabil = new erabiltzailea();
             echo $_SESSION["nan"];
             $erabil->erabiltzailea_sesion_kargatu($_SESSION["nan"]);
