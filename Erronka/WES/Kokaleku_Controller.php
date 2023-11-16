@@ -48,6 +48,7 @@
             if (!empty($data["hData_t"])) {
                 $sql = $sql." AND kokalekua.amaieraData >= '".$data["aData_t"]."'";
             }
+            echo $sql;
             $kokaleku->kokaleku_filtratu($sql);
             $json = json_encode($kokaleku);
         }else{
