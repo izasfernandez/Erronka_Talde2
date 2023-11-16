@@ -21,7 +21,7 @@
        public $rola;
 
         /**
-        * Gelaren konstruktorea
+        * Erabiltzailea gelaren konstruktorea
         * @access public
         */
        function __construct()
