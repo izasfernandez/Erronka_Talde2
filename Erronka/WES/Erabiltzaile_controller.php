@@ -16,14 +16,13 @@
             if(!$error){
                 $json = json_encode($error);
             }else{
-                ini_set('session.use_only_cookies', 1);
                 session_start();
-                ini_set('session.use_only_cookies', 1);
                 $_SESSION["nan"] = $erabil->nan;
                 $json = json_encode($erabil);
             }
             echo ($json);
         }else{
+            ini_set('session.use_only_cookies', 1);
             session_start();
             // echo "aaa";
             // echo session.use_cookies;
