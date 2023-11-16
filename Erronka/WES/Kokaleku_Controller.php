@@ -90,8 +90,8 @@
             $error = $kokaleku->kokaleku_eguneratu($sql);
             $sql = "INSERT INTO kokalekua VALUES('".$data["etiketa"]."',".$data["gela"].",'".$gaur."',NULL)";
             $error = $kokaleku->add_kokaleku($sql);
+            $json = json_encode($error);
         }
-        $json = json_encode($error);
         echo ($json);
     }
 ?>

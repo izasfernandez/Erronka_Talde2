@@ -48,10 +48,14 @@
         $json_data = file_get_contents("php://input");
         $data = json_decode($json_data,true);
         $kategoriak = new kategoriaList();
-        if (isset($data["izena"])) {
-            $idkat = $kategoriak->id_max();
-            $sql = "INSERT INTO kategoria VALUES (".$idkat.",'".$data["izena"]."',".$data["inb"].")";
-            $error = $kategoriak->kategoria_gehitu($sql);
+        if (isset($data["kategoria_izena"])) {
+            $error = $kategoriak->kategoria_konprobatu($data["kategoria_izena"]);
+        }else{
+            if (isset($data["izena"])) {
+                $idkat = $kategoriak->id_max();
+                $sql = "INSERT INTO kategoria VALUES (".$idkat.",'".$data["izena"]."',".$data["inb"].")";
+                $error = $kategoriak->kategoria_gehitu($sql);
+            }
         }
         $json = json_encode($error);
         echo ($json);

@@ -53,6 +53,20 @@
             return $id_kat;
         }
 
+        function kategoria_konprobatu($izena)
+        {
+            $sql = "SELECT kategoria.id FROM kategoria WHERE LOWER(kategoria.izena) = '".$izena."'";
+            // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
+            $emaitza = $conn->select($sql);
+            $error = false;
+            if ($emaitza->num_rows > 0) {
+                $error = true;
+            }
+            $conn->die();
+            return $error;
+        }
+
         function kategoria_kargatu()
         {
             $sql = "SELECT * FROM kategoria";
