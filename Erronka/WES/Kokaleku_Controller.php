@@ -34,7 +34,7 @@
         $sql = "";
         if (isset($data["kontsulta"])) {
             if (isset($data["artikulua"])) {
-                $sql = "  AND kokalekua.etiketa IN (SELECT inbentarioa.etiketa FROM inbentarioa WHERE inbentarioa.idEkipamendu IN (SELECT ekipamendua.id FROM ekipamendua WHERE LOWER(ekipamendua.izena) LIKE LOWER('%".$data["artikulua"]."%')))";
+                $sql = " AND kokalekua.etiketa IN (SELECT inbentarioa.etiketa FROM inbentarioa WHERE inbentarioa.idEkipamendu IN (SELECT ekipamendua.id FROM ekipamendua WHERE LOWER(ekipamendua.izena) LIKE LOWER('%".$data["artikulua"]."%')))";
             }
             if (!empty($data["hData_f"])) {
                 $sql = $sql." AND kokalekua.hasieraData <= '".$data["hData_f"]."'";
@@ -48,7 +48,6 @@
             if (!empty($data["hData_t"])) {
                 $sql = $sql." AND kokalekua.amaieraData >= '".$data["aData_t"]."'";
             }
-            echo $sql;
             $kokaleku->kokaleku_filtratu($sql);
             $json = json_encode($kokaleku);
         }else{

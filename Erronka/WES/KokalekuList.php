@@ -58,6 +58,7 @@
             WHERE kokalekua.idGela = gela.id 
             AND inbentarioa.idEkipamendu = ekipamendua.id 
             AND inbentarioa.etiketa = kokalekua.etiketa".$filtro;
+            echo $sql;
             $this->informazioa_karga($sql);
         }
 
