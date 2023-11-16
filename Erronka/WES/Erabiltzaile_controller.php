@@ -16,21 +16,23 @@
             if(!$error){
                 $json = json_encode($error);
             }else{
-                ini_set('session.use_only_cookies', 1);
-                session_start();
-                $_SESSION["nan"] = $erabil->nan;
+                // ini_set('session.use_only_cookies', 1);
+                // session_start();
+                // $_SESSION["nan"] = $erabil->nan;
                 $json = json_encode($erabil);
             }
             echo ($json);
         }else{
-            ini_set('session.use_only_cookies', 1);
-            session_start();
+            // ini_set('session.use_only_cookies', 1);
+            // session_start();
             // echo "aaa";
             // echo session.use_cookies;
-            $erabil = new erabiltzailea();
-            // echo $_SESSION["nan"];
-            $erabil->erabiltzailea_sesion_kargatu($_SESSION["nan"]);
-            $json = json_encode($erabil);
+            if (isset($_GET["nan"])) {
+                $erabil = new erabiltzailea();
+                // echo $_SESSION["nan"];
+                $erabil->erabiltzailea_sesion_kargatu($_GET["nan"]);
+                $json = json_encode($erabil);
+            }          
             echo ($json);
         }
     }
