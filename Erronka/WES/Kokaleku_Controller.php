@@ -99,7 +99,7 @@
         $gaurkodata = time();
         $gaur = date('Y-m-d', $gaurkodata);
         if (isset($data["etiketa"]) && isset($data["gela"])) {
-            $sql = "UPDATE kokalekua SET kokalekua.amaieraData = '".$gaur."' WHERE kokalekua.etiketa ='".$data["etiketa"]."' AND kokalekua.hasieraData = (SELECT MAX(kokalekua.hasieraData)  FROM kokalekua WHERE kokalekua.etiketa = '".$data["etiketa"]."')";
+            $sql = "UPDATE kokalekua SET kokalekua.amaieraData = '".$gaur."' WHERE kokalekua.etiketa ='".$data["etiketa"]."' AND kokalekua.hasieraData = (SELECT MAX(kokalekua.hasieraData)  WHERE kokalekua.etiketa = '".$data["etiketa"]."')";
             $error = $kokaleku->kokaleku_eguneratu($sql);
             $sql = "INSERT INTO kokalekua VALUES('".$data["etiketa"]."',".$data["gela"].",'".$gaur."',NULL)";
             $error = $kokaleku->add_kokaleku($sql);
