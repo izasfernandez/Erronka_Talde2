@@ -22,7 +22,7 @@
             }
             echo ($json);
         }else{
-            ini_set('session.use_only_cookies', 1);
+            // ini_set('session.use_only_cookies', 1);
             session_start();
             // echo "aaa";
             // echo session.use_cookies;
