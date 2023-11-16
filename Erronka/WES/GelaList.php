@@ -66,18 +66,33 @@
             $conn->die();
         }
 
+        /**
+         * Gelak filtroan kargatzen duen funtzioa da (sql sententzia)
+         * @access public
+         */
         function gela_kargatu()
         {
             $sql = "SELECT * FROM gela";
             $this->informazioa_karga($sql);
         }
 
+        /**
+         * Gelaren informazioa kargatzen duen funtzioa da
+         * @access public
+         * @param $id
+         */
         function gela_info_kargatu($id)
         {
             $sql = "SELECT * FROM gela WHERE gela.id = ".$id;
             $this->informazioa_karga($sql);
         }
 
+        /**
+         * Gelaren ezabatzen duen funtzioa da
+         * @access public
+         * @param $sql
+         * @return $error
+         */
         function gela_ezabatu($sql)
         {
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
@@ -86,6 +101,11 @@
             return $error;
         }
 
+        /**
+         * Gelaren informazioa eguneratzen duen funtzioa da
+         * @access public
+         * @param $sql
+         */
         function gela_eguneratu($sql)
         {
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
@@ -94,10 +114,14 @@
             return $error;
         }
 
+        /**
+         * Gelaren id handiena esaten duen funtzioa
+         * @access public
+         * @return $id_gela
+         */
         function id_max()
         {
             $sql = "SELECT MAX(gela.id) as max FROM gela";
-            // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $emaitza = $conn->select($sql);
             $id_gela = 0;
@@ -111,6 +135,12 @@
             return $id_gela;
         }
 
+        /**
+         * Gela gehitzen duen funtzioa da
+         * @access public
+         * @param $sql
+         * @return $error
+         */
         function gela_gehitu($sql)
         {
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");

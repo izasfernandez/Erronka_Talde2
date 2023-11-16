@@ -1,13 +1,29 @@
 <?php
+
+    /**
+     * Fitxategiak gehitzen ditu
+     * DB.php
+     * Listak_inter.php
+     */
     include("DB.php");
     include("Listak_Inter.php");
 
+    /**
+     * Inbentarioa sortzen dituen gela da
+     */
     class Inbentarioa
     {
         public $etiketa;
         public $idEkipamendu;
         public $erosketaData;
 
+        /**
+         * Inbentario gelaren konstruktorea
+         * @access public
+         * @param $etiketa
+         * @param $idEkipamendu
+         * @param $erosketaData
+         */
         function __construct($etiketa,$idEkipamendu,$erosketaData){
             $this->etiketa = $etiketa;
             $this->idEkipamendu = $idEkipamendu;
@@ -15,18 +31,30 @@
         }
     }
     
+    /**
+     * Inbentarioaren arraya sortzen dituen gela da
+     * Listak interfasea inplementatzen da
+     */
     class InbentarioList implements Listak
     {
         public $inbList;
 
+        /**
+         * Inbentarioaren arraya gelaren konstruktorea
+         * @access public
+         */
         function __construct()
         {
             $this->inbList = [];
         }
 
+        /**
+         * Inbentarioaren informazioa kargatzen duen funtzioa da
+         * @access public
+         * @param $sql
+         */
         function informazioa_karga($sql)
         {
-            // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $emaitza = $conn->select($sql);
             if ($emaitza->num_rows > 0) {
@@ -39,26 +67,49 @@
             $conn->die();
         }
 
+        /**
+         * Kokalekuaren artikuluak kargatzen duen funtzioa da (sql sententzia)
+         * @access public
+         */
         function kokaleku_art_karga(){
             $sql = "SELECT inbentarioa.etiketa, ekipamendua.izena, inbentarioa.erosketaData FROM inbentarioa, ekipamendua where (inbentarioa.etiketa NOT IN (SELECT kokalekua.etiketa FROM kokalekua) OR inbentarioa.etiketa IN (SELECT kokalekua.etiketa FROM kokalekua WHERE kokalekua.amaieraData IS NOT NULL AND kokalekua.amaieraData < curdate())) AND inbentarioa.idEkipamendu = ekipamendua.id";
             $this->informazioa_karga($sql);
         }
 
+        /**
+         * Kokalekuaren artikuluen kokalekuak kargatzen duen funtzioa da (sql sententzia)
+         * @access public
+         */
         function kokaleku_art_kok_karga(){
             $sql = "SELECT inbentarioa.etiketa, ekipamendua.izena, inbentarioa.erosketaData FROM inbentarioa, ekipamendua WHERE inbentarioa.etiketa IN (SELECT kokalekua.etiketa FROM kokalekua WHERE kokalekua.amaieraData IS NULL OR kokalekua.amaieraData < curdate()) AND inbentarioa.idEkipamendu = ekipamendua.id";
             $this->informazioa_karga($sql);
         }
 
+        /**
+         * Inbentarioaren artikuluak kargatzen duen funtzioa da (sql sententzia)
+         * @access public
+         */
         function inbentario_info_kargatu(){
             $sql = "SELECT inbentarioa.etiketa, ekipamendua.izena, inbentarioa.erosketaData FROM inbentarioa, ekipamendua  WHERE inbentarioa.idEkipamendu = ekipamendua.id";
             $this->informazioa_karga($sql);
         }
 
+        /**
+         * Inbentarioaren filtroak kargatzen duen funtzioa da (sql sententzia)
+         * @access public
+         * @param $filtroa
+         */
         function inbentario_info_filtroz_kargatu($filtroa){
             $sql = "SELECT inbentarioa.etiketa, ekipamendua.izena, inbentarioa.erosketaData FROM inbentarioa, ekipamendua  WHERE inbentarioa.idEkipamendu = ekipamendua.id".$filtroa;
             $this->informazioa_karga($sql);
         }
 
+        /**
+         * Inbentarioa ezabatzen duen funtzioa da (sql sententzia)
+         * @access public
+         * @param $etiketa
+         * @return $error
+         */
         function inbent_ezabatu($etiketa){
             $sql = "UPDATE ekipamendua SET ekipamendua.stock = ekipamendua.stock-1 WHERE ekipamendua.id = (SELECT inbentarioa.idEkipamendu FROM inbentarioa WHERE inbentarioa.etiketa = '".$etiketa."')";
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
@@ -69,6 +120,13 @@
             return $error;
         }
 
+        /**
+         * Inbentarioa eguneratzen duen funtzioa da (sql sententzia)
+         * @access public
+         * @param $etiketa
+         * @param $etiketa_berria
+         * @return $error
+         */
         function inbent_eguneratu($etiketa, $etiketa_berria){
             $sql = "UPDATE inbentarioa SET inbentarioa.etiketa = UPPER('".$etiketa_berria."') WHERE inbentarioa.etiketa = '".$etiketa."'";
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
@@ -77,6 +135,11 @@
             return $error;
         }
 
+        /**
+         * Etiketa aleatorio bat sortzen duen funtzioa (3 letra eta 3 zenbaki)
+         * @access public
+         * @return $etiketa
+         */
         function generateRandomEtiketa() {
             $letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $numbers = '0123456789';
@@ -92,6 +155,13 @@
             return $etiketa;
         }
 
+        /**
+         * Inbentarioan artikuluak gehitzen eta eguneratzen duen funtzioa da 
+         * @access public
+         * @param $idEkipamendu
+         * @param $erosketaData
+         * @return $exist
+         */
         function add_inbent($idEkipamendu,$erosketaData){
             $etiketa = $this->generateRandomEtiketa();
             while($this->etiketaExists($etiketa)){
@@ -131,6 +201,12 @@
             $conn->die();
         }
         
+        /**
+         * Etiketa existitzen den begiratzen duen funtzioa da 
+         * @access public
+         * @param $etiketa
+         * @return $exist
+         */
         function etiketaExists($etiketa) {
             $sql = "SELECT inbentarioa.etiketa FROM inbentarioa WHERE inbentarioa.etiketa = '$etiketa';";
             $conn = new DB("192.168.201.102", "talde2", "ikasle123", "3wag2e1");
