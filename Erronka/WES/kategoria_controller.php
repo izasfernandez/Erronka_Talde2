@@ -49,6 +49,7 @@
         $data = json_decode($json_data,true);
         $kategoriak = new kategoriaList();
         if (isset($data["kategoria_izena"])) {
+            echo "aaa";
             $error = $kategoriak->kategoria_gehitu($data["kategoria_izena"]);
         }else{
             if (isset($data["izena"])) {
