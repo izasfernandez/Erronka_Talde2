@@ -6,6 +6,10 @@
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     // header("Content-Type: application/json; charset=UTF-8");
 
+    /**
+     * Fitxategiak gehitzen ditu
+     * KokalekuList.php
+     */
     include("KokalekuList.php");
 
     $kokaleku = new KokalekuList();

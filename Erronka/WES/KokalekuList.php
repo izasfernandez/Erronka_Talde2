@@ -1,5 +1,9 @@
 <?php
-
+    /**
+     * Fitxategiak gehitzen ditu
+     * DB.php
+     * Listak_Inter.php
+     */
     include("DB.php");
     include("Listak_Inter.php");
 

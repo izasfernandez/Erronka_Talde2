@@ -1,7 +1,15 @@
 <?php
+    /**
+     * Fitxategiak gehitzen ditu
+     * DB.php
+     * Listak_inter.php
+     */
     include("DB.php");
     include("Listak_Inter.php");
 
+    /**
+     * Ekipamendua sortzen duen gela da
+     */
     class Ekipamendua
     {
         public $id;
@@ -13,6 +21,18 @@
         public $idKategoria;
         public $url;
 
+        /**
+         * Ekipamenduaren konstruktorea
+         * @access public
+         * @param $id
+         * @param $izena
+         * @param $deskribapena
+         * @param $marka
+         * @param $modeloa
+         * @param $stock
+         * @param $idKategoria
+         * @param $url
+         */
         function __construct($id,$izena,$deskribapena,$marka,$modeloa,$stock,$idKategoria,$url){
             $this->id = $id;
             $this->izena = $izena;
