@@ -45,18 +45,28 @@
         }
     }
 
+    /**
+     * Ekipamenduaren arraya sortzen duen gela da
+     */
     class EkipamenduList implements Listak
     {
         public $ekipList;
 
+        /**
+         * Ekipamenduaren arrayaren konstruktorea
+         */
         function __construct()
         {
             $this->ekipList = [];
         }
 
+        /**
+         * Ekipamenduaren informazioa kargatzen duen funtzioa 
+         * @access public
+         * @param $sql
+         */
         function informazioa_karga($sql)
         {
-            // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $emaitza = $conn->select($sql);
             if ($emaitza->num_rows > 0) {
@@ -68,24 +78,45 @@
             $conn->die();
         }
 
+        /**
+         * Artikuluen informazioa kargatzen duen funtzioa da
+         * @access public
+         * @param $id
+         * @return boolean
+         */
         function artikulu_info_kargatu($id)
         {
             $sql = "SELECT * FROM ekipamendua WHERE ekipamendua.id = ".$id;
             $this->informazioa_karga($sql);
         }
 
+        /**
+         * Artikuluak kargatzen dituen funtzioa da
+         * @access public
+         */
         function artikuluak_kargatu()
         {
             $sql = "SELECT * FROM ekipamendua";
             $this->informazioa_karga($sql);
         }
 
+        /**
+         * Artikuluak filtratzen dituen funtzioa da
+         * @access public
+         * @param $queryFiltroa
+         */
         function artikuluak_filtratu($queryFiltroa)
         {
             $sql = "SELECT * FROM ekipamendua".$queryFiltroa;
             $this->informazioa_karga($sql);
         }
 
+        /**
+         * Artikuluak eguneratzen dituen funtzioa da
+         * @access public
+         * @param $sql
+         * @return $error
+         */
         function eguneratu($sql)
         {
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
@@ -94,6 +125,11 @@
             return $error;
         }
 
+        /**
+         * Markak kargatzen dituen funtzioa da
+         * @access public
+         * @return $markak
+         */
         function markak_kargatu()
         {
             $sql = "SELECT DISTINCT(ekipamendua.marka) FROM ekipamendua;";
@@ -104,6 +140,12 @@
             return $markak;
         }
 
+        /**
+         * Ekipamendua ezabatzen duen funtzioa da
+         * @access public
+         * @param $sql
+         * @return $error
+         */
         function ezabatu($sql)
         {
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
@@ -112,6 +154,18 @@
             return $error;
         }
 
+        /**
+         * Ekipamendua gehitzen duen funtzioa da
+         * @access public
+         * @param $izena
+         * @param $desk
+         * @param $marka
+         * @param $model
+         * @param $url
+         * @param $kat
+         * @param $stck
+         * @return $ekipamendua
+         */
         function add($izena,$desk,$marka,$model,$url,$kat,$stck)
         {
             $id = 0;
@@ -130,6 +184,11 @@
             return $ekipamendua;
         }
 
+        /**
+         * Ekipamendua gehitzeko bidaltzen duen sql-aren funtzioa da
+         * @access public
+         * @param $sql
+         */
         function gehitu($sql)
         {
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
@@ -137,6 +196,12 @@
             $conn->die();
         }
 
+        /**
+         * Ekipamenduaren izena existitzen den konprobatzen duen funtzioa da
+         * @access public
+         * @param $izena
+         * @return $exist
+         */
         function izena_existitu($izena)
         {
             $sql = "SELECT * FROM ekipamendua WHERE LOWER(ekipamendua.izena) = LOWER(".$izena.")";

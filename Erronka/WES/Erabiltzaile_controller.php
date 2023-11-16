@@ -1,10 +1,10 @@
 <?php
-    // header("Access-Control-Allow-Headers:{$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
-    // header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+    // Edozein jatorritatik sartzeko aukera ematen du
     header("Access-Control-Allow-Origin: *");
+    // Eskaeran zehaztutako goiburuak onartzen ditu
     header("Access-Control-Allow-Headers: Content-Type");
+    // Zehaztutako HTTP metodoak ahalbidetzen ditu
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-    // header("Content-Type: application/json; charset=UTF-8");
 
     /**
      * Fitxategiak gehitzen ditu
@@ -12,28 +12,22 @@
      */
     include("Erabiltzailea.php");
 
+    /**
+     * GET bidez deia egiten denean, behar den informazioa JSON-en bidez bidaltzen duen baldintza 
+     */
     if($_SERVER["REQUEST_METHOD"]=="GET"){
         if (isset($_GET["erabil"])) {
             $erabil = new erabiltzailea();
             $error = $erabil->erabiltzailea_kargatu($_GET["erabil"]);
-            // echo $_SESSION["nan"];
             if(!$error){
                 $json = json_encode($error);
             }else{
-                // ini_set('session.use_only_cookies', 1);
-                // session_start();
-                // $_SESSION["nan"] = $erabil->nan;
                 $json = json_encode($erabil);
             }
             echo ($json);
         }else{
-            // ini_set('session.use_only_cookies', 1);
-            // session_start();
-            // echo "aaa";
-            // echo session.use_cookies;
             if (isset($_GET["nan"])) {
                 $erabil = new erabiltzailea();
-                // echo $_SESSION["nan"];
                 $erabil->erabiltzailea_sesion_kargatu($_GET["nan"]);
                 $json = json_encode($erabil);
             }          
@@ -41,6 +35,9 @@
         }
     }
 
+    /**
+     * DELETE bidez deia egiten denean, behar den informazioa JSON-en bidez bidaltzen duen baldintza 
+     */
     if($_SERVER["REQUEST_METHOD"]=="DELETE"){
         $json_data = file_get_contents("php://input");
         $data = json_decode($json_data,true);
@@ -54,6 +51,9 @@
         echo ($json);
     }
 
+    /**
+     * PUT bidez deia egiten denean, behar den informazioa JSON-en bidez bidaltzen duen baldintza 
+     */
     if($_SERVER["REQUEST_METHOD"]=="PUT"){
         $json_data = file_get_contents("php://input");
         $data = json_decode($json_data,true);
@@ -70,6 +70,9 @@
         echo ($json);
     }
 
+    /**
+     * POST bidez deia egiten denean, behar den informazioa JSON-en bidez bidaltzen duen baldintza 
+     */
     if($_SERVER["REQUEST_METHOD"]=="POST"){
         $json_data = file_get_contents("php://input");
         $data = json_decode($json_data,true);

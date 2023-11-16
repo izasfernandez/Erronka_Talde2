@@ -7,6 +7,9 @@
     include("DB.php");
     include("Listak_Inter.php");
 
+    /**
+     * Kokalekua sortzen duen gela da
+     */
     class Kokalekua
     {
         public $etiketa;
@@ -15,6 +18,15 @@
         public $adata;
         public $izena;
 
+        /**
+         * Kokalekuaren konstruktorea
+         * @access public
+         * @param $etiketa
+         * @param $idGela
+         * @param $hdata
+         * @param $adata
+         * @param $izena
+         */
         function __construct($etiketa,$idGela,$hdata,$adata,$izena){
             $this->etiketa = $etiketa;
             $this->idGela = $idGela;
@@ -24,18 +36,30 @@
         }
     }
     
+    /**
+     * Kokaleku arraia sortzen duen gela da
+     * Listak interfasea inplementatzen da
+     */
     class kokalekuList implements Listak
     {
         public $kokList;
 
+        /**
+         * Kokalekuaren arrayaren konstruktorea
+         * @access public
+         */
         function __construct()
         {
             $this->kokList = [];
         }
 
+        /**
+         * Kokalekua kargatzen duen funtzioa
+         * @access public
+         * @param $sql
+         */
         function informazioa_karga($sql)
         {
-            // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $emaitza = $conn->select($sql);
             if ($emaitza->num_rows > 0) {
@@ -47,6 +71,10 @@
             $conn->die();
         }
 
+        /**
+         * Kokalekuaren informazioa kargatzen duen funtzioa
+         * @access public
+         */
         function kokaleku_info_kargatu(){
             $sql = "SELECT ekipamendua.izena as ekipIzena, kokalekua.etiketa, gela.izena as gelaIzena, kokalekua.hasieraData, kokalekua.amaieraData 
             FROM kokalekua, gela, ekipamendua, inbentarioa  
@@ -56,6 +84,11 @@
             $this->informazioa_karga($sql);
         }
 
+        /**
+         * Kokalekuaren informazioa filtratzen duen funtzioa
+         * @access public
+         * @param $filtro
+         */
         function kokaleku_filtratu($filtro){
             $sql = "SELECT ekipamendua.izena as ekipIzena, kokalekua.etiketa, gela.izena as gelaIzena, kokalekua.hasieraData, kokalekua.amaieraData 
             FROM kokalekua, gela, ekipamendua, inbentarioa  
@@ -65,6 +98,13 @@
             $this->informazioa_karga($sql);
         }
 
+        /**
+         * Kokalekua ezabatzen duen funtzioa
+         * @access public
+         * @param $etiketa
+         * @param $hasieraData
+         * @return $error
+         */
         function kokaleku_ezabatu($etiketa,$hasieraData){
             $sql = "DELETE FROM kokalekua WHERE kokalekua.etiketa = '". $etiketa . "' AND kokalekua.hasieraData = '". $hasieraData . "'";
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
@@ -73,6 +113,12 @@
             return $error;
         }
 
+        /**
+         * Kokalekua gehitzen duen funtzioa
+         * @access public
+         * @param $sql
+         * @return $error
+         */
         function add_kokaleku($sql){
             $conn = new DB("192.168.201.102", "talde2", "ikasle123", "3wag2e1");
             $error = $conn->query($sql);
@@ -80,6 +126,12 @@
             return $error;
         }
 
+        /**
+         * Kokalekua eguneratzen duen funtzioa
+         * @access public
+         * @param $sql
+         * @return $error
+         */
         function kokaleku_eguneratu($sql) {
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $error = $conn->query($sql);
