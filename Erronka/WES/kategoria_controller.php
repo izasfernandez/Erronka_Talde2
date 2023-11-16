@@ -50,12 +50,12 @@
         $kategoriak = new kategoriaList();
         if (isset($data["kategoria_izena"])) {
             echo "aaa";
-            $error = $kategoriak->kategoria_gehitu($data["kategoria_izena"]);
+            $error = $kategoriak->kategoria_konprobatu($data["kategoria_izena"]);
         }else{
             if (isset($data["izena"])) {
                 $idkat = $kategoriak->id_max();
                 $sql = "INSERT INTO kategoria VALUES (".$idkat.",'".$data["izena"]."',".$data["inb"].")";
-                $error = $kategoriak->kategoria_konprobatu($sql);
+                $error = $kategoriak->kategoria_gehitu($sql);
             }
         }
         $json = json_encode($error);
