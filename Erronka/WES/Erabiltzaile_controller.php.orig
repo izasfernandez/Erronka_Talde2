@@ -17,8 +17,11 @@
                 $json = json_encode($error);
             }else{
                 ini_set('session.use_only_cookies', 1);
+<<<<<<< Updated upstream
                 session_start();
-                ini_set('session.use_only_cookies', 1);
+=======
+                echo session.save_path;
+>>>>>>> Stashed changes
                 $_SESSION["nan"] = $erabil->nan;
                 $json = json_encode($erabil);
             }
