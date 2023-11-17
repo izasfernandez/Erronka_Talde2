@@ -150,7 +150,8 @@
         }
 
         function izenaExists($izena) {
-            $sql = "SELECT izena.id FROM izena WHERE gela.izena = '$izena';";
+            $sql = "SELECT izena.id FROM izena WHERE gela.izena = '".$izena."'";
+            echo $sql;
             $conn = new DB("192.168.201.102", "talde2", "ikasle123", "3wag2e1");
             $result = $conn->select($sql);
             $exist = false;
