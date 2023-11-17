@@ -64,8 +64,11 @@
         $json_data = file_get_contents("php://input");
         $data = json_decode($json_data,true);
         if (isset($data["kontsulta"])) {
+            echo "bbb";
             if (isset($data["gela"])) {
+                echo "aaa";
                 $exist = $gela->izenaExists($data["gela"]);
+                echo $exist;
                 $json = json_encode($exist);
             }
         }else{
