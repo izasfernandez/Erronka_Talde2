@@ -86,10 +86,17 @@
         $json_data = file_get_contents("php://input");
         $data = json_decode($json_data,true);
         $error = "";
-        if (isset($data["etiketa"]) && isset($data["etiketa_berria"])) {
-            $error = $inbentario->inbent_eguneratu($data["etiketa"],$data["etiketa_berria"]);
+        if (isset($data["kontsulta"])) {
+            if (isset($data["etiketa"])) {
+                $exist = $inbentario->etiketaExists($data["etiketa"]);
+                $json = json_encode($exist);
+            }
+        }else{
+            if (isset($data["etiketa"]) && isset($data["etiketa_berria"])) {
+                $error = $inbentario->inbent_eguneratu($data["etiketa"],$data["etiketa_berria"]);
+            }
+            $json = json_encode($error);
         }
-        $json = json_encode($error);
         echo ($json);
     }
 ?>
