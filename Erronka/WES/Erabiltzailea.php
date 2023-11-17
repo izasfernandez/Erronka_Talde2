@@ -37,8 +37,8 @@
         /**
          * Erabiltzaileen informazioa kargatzen duen funtzioa da
          * @access public
-         * @param $sql
-         * @return boolean
+         * @param $sql - exekutatuko den sql kontsulta
+         * @return boolean - Kargaren emaitza
          */
         public function informazioa_karga($sql)
         {
@@ -63,8 +63,8 @@
         /**
          * Erabiltzailea kargatzen duen funtzioa da
          * @access public
-         * @param $erabiltzailea
-         * @return $error
+         * @param $erabiltzailea - Erabiltzailearen erabiltzaile gakoa
+         * @return $error - Kontsultaren emaitza
          */
         public function erabiltzailea_kargatu($erabiltzailea)
         {
@@ -76,7 +76,7 @@
         /**
          * Erabiltzailearen sesioa kargatzen duen funtzioa da
          * @access public
-         * @param $nan
+         * @param $nan - erabiltzailearen nan
          */
         public function erabiltzailea_sesion_kargatu($nan)
         {
@@ -87,8 +87,8 @@
         /**
          * Erabiltzailea existitzen den konprobatzen duen funtzioa da
          * @access public
-         * @param $erabiltzailea
-         * @return $exist
+         * @param $erabiltzailea - Erabiltzailearen erabiltzaile gakoa
+         * @return $exist - Boolean bat: True existitzen bada/False ez bada existitzen
          */
         public function erabiltzailea_konprobatu($erabiltzailea)
         {
@@ -107,8 +107,8 @@
         /**
          * Erabiltzailearen nan-a existitzen den konprobatzen duen funtzioa da
          * @access public
-         * @param $nan
-         * @return $exist
+         * @param $nan - erabiltzailearen nan
+         * @return $exist - Boolean bat: True existitzen bada/False ez bada existitzen
          */
         public function erabiltzailea_nan_konprobatu($nan)
         {
@@ -127,7 +127,7 @@
         /**
          * Erabiltzaileak kargatzen duen funtzioa da
          * @access public
-         * @return $emaitza
+         * @return $emaitza - kontsultaren informazioa
          */
         public function erabiltzaileak_kargatu()
         {
@@ -143,8 +143,8 @@
         /**
          * Erabiltzailea ezabatzen duen funtzioa da
          * @access public
-         * @param $sql
-         * @return $error
+         * @param $sql - exekutatu behar den sql kontsulta
+         * @return $error - kontsultaren emaitza
          */
         function ezabatu($sql)
         {
@@ -157,8 +157,8 @@
         /**
          * Erabiltzailea gehitzen duen funtzioa da
          * @access public
-         * @param $sql
-         * @return $error
+         * @param $sql - Exekutatu behar den sql kontsulta
+         * @return $error - Kontsultaren emaitza
          */
         function gehitu($sql)
         {
@@ -171,8 +171,8 @@
         /**
          * Erabiltzailea eguneratzen duen funtzioa da
          * @access public
-         * @param $sql
-         * @return $error
+         * @param $sql - Exekutatu behar den sql kontsulta
+         * @return $error - Kontsultaren emaitza
          */
         function eguneratu($sql)
         {
@@ -182,6 +182,12 @@
             return $error;
         }
 
+        /**
+         * NAN formatu zuzena duen edo ez konprobatzen duen funtzioa
+         * @access public
+         * @param $nan - Erabiltzailearen nan
+         * @return $correcto - Zuzena den edo ez
+         */
         function nan_konprobaketa($nan){
             $nan_zenb = intval(preg_replace('/^[A-Z]/','',$nan));
             $nan_letra = preg_replace('/^[0-9]+/','',$nan);
@@ -194,7 +200,13 @@
             }
             return $correcto;   
         }
-    
+        
+        /**
+         * NAN-ren hondarraren ondorioz euki behar duen hizkia kalkulatzen du
+         * @access public
+         * @param $i_hondarra - NAN-ren hondarra
+         * @return String - Hizkia
+         */
         function nan_hizkia($i_hondarra){
             switch ($i_hondarra) {
                 case 0:

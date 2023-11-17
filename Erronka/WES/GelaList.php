@@ -20,9 +20,9 @@
         /**
          * Gela gelaren konstruktorea
          * @access public
-         * @param $id
-         * @param $izena
-         * @param $taldea
+         * @param $id - gelaren id
+         * @param $izena - gelaren izena
+         * @param $taldea - gelaren taldea
          */
         function __construct($id,$izena,$taldea){
             $this->id = $id;
@@ -51,7 +51,7 @@
         /**
          * Gelaren informazioa kargatzen duen funtzioa da
          * @access public
-         * @param $sql
+         * @param $sql - Exekutatu behar den sql kontsulta
          */
         function informazioa_karga($sql)
         {
@@ -79,7 +79,7 @@
         /**
          * Gelaren informazioa kargatzen duen funtzioa da
          * @access public
-         * @param $id
+         * @param $id - gelaren id
          */
         function gela_info_kargatu($id)
         {
@@ -90,8 +90,8 @@
         /**
          * Gelaren ezabatzen duen funtzioa da
          * @access public
-         * @param $sql
-         * @return $error
+         * @param $sql - Exekutatu behar den sql kontsulta
+         * @return $error - kontsultaren emaitza
          */
         function gela_ezabatu($sql)
         {
@@ -104,7 +104,7 @@
         /**
          * Gelaren informazioa eguneratzen duen funtzioa da
          * @access public
-         * @param $sql
+         * @param $sql - Exekutatu behar den sql kontsulta
          */
         function gela_eguneratu($sql)
         {
@@ -117,7 +117,7 @@
         /**
          * Gelaren id handiena esaten duen funtzioa
          * @access public
-         * @return $id_gela
+         * @return $id_gela - gelaren id
          */
         function id_max()
         {
@@ -138,8 +138,8 @@
         /**
          * Gela gehitzen duen funtzioa da
          * @access public
-         * @param $sql
-         * @return $error
+         * @param $sql - Exekutatu behar den sql kontsulta
+         * @return $error - kontsultaren emaitza
          */
         function gela_gehitu($sql)
         {
@@ -149,6 +149,12 @@
             return $error;
         }
 
+        /**
+         * Gelaren izena existitzen den konprobatzen duen funtzioa
+         * @access public
+         * @param $izena - Gelaren izena
+         * @return $exist - existitzen den edo ez
+         */
         function izenaExists($izena) {
             $sql = "SELECT gela.id FROM gela WHERE gela.izena = '".$izena."'";
             $conn = new DB("192.168.201.102", "talde2", "ikasle123", "3wag2e1");

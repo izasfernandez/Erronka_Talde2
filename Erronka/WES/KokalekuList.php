@@ -21,11 +21,11 @@
         /**
          * Kokalekuaren konstruktorea
          * @access public
-         * @param $etiketa
-         * @param $idGela
-         * @param $hdata
-         * @param $adata
-         * @param $izena
+         * @param $etiketa - kokalekuaren etiketa
+         * @param $idGela - kokalekuaren gelaren id
+         * @param $hdata - kokalekuaren hasiera data
+         * @param $adata - kokalekuaren amaiera data
+         * @param $izena - kokalekuaren ekipamenduaren izena
          */
         function __construct($etiketa,$idGela,$hdata,$adata,$izena){
             $this->etiketa = $etiketa;
@@ -56,7 +56,7 @@
         /**
          * Kokalekua kargatzen duen funtzioa
          * @access public
-         * @param $sql
+         * @param $sql - Exekutatu behar den sql kontsulta
          */
         function informazioa_karga($sql)
         {
@@ -87,7 +87,7 @@
         /**
          * Kokalekuaren informazioa filtratzen duen funtzioa
          * @access public
-         * @param $filtro
+         * @param $filtro - kontsultaren baldintza gehigarriak
          */
         function kokaleku_filtratu($filtro){
             $sql = "SELECT ekipamendua.izena as ekipIzena, kokalekua.etiketa, gela.izena as gelaIzena, kokalekua.hasieraData, kokalekua.amaieraData 
@@ -101,9 +101,9 @@
         /**
          * Kokalekua ezabatzen duen funtzioa
          * @access public
-         * @param $etiketa
-         * @param $hasieraData
-         * @return $error
+         * @param $etiketa - kokalekuaren etiketa
+         * @param $hasieraData - kokalekuaren hasiera data
+         * @return $error - kontsultaren emaitza
          */
         function kokaleku_ezabatu($etiketa,$hasieraData){
             $sql = "DELETE FROM kokalekua WHERE kokalekua.etiketa = '". $etiketa . "' AND kokalekua.hasieraData = '". $hasieraData . "'";
@@ -116,8 +116,8 @@
         /**
          * Kokalekua gehitzen duen funtzioa
          * @access public
-         * @param $sql
-         * @return $error
+         * @param $sql - Exekutatu behar den sql kontsulta
+         * @return $error - kontsultaren emaitza
          */
         function add_kokaleku($sql){
             $conn = new DB("192.168.201.102", "talde2", "ikasle123", "3wag2e1");
@@ -129,8 +129,8 @@
         /**
          * Kokalekua eguneratzen duen funtzioa
          * @access public
-         * @param $sql
-         * @return $error
+         * @param $sql - Exekutatu behar den sql kontsulta
+         * @return $error - kontsultaren emaitza
          */
         function kokaleku_eguneratu($sql) {
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");

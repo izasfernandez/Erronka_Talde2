@@ -24,14 +24,14 @@
         /**
          * Ekipamenduaren konstruktorea
          * @access public
-         * @param $id
-         * @param $izena
-         * @param $deskribapena
-         * @param $marka
-         * @param $modeloa
-         * @param $stock
-         * @param $idKategoria
-         * @param $url
+         * @param $id - artikuluaren id
+         * @param $izena - artikuluaren izena
+         * @param $deskribapena - artikuluaren deskribapena
+         * @param $marka - artikuluaren marka
+         * @param $modeloa - artikuluaren modeloa
+         * @param $stock . artikuluaren stock kantitatea
+         * @param $idKategoria - artikuluaren kategoria
+         * @param $url - artikuluaren irudia
          */
         function __construct($id,$izena,$deskribapena,$marka,$modeloa,$stock,$idKategoria,$url){
             $this->id = $id;
@@ -63,7 +63,7 @@
         /**
          * Ekipamenduaren informazioa kargatzen duen funtzioa 
          * @access public
-         * @param $sql
+         * @param $sql - Executatuko den sql kontsulta
          */
         function informazioa_karga($sql)
         {
@@ -81,8 +81,7 @@
         /**
          * Artikuluen informazioa kargatzen duen funtzioa da
          * @access public
-         * @param $id
-         * @return boolean
+         * @param $id - Artikuluaren id-a
          */
         function artikulu_info_kargatu($id)
         {
@@ -103,7 +102,7 @@
         /**
          * Artikuluak filtratzen dituen funtzioa da
          * @access public
-         * @param $queryFiltroa
+         * @param $queryFiltroa - kontsultaren baldintza gehigarriak
          */
         function artikuluak_filtratu($queryFiltroa)
         {
@@ -114,8 +113,8 @@
         /**
          * Artikuluak eguneratzen dituen funtzioa da
          * @access public
-         * @param $sql
-         * @return $error
+         * @param $sql - Executatuko den sql kontsulta
+         * @return $error - kontsultaren emaitza
          */
         function eguneratu($sql)
         {
@@ -128,7 +127,7 @@
         /**
          * Markak kargatzen dituen funtzioa da
          * @access public
-         * @return $markak
+         * @return $markak - Artikuluaren marka
          */
         function markak_kargatu()
         {
@@ -143,8 +142,8 @@
         /**
          * Ekipamendua ezabatzen duen funtzioa da
          * @access public
-         * @param $sql
-         * @return $error
+         * @param $sql - Executatuko den sql kontsulta
+         * @return $error - Kontsultaren emaitza 
          */
         function ezabatu($sql)
         {
@@ -157,14 +156,14 @@
         /**
          * Ekipamendua gehitzen duen funtzioa da
          * @access public
-         * @param $izena
-         * @param $desk
-         * @param $marka
-         * @param $model
-         * @param $url
-         * @param $kat
-         * @param $stck
-         * @return $ekipamendua
+         * @param $izena - Artikuluaren izena
+         * @param $desk - Artikuluaren deskribapena
+         * @param $marka - Artikuluaren marka
+         * @param $model - Artikuluaren modeloa
+         * @param $url - Artikuluaren irudia
+         * @param $kat - Artikuluaren Kategoria
+         * @param $stck - Artikuluaren stock kantitatea
+         * @return $ekipamendua - Artikuluaren objetua
          */
         function add($izena,$desk,$marka,$model,$url,$kat,$stck)
         {
@@ -187,7 +186,7 @@
         /**
          * Ekipamendua gehitzeko bidaltzen duen sql-aren funtzioa da
          * @access public
-         * @param $sql
+         * @param $sql - Executatuko den sql kontsulta
          */
         function gehitu($sql)
         {
@@ -199,8 +198,8 @@
         /**
          * Ekipamenduaren izena existitzen den konprobatzen duen funtzioa da
          * @access public
-         * @param $izena
-         * @return $exist
+         * @param $izena - Artikuluaren izena
+         * @return $exist - Boolean bat: True existitzen bada/False ez bada existitzen
          */
         function izena_existitu($izena)
         {
@@ -216,6 +215,13 @@
             return $exist;
         }
 
+        /**
+         * Artikuluaren eguneraketan, izena jadanik existitzen den konprobatzen du
+         * @access public
+         * @param $izena - Artikuluaren izena
+         * @param $id - Artikuluaren id-a
+         * @return $exist - Boolean bat: True existitzen bada/False ez bada existitzen
+         */
         function izena_existitu_eguneratu($izena, $id)
         {
             $sql = "SELECT * FROM ekipamendua WHERE LOWER(ekipamendua.izena) = LOWER(".$izena.") AND ekipamendu.id != ".$id;

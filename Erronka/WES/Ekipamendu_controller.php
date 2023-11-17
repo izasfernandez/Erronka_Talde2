@@ -16,7 +16,7 @@
     $artikuluak = new EkipamenduList();
 
     /**
-     * GET bidez deia egiten denean, behar den informazioa JSON-en bidez bidaltzen duen baldintza 
+     * GET bidez deia egiten denean, behar den artikuluen informazioa JSON bidaltzen da 
      */
     if($_SERVER["REQUEST_METHOD"]=="GET"){
         if (isset($_GET["id_art"])) {
@@ -35,7 +35,7 @@
     }
 
     /**
-     * DELETE bidez deia egiten denean, behar den informazioa JSON-en bidez bidaltzen duen baldintza 
+     * DELETE bidez deia egiten denean, lortutako artikulua zerbitzaritik ezabatzen da 
      */
     if($_SERVER["REQUEST_METHOD"]=="DELETE"){
         $json_data = file_get_contents("php://input");
@@ -50,7 +50,7 @@
     }
 
     /**
-     * PUT bidez deia egiten denean, behar den informazioa JSON-en bidez bidaltzen duen baldintza 
+     * PUT bidez deia egiten denean, lortutako artikulua zerbitzarian eguneratzen da 
      */
     if($_SERVER["REQUEST_METHOD"]=="PUT"){
         $json_data = file_get_contents("php://input");
@@ -68,7 +68,8 @@
     }
 
     /**
-     * POST bidez deia egiten denean, behar den informazioa JSON-en bidez bidaltzen duen baldintza (filtroak baieztatzeko)
+     * POST bidez deia egiten denean, behar den informazioa JSON-en bidez bidaltzen duen baldintza (filtroak baieztatzeko), edota
+     * artikulu berria zerbitzarian txertatzen da
      */
     if($_SERVER["REQUEST_METHOD"]=="POST"){
         $query_filtroa = "";
