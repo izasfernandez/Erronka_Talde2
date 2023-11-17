@@ -63,12 +63,19 @@
     if($_SERVER["REQUEST_METHOD"]=="POST"){
         $json_data = file_get_contents("php://input");
         $data = json_decode($json_data,true);
-        if (isset($data["izena"]) && isset($data["taldea"])) {
-            $id_gela = $gela->id_max();
-            $sql = "INSERT INTO gela VALUES (".$id_gela.",'".$data["izena"]."','".$data["taldea"]."')";
-            $error = $gela->gela_gehitu($sql);
+        if (isset($data["kontsulta"])) {
+            if (isset($data["gela"])) {
+                $exist = $gela->izenaExists($data["gela"]);
+                $json = json_encode($exist);
+            }
+        }else{
+            if (isset($data["izena"]) && isset($data["taldea"])) {
+                $id_gela = $gela->id_max();
+                $sql = "INSERT INTO gela VALUES (".$id_gela.",'".$data["izena"]."','".$data["taldea"]."')";
+                $error = $gela->gela_gehitu($sql);
+            }
+            $json = json_encode($error);
         }
-        $json = json_encode($error);
         echo ($json);
     }
 ?>
