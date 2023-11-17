@@ -65,9 +65,7 @@
         $data = json_decode($json_data,true);
         if (isset($data["kontsulta"])) {
             if (isset($data["gela"])) {
-                echo $data["gela"];
                 $exist = $gela->izenaExists($data["gela"]);
-                echo $exist;
                 $json = json_encode($exist);
             }
         }else{
