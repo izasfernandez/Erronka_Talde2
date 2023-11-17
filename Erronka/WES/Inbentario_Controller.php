@@ -62,10 +62,12 @@
             }
         }else{
             if (isset($data["idEkipamendu"])) {
-                for ($i=0; $i < $data["stck"]; $i++) { 
-                    $inbentario->add_inbent($data["idEkipamendu"],$erosketaData);
-                }
-                $json = json_encode($inbentario);
+                if ($data["stck"] > 0) {
+                    for ($i=0; $i < $data["stck"]; $i++) { 
+                        $inbentario->add_inbent($data["idEkipamendu"],$erosketaData);
+                    }
+                    $json = json_encode($inbentario);
+                }                
             }else{
                 if (isset($data["bilaketa"])) {
                     $filtroa = " AND LOWER(inbentarioa.etiketa) LIKE '%".$data["bilaketa"]."%'";
@@ -92,9 +94,11 @@
     if($_SERVER["REQUEST_METHOD"]=="PUT"){
         $json_data = file_get_contents("php://input");
         $data = json_decode($json_data,true);
-        $error = "";
+        $error = "ERROR";
         if (isset($data["etiketa"]) && isset($data["etiketa_berria"])) {
-            $error = $inbentario->inbent_eguneratu($data["etiketa"],$data["etiketa_berria"]);
+            if (!$inbentario->etiketaExists($data["etiketa_berria"]) || $data["etiketa"] = $data["etiketa_berria"]) {
+                $error = $inbentario->inbent_eguneratu($data["etiketa"],$data["etiketa_berria"]);
+            }
         }
         $json = json_encode($error);
         echo ($json);

@@ -56,8 +56,11 @@
         $json_data = file_get_contents("php://input");
         $data = json_decode($json_data,true);
         $sql = "";
+        $error = "ERROR";
         if (isset($data["izena"])&&isset($data["desk"])&&isset($data["marka"])&&isset($data["modeloa"])&&isset($data["url"])&&isset($data["id"])) {
-            $sql = "UPDATE ekipamendua SET ekipamendua.izena = '".$data["izena"]."', ekipamendua.deskribapena = '".$data["desk"]."', ekipamendua.marka = '".$data["marka"]."', ekipamendua.modelo = '".$data["modeloa"]."', ekipamendua.img_url = '".$data["url"]."' WHERE ekipamendua.id = ".$data["id"];
+            if ($artikuluak->izena_existitu_eguneratu($data["izena"],$data["id"])) {
+                $sql = "UPDATE ekipamendua SET ekipamendua.izena = '".$data["izena"]."', ekipamendua.deskribapena = '".$data["desk"]."', ekipamendua.marka = '".$data["marka"]."', ekipamendua.modelo = '".$data["modeloa"]."', ekipamendua.img_url = '".$data["url"]."' WHERE ekipamendua.id = ".$data["id"];
+            }
         }
         $error = $artikuluak->eguneratu($sql);
         $json = json_encode($error);
@@ -124,10 +127,12 @@
                 $json = json_encode($artikuluak);
             } else {
                 if (isset($data["izena"])&&isset($data["desk"])&&isset($data["marka"])&&isset($data["model"])&&isset($data["url"])&&isset($data["kat"])) {
-                    if (isset($data["stck"])) {
-                        $ekipo = $artikuluak->add($data["izena"],$data["desk"],$data["marka"],$data["model"],$data["url"],$data["kat"],$data["stck"]);
-                    }else{
-                        $ekipo = $artikuluak->add($data["izena"],$data["desk"],$data["marka"],$data["model"],$data["url"],$data["kat"],0);
+                    if ($artikuluak->izena_existitu($data["izena"])) {
+                        if (isset($data["stck"])) {
+                            $ekipo = $artikuluak->add($data["izena"],$data["desk"],$data["marka"],$data["model"],$data["url"],$data["kat"],$data["stck"]);
+                        }else{
+                            $ekipo = $artikuluak->add($data["izena"],$data["desk"],$data["marka"],$data["model"],$data["url"],$data["kat"],0);
+                        }
                     }
                 }
                 $json = json_encode($ekipo);

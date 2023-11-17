@@ -58,14 +58,17 @@
         $json_data = file_get_contents("php://input");
         $data = json_decode($json_data,true);
         $erabil = new erabiltzailea();
+        $error = "ERROR";
         if (isset($data["izena"])&&isset($data["abizena"])&&isset($data["erabil"])&&isset($data["nan"])) {
-            if (empty($data["pasa"])) {
-                $sql = "UPDATE erabiltzailea SET erabiltzailea.izena = '".$data["izena"]."', erabiltzailea.abizena = '".$data["abizena"]."', erabiltzailea.erabiltzailea = '".$data["erabil"]."' WHERE erabiltzailea.nan = '".$data["nan"]."'";
-            }else{
-                $sql = "UPDATE erabiltzailea SET erabiltzailea.izena = '".$data["izena"]."', erabiltzailea.abizena = '".$data["abizena"]."', erabiltzailea.erabiltzailea = '".$data["erabil"]."', erabiltzailea.pasahitza = '".$data["pasa"]."' WHERE erabiltzailea.nan = '".$data["nan"]."'";
+            if (!$erabil->erabiltzailea_konprobatu($data["erabil"])) {
+                if (empty($data["pasa"])) {
+                    $sql = "UPDATE erabiltzailea SET erabiltzailea.izena = '".$data["izena"]."', erabiltzailea.abizena = '".$data["abizena"]."', erabiltzailea.erabiltzailea = '".$data["erabil"]."' WHERE erabiltzailea.nan = '".$data["nan"]."'";
+                }else{
+                    $sql = "UPDATE erabiltzailea SET erabiltzailea.izena = '".$data["izena"]."', erabiltzailea.abizena = '".$data["abizena"]."', erabiltzailea.erabiltzailea = '".$data["erabil"]."', erabiltzailea.pasahitza = '".$data["pasa"]."' WHERE erabiltzailea.nan = '".$data["nan"]."'";
+                }
             }
+            $error = $erabil->eguneratu($sql);
         }
-        $error = $erabil->eguneratu($sql);
         $json = json_encode($error);
         echo ($json);
     }
@@ -76,6 +79,7 @@
     if($_SERVER["REQUEST_METHOD"]=="POST"){
         $json_data = file_get_contents("php://input");
         $data = json_decode($json_data,true);
+        $error = "ERROR";
         $erabil = new erabiltzailea();
         if ($data["kontsulta"]) {
             if (isset($data["erabil"])) {
@@ -90,9 +94,11 @@
             }
         }else{
             if (isset($data["nan"])&&isset($data["izena"])&&isset($data["abizena"])&&isset($data["erabil"])&&isset($data["rol"])&&isset($data["pasa"])) {
-                $sql = "INSERT INTO erabiltzailea VALUES('".$data["nan"]."','".$data["izena"]."','".$data["abizena"]."','".$data["erabil"]."','".$data["pasa"]."','".$data["rol"]."')";
+                if ($erabil->nan_konprobaketa($data["nan"]) && !$erabil->erabiltzailea_nan_konprobatu($data["nan"]) && !$erabil->erabiltzailea_konprobatu($data["erabil"])) {
+                    $sql = "INSERT INTO erabiltzailea VALUES('".$data["nan"]."','".$data["izena"]."','".$data["abizena"]."','".$data["erabil"]."','".$data["pasa"]."','".$data["rol"]."')";
+                    $error = $erabil->gehitu($sql);
+                }
             }
-            $error = $erabil->gehitu($sql);
             $json = json_encode($error);
         }
         echo ($json);

@@ -215,6 +215,20 @@
             $conn->die();
             return $exist;
         }
+
+        function izena_existitu_eguneratu($izena, $id)
+        {
+            $sql = "SELECT * FROM ekipamendua WHERE LOWER(ekipamendua.izena) = LOWER(".$izena.") AND ekipamendu.id != ".$id;
+            $exist = false;
+            // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
+            $emaitza = $conn->select($sql);
+            if ($emaitza->num_rows > 0) {
+                $exist = true;
+            }
+            $conn->die();
+            return $exist;
+        }
     }
 
       

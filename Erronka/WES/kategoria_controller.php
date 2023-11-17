@@ -33,10 +33,13 @@
     if($_SERVER["REQUEST_METHOD"]=="PUT"){
         $json_data = file_get_contents("php://input");
         $data = json_decode($json_data,true);
+        $error = "ERROR";
         $kategoriak = new kategoriaList();
         if (isset($data["id"])&&isset($data["izena"])) {
-            $sql = "UPDATE kategoria SET kategoria.izena = '".$data["izena"]."' WHERE 3wag2e1.kategoria.id = ".$data["id"];
-            $error = $kategoriak->kategoria_eguneratu($sql);
+            if (!$kategoriak->kategoria_konprobatu_eguneratu($data["izena"],$data["id"])) {
+                $sql = "UPDATE kategoria SET kategoria.izena = '".$data["izena"]."' WHERE 3wag2e1.kategoria.id = ".$data["id"];
+                $error = $kategoriak->kategoria_eguneratu($sql);
+            }
         }
         $json = json_encode($error);
         echo ($json);
@@ -64,13 +67,16 @@
         $json_data = file_get_contents("php://input");
         $data = json_decode($json_data,true);
         $kategoriak = new kategoriaList();
+        $error = "ERROR";
         if (isset($data["kategoria_izena"])) {
             $error = $kategoriak->kategoria_konprobatu($data["kategoria_izena"]);
         }else{
             if (isset($data["izena"])) {
-                $idkat = $kategoriak->id_max();
-                $sql = "INSERT INTO kategoria VALUES (".$idkat.",'".$data["izena"]."',".$data["inb"].")";
-                $error = $kategoriak->kategoria_gehitu($sql);
+                if (!$kategoriak->kategoria_konprobatu($data["izena"])) {
+                    $idkat = $kategoriak->id_max();
+                    $sql = "INSERT INTO kategoria VALUES (".$idkat.",'".$data["izena"]."',".$data["inb"].")";
+                    $error = $kategoriak->kategoria_gehitu($sql);
+                }
             }
         }
         $json = json_encode($error);

@@ -103,6 +103,19 @@
             return $error;
         }
 
+        function kategoria_konprobatu_eguneratu($izena, $id)
+        {
+            $sql = "SELECT kategoria.id FROM kategoria WHERE LOWER(kategoria.izena) = '".$izena."' AND kategoria.id != ".$id;
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
+            $emaitza = $conn->select($sql);
+            $error = false;
+            if ($emaitza->num_rows > 0) {
+                $error = true;
+            }
+            $conn->die();
+            return $error;
+        }
+
         /**
          * Kategoria kargatzen duen funtzioa (sql sententzia)
          * @access public
