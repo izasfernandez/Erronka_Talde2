@@ -72,7 +72,7 @@
          * @access public
          */
         function kokaleku_art_karga(){
-            $sql = "SELECT inbentarioa.etiketa, ekipamendua.izena, inbentarioa.erosketaData FROM inbentarioa, ekipamendua where (inbentarioa.etiketa NOT IN (SELECT kokalekua.etiketa FROM kokalekua)";
+            $sql = "SELECT inbentarioa.etiketa, ekipamendua.izena, inbentarioa.erosketaData FROM inbentarioa, ekipamendua WHERE inbentarioa.etiketa NOT IN (SELECT kokalekua.etiketa FROM kokalekua)";
             $this->informazioa_karga($sql);
         }
 
