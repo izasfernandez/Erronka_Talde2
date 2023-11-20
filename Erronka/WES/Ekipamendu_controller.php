@@ -133,6 +133,8 @@
                         }else{
                             $ekipo = $artikuluak->add($data["izena"],$data["desk"],$data["marka"],$data["model"],$data["url"],$data["kat"],0);
                         }
+                    } else {
+                        $ekipo = "ERROR";
                     }
                 }
                 $json = json_encode($ekipo);
