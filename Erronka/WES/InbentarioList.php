@@ -20,9 +20,9 @@
         /**
          * Inbentario gelaren konstruktorea
          * @access public
-         * @param $etiketa
-         * @param $idEkipamendu
-         * @param $erosketaData
+         * @param $etiketa - inbentarioaren etiketa
+         * @param $idEkipamendu - inbentarioaren ekipamenduaren id
+         * @param $erosketaData - inbentarioaren erosketa data
          */
         function __construct($etiketa,$idEkipamendu,$erosketaData){
             $this->etiketa = $etiketa;
@@ -51,7 +51,7 @@
         /**
          * Inbentarioaren informazioa kargatzen duen funtzioa da
          * @access public
-         * @param $sql
+         * @param $sql - Exekutatu behar den sql kontsulta
          */
         function informazioa_karga($sql)
         {
@@ -97,7 +97,7 @@
         /**
          * Inbentarioaren filtroak kargatzen duen funtzioa da (sql sententzia)
          * @access public
-         * @param $filtroa
+         * @param $filtroa - sql kontsultaren baldintza gehigarriak
          */
         function inbentario_info_filtroz_kargatu($filtroa){
             $sql = "SELECT inbentarioa.etiketa, ekipamendua.izena, inbentarioa.erosketaData FROM inbentarioa, ekipamendua  WHERE inbentarioa.idEkipamendu = ekipamendua.id".$filtroa;
@@ -107,8 +107,8 @@
         /**
          * Inbentarioa ezabatzen duen funtzioa da (sql sententzia)
          * @access public
-         * @param $etiketa
-         * @return $error
+         * @param $etiketa - inbentarioaren etiketa
+         * @return $error - kontsultaren emaitza
          */
         function inbent_ezabatu($etiketa){
             $sql = "UPDATE ekipamendua SET ekipamendua.stock = ekipamendua.stock-1 WHERE ekipamendua.id = (SELECT inbentarioa.idEkipamendu FROM inbentarioa WHERE inbentarioa.etiketa = '".$etiketa."')";
@@ -123,9 +123,9 @@
         /**
          * Inbentarioa eguneratzen duen funtzioa da (sql sententzia)
          * @access public
-         * @param $etiketa
-         * @param $etiketa_berria
-         * @return $error
+         * @param $etiketa - inbentarioaren etiketa zaharra
+         * @param $etiketa_berria - inbentarioaren etiketa berria
+         * @return $error - kontsultaren emaitza
          */
         function inbent_eguneratu($etiketa, $etiketa_berria){
             $sql = "UPDATE inbentarioa SET inbentarioa.etiketa = UPPER('".$etiketa_berria."') WHERE inbentarioa.etiketa = '".$etiketa."'";
@@ -138,7 +138,7 @@
         /**
          * Etiketa aleatorio bat sortzen duen funtzioa (3 letra eta 3 zenbaki)
          * @access public
-         * @return $etiketa
+         * @return $etiketa - inbentarioaren etiketa
          */
         function generateRandomEtiketa() {
             $letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -158,9 +158,9 @@
         /**
          * Inbentarioan artikuluak gehitzen eta eguneratzen duen funtzioa da 
          * @access public
-         * @param $idEkipamendu
-         * @param $erosketaData
-         * @return $exist
+         * @param $idEkipamendu - inbentarioaren ekipamenduaren id
+         * @param $erosketaData - inbentarioaren erosketa data
+         * @return $exist - existitzen den edo ez
          */
         function add_inbent($idEkipamendu,$erosketaData){
             $etiketa = $this->generateRandomEtiketa();
@@ -205,7 +205,7 @@
          * Etiketa existitzen den begiratzen duen funtzioa da 
          * @access public
          * @param $etiketa
-         * @return $exist
+         * @return $exist - existitzen den edo ez
          */
         function etiketaExists($etiketa) {
             $sql = "SELECT inbentarioa.etiketa FROM inbentarioa WHERE inbentarioa.etiketa = '$etiketa';";

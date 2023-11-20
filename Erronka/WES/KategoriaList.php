@@ -19,8 +19,8 @@
         /**
          * Kategoriaren gelaren konstruktorea
          * @access public
-         * @param $id
-         * @param $izena
+         * @param $id - kategoriaren id
+         * @param $izena - kategoriaren izena
          */
         function __construct($id,$izena){
             $this->id = $id;
@@ -48,7 +48,7 @@
         /**
          * Kategoriaren informazioa kargatzen duen funtzioa da
          * @access public
-         * @param $sql
+         * @param $sql - Exekutatu behar den sql kontsulta
          */
         function informazioa_karga($sql)
         {
@@ -66,7 +66,7 @@
         /**
          * Kategoriaren id handiena esaten duen funtzioa
          * @access public
-         * @return $id_kat
+         * @return $id_kat - kategoriaren id
          */
         function id_max()
         {
@@ -87,8 +87,8 @@
         /**
          * Kategoria konprobatzen duen funtzioa
          * @access public
-         * @param $izena
-         * @return $error
+         * @param $izena - kategoriaren izena
+         * @return $error - kontsultaren emaitza
          */
         function kategoria_konprobatu($izena)
         {
@@ -103,6 +103,13 @@
             return $error;
         }
 
+        /**
+         * Kategoria eguneratzean izena konprobatzen duen funtzioa
+         * @access public
+         * @param $izena - kategoriaren izena
+         * @param $id - kategoriaren id
+         * @return $error - kontsultaren emaitza
+         */
         function kategoria_konprobatu_eguneratu($izena, $id)
         {
             $sql = "SELECT kategoria.id FROM kategoria WHERE LOWER(kategoria.izena) = '".$izena."' AND kategoria.id != ".$id;
@@ -129,7 +136,7 @@
         /**
          * Kategoriaren izena kargatzen duen funtzioa (sql sententzia)
          * @access public
-         * @param $id
+         * @param $id - kategoriaren id
          */
         function kategoria_izena_kargatu($id)
         {
@@ -140,8 +147,8 @@
         /**
          * Kategoria gehitzen duen funtzioa
          * @access public
-         * @param $sql
-         * @return $error
+         * @param $sql - Exekutatu behar den sql kontsulta
+         * @return $error - kontsultaren emaitza
          */
         function kategoria_gehitu($sql)
         {
@@ -154,8 +161,8 @@
         /**
          * Kategoria ezabatzen duen funtzioa
          * @access public
-         * @param $sql
-         * @return $error
+         * @param $sql - Exekutatu behar den sql kontsulta
+         * @return $error - kontsultaren emaitza
          */
         function kategoria_ezabatu($sql)
         {
@@ -168,8 +175,8 @@
         /**
          * Kategoria eguneratzen duen funtzioa
          * @access public
-         * @param $sql
-         * @return $error
+         * @param $sql - Exekutatu behar den sql kontsulta
+         * @return $error - kontsultaren emaitza
          */
         function kategoria_eguneratu($sql)
         {

@@ -16,7 +16,7 @@
     $gela = new GelaList();
 
     /**
-     * GET bidez deia egiten denean, behar den informazioa JSON-en bidez bidaltzen duen baldintza 
+     * GET bidez deia egiten denean, behar den gelaren informazioa JSON bidaltzen da 
      */
     if($_SERVER["REQUEST_METHOD"]=="GET"){
         if (isset($_GET["id_gela"])) {
@@ -29,7 +29,7 @@
     }
 
     /**
-     * PUT bidez deia egiten denean, behar den informazioa JSON-en bidez bidaltzen duen baldintza 
+     * PUT bidez deia egiten denean, lortutako gela zerbitzarian eguneratzen da 
      */
     if($_SERVER["REQUEST_METHOD"]=="PUT"){
         $json_data = file_get_contents("php://input");
@@ -44,7 +44,7 @@
     }
 
     /**
-     * DELETE bidez deia egiten denean, behar den informazioa JSON-en bidez bidaltzen duen baldintza 
+     * DELETE bidez deia egiten denean, lortutako gela zerbitzaritik ezabatzen da 
      */
     if($_SERVER["REQUEST_METHOD"]=="DELETE"){
         $json_data = file_get_contents("php://input");
@@ -58,7 +58,8 @@
     }
 
     /**
-     * POST bidez deia egiten denean, behar den informazioa JSON-en bidez bidaltzen duen baldintza 
+     * POST bidez deia egiten denean, behar den informazioa JSON-en bidez bidaltzen duen baldintza (filtroak baieztatzeko), edota
+     * gela berria zerbitzarian txertatzen da 
      */
     if($_SERVER["REQUEST_METHOD"]=="POST"){
         $json_data = file_get_contents("php://input");
