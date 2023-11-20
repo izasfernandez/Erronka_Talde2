@@ -212,7 +212,7 @@
             $correcto = false;
             if (strlen(strval($nan_zenb)) == 8 && strlen($nan_letra) == 1) {
                 $hondarra = fmod($nan_zenb,23);
-                if (strtoupper($nan_letra) == nan_hizkia($hondarra)) {
+                if (strtoupper($nan_letra) == $this->nan_hizkia($hondarra)) {
                     $correcto = true;
                 }
             }
