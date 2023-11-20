@@ -203,7 +203,7 @@
          */
         function izena_existitu($izena)
         {
-            $sql = "SELECT * FROM ekipamendua WHERE LOWER(ekipamendua.izena) = LOWER(".$izena.")";
+            $sql = "SELECT * FROM ekipamendua WHERE ekipamendua.izena = '".$izena."'";
             $exist = false;
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
@@ -224,7 +224,7 @@
          */
         function izena_existitu_eguneratu($izena, $id)
         {
-            $sql = "SELECT * FROM ekipamendua WHERE LOWER(ekipamendua.izena) = LOWER(".$izena.") AND ekipamendu.id != ".$id;
+            $sql = "SELECT * FROM ekipamendua WHERE ekipamendua.izena = '".$izena."' AND ekipamendu.id != ".$id;
             $exist = false;
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");

@@ -128,7 +128,7 @@
                 $json = json_encode($artikuluak);
             } else {
                 if (isset($data["izena"])&&isset($data["desk"])&&isset($data["marka"])&&isset($data["model"])&&isset($data["url"])&&isset($data["kat"])) {
-                    if ($artikuluak->izena_existitu($data["izena"])) {
+                    if (!$artikuluak->izena_existitu($data["izena"])) {
                         if (isset($data["stck"])) {
                             $ekipo = $artikuluak->add($data["izena"],$data["desk"],$data["marka"],$data["model"],$data["url"],$data["kat"],$data["stck"]);
                         }else{
