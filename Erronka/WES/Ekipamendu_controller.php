@@ -58,7 +58,7 @@
         $sql = "";
         $error = "ERROR";
         if (isset($data["izena"])&&isset($data["desk"])&&isset($data["marka"])&&isset($data["modeloa"])&&isset($data["url"])&&isset($data["id"])) {
-            if ($artikuluak->izena_existitu_eguneratu($data["izena"],$data["id"])) {
+            if (!$artikuluak->izena_existitu_eguneratu($data["izena"],$data["id"])) {
                 $sql = "UPDATE ekipamendua SET ekipamendua.izena = '".$data["izena"]."', ekipamendua.deskribapena = '".$data["desk"]."', ekipamendua.marka = '".$data["marka"]."', ekipamendua.modelo = '".$data["modeloa"]."', ekipamendua.img_url = '".$data["url"]."' WHERE ekipamendua.id = ".$data["id"];
             }
         }
