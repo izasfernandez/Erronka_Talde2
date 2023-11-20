@@ -224,7 +224,7 @@
          */
         function izena_existitu_eguneratu($izena, $id)
         {
-            $sql = "SELECT * FROM ekipamendua WHERE ekipamendua.izena = ".$izena." AND ekipamendu.id != ".$id;
+            $sql = "SELECT * FROM ekipamendua WHERE ekipamendua.izena = '".$izena."' AND ekipamendua.id != ".$id;
             $exist = false;
             // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
