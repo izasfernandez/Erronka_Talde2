@@ -203,9 +203,8 @@
          */
         function izena_existitu($izena)
         {
-            $sql = "SELECT * FROM ekipamendua WHERE ekipamendua.izena = ".$izena;
+            $sql = "SELECT * FROM ekipamendua WHERE ekipamendua.izena = '".$izena."'";
             $exist = false;
-            // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $emaitza = $conn->select($sql);
             if ($emaitza->num_rows > 0) {
@@ -226,7 +225,6 @@
         {
             $sql = "SELECT * FROM ekipamendua WHERE ekipamendua.izena = '".$izena."' AND ekipamendua.id != ".$id;
             $exist = false;
-            // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $emaitza = $conn->select($sql);
             if ($emaitza->num_rows > 0) {

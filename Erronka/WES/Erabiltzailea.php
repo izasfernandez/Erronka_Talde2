@@ -94,7 +94,25 @@
         {
             $sql = "SELECT * FROM erabiltzailea WHERE erabiltzailea.erabiltzailea = '".$erabiltzailea."'";
             $exist = false;
-            // $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
+            $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
+            $emaitza = $conn->select($sql);
+            if ($emaitza->num_rows > 0) {
+                $exist = true;
+            }
+            $conn->die();
+            return $exist;
+        }
+
+        /**
+         * Erabiltzailea existitzen den konprobatzen duen funtzioa da
+         * @access public
+         * @param $erabiltzailea - Erabiltzailearen erabiltzaile gakoa
+         * @return $exist - Boolean bat: True existitzen bada/False ez bada existitzen
+         */
+        public function erabiltzailea_konprobatu_eguneratu($erabiltzailea,$nan)
+        {
+            $sql = "SELECT * FROM erabiltzailea WHERE erabiltzailea.erabiltzailea = '".$erabiltzailea."' AND erabiltzailea.nan != '".$nan."'";
+            $exist = false;
             $conn = new DB("192.168.201.102","talde2","ikasle123","3wag2e1");
             $emaitza = $conn->select($sql);
             if ($emaitza->num_rows > 0) {

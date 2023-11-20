@@ -60,7 +60,7 @@
         $erabil = new erabiltzailea();
         $error = "ERROR";
         if (isset($data["izena"])&&isset($data["abizena"])&&isset($data["erabil"])&&isset($data["nan"])) {
-            if (!$erabil->erabiltzailea_konprobatu($data["erabil"])) {
+            if (!$erabil->erabiltzailea_konprobatu_eguneratu($data["erabil"],$data["nan"])) {
                 if (empty($data["pasa"])) {
                     $sql = "UPDATE erabiltzailea SET erabiltzailea.izena = '".$data["izena"]."', erabiltzailea.abizena = '".$data["abizena"]."', erabiltzailea.erabiltzailea = '".$data["erabil"]."' WHERE erabiltzailea.nan = '".$data["nan"]."'";
                 }else{
